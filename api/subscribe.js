@@ -19,9 +19,8 @@ module.exports = async function handler(req, res) {
   const audienceId = process.env.RESEND_AUDIENCE_ID;
 
   if (!apiKey || !audienceId) {
-    console.error('Missing env vars. RESEND_API_KEY present:', !!apiKey, 'RESEND_AUDIENCE_ID present:', !!audienceId);
-    console.error('All env keys:', Object.keys(process.env).filter(k => k.startsWith('RESEND')));
-    return res.status(500).json({ error: 'Server misconfiguration', debug: { hasApiKey: !!apiKey, hasAudienceId: !!audienceId } });
+    const resendKeys = Object.keys(process.env).filter(k => k.toLowerCase().includes('resend') || k.toLowerCase().includes('email') || k.toLowerCase().includes('audience'));
+    return res.status(500).json({ error: 'Server misconfiguration', debug: { hasApiKey: !!apiKey, hasAudienceId: !!audienceId, resendRelatedKeys: resendKeys } });
   }
 
   try {
