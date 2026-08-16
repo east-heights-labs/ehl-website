@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "East Heights Labs holding page",
   "private": true,
+  "type": "commonjs",
   "engines": {
     "node": ">=18"
   },
