@@ -19,8 +19,8 @@ module.exports = async function handler(req, res) {
   const audienceId = process.env.RESEND_AUDIENCE_ID;
 
   if (!apiKey || !audienceId) {
-    const resendKeys = Object.keys(process.env).filter(k => k.toLowerCase().includes('resend') || k.toLowerCase().includes('email') || k.toLowerCase().includes('audience'));
-    return res.status(500).json({ error: 'Server misconfiguration', debug: { hasApiKey: !!apiKey, hasAudienceId: !!audienceId, resendRelatedKeys: resendKeys } });
+    console.error('Missing RESEND_API_KEY or RESEND_AUDIENCE_ID');
+    return res.status(500).json({ error: 'Server misconfiguration' });
   }
 
   try {
