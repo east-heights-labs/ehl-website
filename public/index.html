@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="East Heights Labs — We build apps to make it easier to find what's around you."/>
+  <title>East Heights Labs</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --accent: #6c63ff;
+      --accent2: #ff6584;
+      --text: #f0f0f8;
+      --muted: rgba(240,240,248,0.6);
+      --card: rgba(10,10,20,0.55);
+      --border: rgba(255,255,255,0.12);
+    }
+
+    html, body { height: 100%; }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    .bg-photo {
+      position: fixed;
+      inset: 0;
+      background-image: url('hero.jpg');
+      background-size: cover;
+      background-position: center 40%;
+      z-index: 0;
+    }
+
+    .bg-overlay {
+      position: fixed;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(5, 5, 15, 0.45) 0%,
+        rgba(5, 5, 15, 0.62) 50%,
+        rgba(5, 5, 15, 0.85) 100%
+      );
+      z-index: 1;
+    }
+
+    .container {
+      position: relative;
+      z-index: 2;
+      max-width: 680px;
+      width: 100%;
+      text-align: center;
+    }
+
+    .logo-mark {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 2.5rem;
+    }
+
+    .logo-icon {
+      width: 44px; height: 44px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 20px rgba(108,99,255,0.4);
+    }
+
+    .logo-icon svg { width: 24px; height: 24px; }
+
+    .logo-wordmark {
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text);
+      text-shadow: 0 1px 4px rgba(0,0,0,0.5);
+    }
+
+    .badge {
+      display: inline-block;
+      background: rgba(108,99,255,0.2);
+      border: 1px solid rgba(108,99,255,0.4);
+      color: #c4c0ff;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.8rem;
+      border-radius: 100px;
+      margin-bottom: 1.5rem;
+      backdrop-filter: blur(8px);
+    }
+
+    h1 {
+      font-size: clamp(2.4rem, 6vw, 3.8rem);
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 1.25rem;
+      letter-spacing: -0.02em;
+      text-shadow: 0 2px 12px rgba(0,0,0,0.5);
+    }
+
+    h1 span {
+      background: linear-gradient(135deg, #c4c0ff 0%, #ff8fab 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .tagline {
+      font-size: 1.1rem;
+      color: var(--muted);
+      line-height: 1.6;
+      margin-bottom: 3rem;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+      text-shadow: 0 1px 6px rgba(0,0,0,0.5);
+    }
+
+    .email-form {
+      display: flex;
+      gap: 0.75rem;
+      max-width: 420px;
+      margin: 0 auto 0.75rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .email-form input {
+      flex: 1;
+      min-width: 220px;
+      background: rgba(10,10,20,0.6);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-family: inherit;
+      font-size: 0.9rem;
+      padding: 0.75rem 1rem;
+      border-radius: 8px;
+      outline: none;
+      transition: border-color 0.2s;
+      backdrop-filter: blur(10px);
+    }
+
+    .email-form input::placeholder { color: rgba(240,240,248,0.4); }
+    .email-form input:focus { border-color: var(--accent); }
+
+    .email-form button {
+      background: linear-gradient(135deg, var(--accent), #8b5cf6);
+      color: #fff;
+      font-family: inherit;
+      font-size: 0.9rem;
+      font-weight: 600;
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: opacity 0.2s, transform 0.1s;
+      box-shadow: 0 4px 16px rgba(108,99,255,0.4);
+    }
+
+    .email-form button:hover { opacity: 0.9; }
+    .email-form button:active { transform: scale(0.98); }
+    .email-form button:disabled { opacity: 0.7; cursor: default; }
+
+    .form-status {
+      font-size: 0.8rem;
+      min-height: 1.2rem;
+      margin-bottom: 2.5rem;
+      color: rgba(240,240,248,0.5);
+    }
+
+    .form-status.success { color: #4ade80; }
+    .form-status.error   { color: #f87171; }
+
+    .divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 0 auto 2.5rem;
+      max-width: 320px;
+    }
+
+    .apps-label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(240,240,248,0.45);
+      margin-bottom: 1.2rem;
+    }
+
+    .apps-grid {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .app-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.2rem 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      min-width: 180px;
+      text-align: left;
+      transition: border-color 0.2s, background 0.2s;
+      backdrop-filter: blur(12px);
+    }
+
+    .app-card:hover {
+      border-color: rgba(108,99,255,0.4);
+      background: rgba(10,10,20,0.7);
+    }
+
+    .app-icon {
+      width: 42px; height: 42px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      flex-shrink: 0;
+    }
+
+    .app-icon.music   { background: linear-gradient(135deg, #1a1a3e, #2d2060); }
+    .app-icon.history { background: linear-gradient(135deg, #1a2e1a, #1a3a1a); }
+
+    .app-name {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    footer {
+      position: relative;
+      z-index: 2;
+      margin-top: 3rem;
+      font-size: 0.75rem;
+      color: rgba(240,240,248,0.35);
+    }
+
+    footer a { color: inherit; text-decoration: none; }
+    footer a:hover { color: rgba(240,240,248,0.7); }
+  </style>
+</head>
+<body>
+
+  <div class="bg-photo"></div>
+  <div class="bg-overlay"></div>
+
+  <div class="container">
+
+    <div class="logo-mark">
+      <div class="logo-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M9 3h6M9 3v7L4 20h16L15 10V3"/>
+          <line x1="6" y1="14" x2="18" y2="14"/>
+        </svg>
+      </div>
+      <span class="logo-wordmark">East Heights Labs</span>
+    </div>
+
+    <div class="badge">Coming Soon</div>
+
+    <h1>Apps built for<br/><span>where you actually are.</span></h1>
+
+    <p class="tagline">We build apps to make it easier to find what's around you.</p>
+
+    <form class="email-form" id="signup-form">
+      <input type="email" id="email-input" placeholder="your@email.com" required />
+      <button type="submit" id="submit-btn">Notify me</button>
+    </form>
+    <p class="form-status" id="form-status">No spam. Just a ping when we launch.</p>
+
+    <hr class="divider"/>
+
+    <p class="apps-label">Apps in development</p>
+
+    <div class="apps-grid">
+      <div class="app-card">
+        <div class="app-icon music">🎸</div>
+        <div class="app-name">Live Near Me</div>
+      </div>
+      <div class="app-card">
+        <div class="app-icon history">🗺️</div>
+        <div class="app-name">What Used To Be There</div>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>
+    <span>© 2026 East Heights Labs, LLC · Houston, TX</span>
+    &nbsp;·&nbsp;
+    <a href="mailto:hello@eastheightslabs.com">hello@eastheightslabs.com</a>
+  </footer>
+
+  <script>
+    document.getElementById('signup-form').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const email = document.getElementById('email-input').value;
+      const btn = document.getElementById('submit-btn');
+      const status = document.getElementById('form-status');
+
+      btn.disabled = true;
+      btn.textContent = 'Sending…';
+      status.className = 'form-status';
+      status.textContent = '';
+
+      try {
+        const res = await fetch('/api/subscribe', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email })
+        });
+
+        if (res.ok) {
+          btn.textContent = '✓ You\'re on the list';
+          btn.style.background = 'linear-gradient(135deg, #22c55e, #16a34a)';
+          document.getElementById('email-input').disabled = true;
+          status.className = 'form-status success';
+          status.textContent = 'We\'ll reach out when we launch.';
+        } else {
+          throw new Error('server error');
+        }
+      } catch {
+        btn.disabled = false;
+        btn.textContent = 'Notify me';
+        status.className = 'form-status error';
+        status.textContent = 'Something went wrong — try again.';
+      }
+    });
+  </script>
+
+</body>
+</html>

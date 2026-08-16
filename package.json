@@ -1,0 +1,16 @@
+{
+  "name": "ehl-website",
+  "version": "1.0.0",
+  "description": "East Heights Labs holding page",
+  "private": true,
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "dev": "vercel dev",
+    "deploy": "vercel --prod"
+  },
+  "devDependencies": {
+    "vercel": "^37.0.0"
+  }
+}
