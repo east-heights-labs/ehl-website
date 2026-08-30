@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Privacy Policy — OnStage by East Heights Labs"/>
+  <title>Privacy Policy — OnStage · East Heights Labs</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --accent: #6c63ff;
+      --accent2: #ff6584;
+      --text: #f0f0f8;
+      --muted: rgba(240,240,248,0.6);
+      --card: rgba(10,10,20,0.55);
+      --border: rgba(255,255,255,0.12);
+    }
+
+    html, body { height: 100%; }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 0;
+      overflow-x: hidden;
+      position: relative;
+      background: #05050f;
+    }
+
+    .bg-photo {
+      position: fixed;
+      inset: 0;
+      background-image: url('hero.jpg');
+      background-size: cover;
+      background-position: center 40%;
+      z-index: 0;
+    }
+
+    .bg-overlay {
+      position: fixed;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(5, 5, 15, 0.75) 0%,
+        rgba(5, 5, 15, 0.88) 50%,
+        rgba(5, 5, 15, 0.95) 100%
+      );
+      z-index: 1;
+    }
+
+    header {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      max-width: 760px;
+      padding: 2rem 2rem 0;
+    }
+
+    .logo-mark {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+
+    .logo-icon {
+      width: 36px; height: 36px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 20px rgba(108,99,255,0.4);
+      flex-shrink: 0;
+    }
+
+    .logo-icon svg { width: 20px; height: 20px; }
+
+    .logo-wordmark {
+      font-size: 1.1rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text);
+    }
+
+    main {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      max-width: 760px;
+      padding: 3rem 2rem 5rem;
+    }
+
+    .page-title {
+      font-size: clamp(1.8rem, 5vw, 2.6rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.4rem;
+      text-shadow: 0 2px 12px rgba(0,0,0,0.5);
+    }
+
+    .page-title span {
+      background: linear-gradient(135deg, #c4c0ff 0%, #ff8fab 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .meta {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-bottom: 3rem;
+    }
+
+    section {
+      margin-bottom: 2.5rem;
+    }
+
+    h2 {
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #c4c0ff;
+      margin-bottom: 0.9rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    h3 {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text);
+      margin: 1.2rem 0 0.5rem;
+    }
+
+    p {
+      font-size: 0.93rem;
+      color: var(--muted);
+      line-height: 1.75;
+      margin-bottom: 0.8rem;
+    }
+
+    ul {
+      margin: 0.4rem 0 0.8rem 1.2rem;
+    }
+
+    ul li {
+      font-size: 0.93rem;
+      color: var(--muted);
+      line-height: 1.75;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 0.8rem 0;
+      font-size: 0.88rem;
+    }
+
+    th {
+      text-align: left;
+      color: rgba(240,240,248,0.5);
+      font-weight: 600;
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.5rem 0.75rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    td {
+      padding: 0.6rem 0.75rem;
+      color: var(--muted);
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      vertical-align: top;
+    }
+
+    td:first-child {
+      color: var(--text);
+      font-weight: 500;
+      white-space: nowrap;
+    }
+
+    a {
+      color: #c4c0ff;
+      text-decoration: none;
+    }
+    a:hover { text-decoration: underline; }
+
+    .contact-block {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+      backdrop-filter: blur(10px);
+    }
+
+    .contact-block p {
+      margin: 0;
+    }
+
+    footer {
+      position: relative;
+      z-index: 2;
+      padding: 0 2rem 2rem;
+      font-size: 0.75rem;
+      color: rgba(240,240,248,0.3);
+      width: 100%;
+      max-width: 760px;
+    }
+
+    footer a { color: inherit; }
+    footer a:hover { color: rgba(240,240,248,0.6); }
+  </style>
+</head>
+<body>
+
+  <div class="bg-photo"></div>
+  <div class="bg-overlay"></div>
+
+  <header>
+    <a href="/" class="logo-mark">
+      <div class="logo-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M9 3h6M9 3v7L4 20h16L15 10V3"/>
+          <line x1="6" y1="14" x2="18" y2="14"/>
+        </svg>
+      </div>
+      <span class="logo-wordmark">East Heights Labs</span>
+    </a>
+  </header>
+
+  <main>
+    <h1 class="page-title">Privacy Policy — <span>OnStage</span></h1>
+    <p class="meta">Effective Date: August 19, 2026 &nbsp;·&nbsp; Last Updated: August 30, 2026 &nbsp;·&nbsp; Developer: East Heights Labs LLC, Houston, TX</p>
+
+    <section>
+      <h2>Overview</h2>
+      <p>OnStage is a live music discovery app that shows you concerts and events happening near your current location. We built it to be simple and privacy-respecting. We don't require an account. We don't sell your data. We don't track you across other apps or websites.</p>
+    </section>
+
+    <section>
+      <h2>Information We Collect</h2>
+
+      <h3>Location Data</h3>
+      <p>OnStage requests access to your device's location to show you events near you. Location is used only to query our event database — it is sent to our servers to fetch nearby shows and is not stored, logged, or shared with third parties.</p>
+      <p>You can use the app without granting location access by searching for a city manually.</p>
+
+      <h3>Anonymous Device Identifier</h3>
+      <p>OnStage generates a random identifier (UUID) the first time you launch the app. This identifier is:</p>
+      <ul>
+        <li>Randomly generated — not linked to your name, email, Apple ID, or any other personal information</li>
+        <li>Stored only on your device</li>
+        <li>Used to associate your stage time reports with your submissions so we can display community-reported data accurately</li>
+        <li>Never shared with advertisers or data brokers</li>
+      </ul>
+      <p>You can reset this identifier by deleting and reinstalling the app.</p>
+
+      <h3>Stage Time Reports (Optional)</h3>
+      <p>If you submit a stage time report ("Report OnStage Time"), we collect the artist name, venue, date, and time you submit, along with your anonymous device identifier. We do not collect your name, email, or any contact information when you submit a report.</p>
+
+      <h3>Event Data</h3>
+      <p>OnStage displays event data from third-party sources including Ticketmaster and JamBase. We do not collect or store information about which events you view.</p>
+    </section>
+
+    <section>
+      <h2>Information We Do Not Collect</h2>
+      <ul>
+        <li>Name, email address, or contact information</li>
+        <li>Apple ID or sign-in credentials</li>
+        <li>Precise location history or movement patterns</li>
+        <li>Payment information</li>
+        <li>Advertising identifiers (IDFA)</li>
+        <li>Browsing history or cross-app tracking data</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>How We Use Information</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Data</th>
+            <th>Purpose</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Location (approximate)</td>
+            <td>Fetch nearby events from our API</td>
+          </tr>
+          <tr>
+            <td>Anonymous device ID</td>
+            <td>Associate stage time reports; prevent spam</td>
+          </tr>
+          <tr>
+            <td>Stage time reports</td>
+            <td>Display community-reported show times to all users</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>Third-Party Services</h2>
+      <p>OnStage uses the following third-party services to provide event data:</p>
+      <ul>
+        <li><strong>Ticketmaster Discovery API</strong> — event and venue data. <a href="https://www.ticketmaster.com/h/privacy.html" target="_blank" rel="noopener">Ticketmaster Privacy Policy</a></li>
+        <li><strong>JamBase</strong> — live music event data, particularly for independent and jam band events. Powered by JamBase. <a href="https://www.jambase.com/article/privacy-policy" target="_blank" rel="noopener">JamBase Privacy Policy</a></li>
+      </ul>
+      <p>Our servers are hosted on <strong>Vercel</strong> (Vercel Inc., San Francisco, CA). API requests including approximate location coordinates are processed by Vercel's infrastructure. <a href="https://vercel.com/legal/privacy-policy" target="_blank" rel="noopener">Vercel Privacy Policy</a></p>
+    </section>
+
+    <section>
+      <h2>Data Retention</h2>
+      <ul>
+        <li>Location data is not retained after your API request is fulfilled</li>
+        <li>Anonymous device IDs and stage time reports are retained to power community features. You may request deletion by contacting us.</li>
+        <li>We do not maintain user accounts or session logs</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Children's Privacy</h2>
+      <p>OnStage is not directed at children under 13. We do not knowingly collect personal information from children under 13. If you believe a child has submitted information through the app, contact us and we will delete it.</p>
+    </section>
+
+    <section>
+      <h2>Your Rights</h2>
+      <p>You may:</p>
+      <ul>
+        <li><strong>Revoke location access</strong> at any time in iOS Settings → Privacy &amp; Security → Location Services → OnStage</li>
+        <li><strong>Reset your anonymous ID</strong> by deleting and reinstalling the app</li>
+        <li><strong>Request deletion</strong> of any stage time reports you submitted by contacting us with the approximate date and venue</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Changes to This Policy</h2>
+      <p>We will update this page when our data practices change. The "Last Updated" date at the top reflects the most recent revision. Continued use of the app after changes constitutes acceptance of the updated policy.</p>
+    </section>
+
+    <section>
+      <h2>Contact</h2>
+      <div class="contact-block">
+        <p>East Heights Labs LLC &nbsp;·&nbsp; Houston, Texas &nbsp;·&nbsp; <a href="mailto:privacy@eastheightslabs.com">privacy@eastheightslabs.com</a></p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <span>© 2026 East Heights Labs, LLC · Houston, TX</span>
+    &nbsp;·&nbsp;
+    <a href="/">Home</a>
+    &nbsp;·&nbsp;
+    <a href="mailto:hello@eastheightslabs.com">hello@eastheightslabs.com</a>
+    &nbsp;·&nbsp;
+    <em>OnStage is independently developed by East Heights Labs LLC and is not affiliated with Ticketmaster, Live Nation, or JamBase.</em>
+  </footer>
+
+</body>
+</html>
