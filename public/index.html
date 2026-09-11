@@ -1,37 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="description" content="East Heights Labs — We build apps to make it easier to find what's around you."/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="East Heights Labs — We build apps to make it easier to find what's around you.">
   <title>East Heights Labs</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
-
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
       --accent: #6c63ff;
-      --accent2: #ff6584;
+      --accent-2: #8b5cf6;
+      --accent-pink: #ff6584;
       --text: #f0f0f8;
-      --muted: rgba(240,240,248,0.6);
-      --card: rgba(10,10,20,0.55);
+      --muted: rgba(240,240,248,0.62);
+      --quiet: rgba(240,240,248,0.38);
+      --card: rgba(8, 8, 18, 0.62);
       --border: rgba(255,255,255,0.12);
+      --radius: 20px;
+      --nav-h: 64px;
+      --space-1: 8px;
+      --space-2: 16px;
+      --space-3: 24px;
+      --space-4: 32px;
+      --space-5: 48px;
+      --space-6: 64px;
+      --space-7: 96px;
+      --content: 1080px;
+      --narrow: 720px;
     }
 
-    html, body { height: 100%; }
+    html { scroll-behavior: smooth; }
 
     body {
-      font-family: 'Inter', system-ui, sans-serif;
+      font-family: Inter, system-ui, sans-serif;
       color: var(--text);
       min-height: 100vh;
+      background: #05050f;
       overflow-x: hidden;
-      position: relative;
+    }
+
+    a { color: inherit; }
+
+    .bg-photo,
+    .bg-overlay {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
     }
 
     .bg-photo {
-      position: fixed;
-      inset: 0;
       background-image: url('hero.jpg');
       background-size: cover;
       background-position: center 40%;
@@ -39,40 +60,72 @@
     }
 
     .bg-overlay {
-      position: fixed;
-      inset: 0;
-      background: linear-gradient(
-        to bottom,
-        rgba(5, 5, 15, 0.45) 0%,
-        rgba(5, 5, 15, 0.62) 50%,
-        rgba(5, 5, 15, 0.85) 100%
-      );
       z-index: 1;
+      background:
+        linear-gradient(to bottom,
+          rgba(5,5,15,0.55) 0%,
+          rgba(5,5,15,0.72) 42%,
+          rgba(5,5,15,0.92) 78%,
+          rgba(5,5,15,0.97) 100%);
     }
 
+    .wrap {
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Nav */
     .site-nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
+      position: sticky;
+      top: 0;
       z-index: 100;
-      background: rgba(5,5,15,0.7);
-      backdrop-filter: blur(12px);
+      height: var(--nav-h);
+      background: rgba(5,5,15,0.72);
+      backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--border);
     }
 
-    .nav-inner {
-      max-width: 960px;
+    .nav-inner,
+    .section-inner {
+      width: min(var(--content), calc(100% - 48px));
       margin: 0 auto;
-      padding: 0 1.5rem;
-      height: 56px;
+    }
+
+    .nav-inner {
+      height: 100%;
       display: flex;
       align-items: center;
       justify-content: space-between;
+      gap: var(--space-3);
     }
 
     .nav-logo {
       display: flex;
       align-items: center;
       gap: 10px;
+      text-decoration: none;
+      min-width: 0;
+    }
+
+    .logo-icon {
+      width: 32px;
+      height: 32px;
+      flex-shrink: 0;
+      background: linear-gradient(135deg, var(--accent), var(--accent-pink));
+      border-radius: 8px;
+      display: grid;
+      place-items: center;
+      box-shadow: 0 2px 12px rgba(108,99,255,0.35);
+    }
+
+    .logo-icon svg { width: 18px; height: 18px; }
+
+    .logo-wordmark {
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      white-space: nowrap;
     }
 
     .nav-link {
@@ -80,455 +133,408 @@
       text-decoration: none;
       font-size: 0.9rem;
       font-weight: 500;
-      transition: color 0.2s;
+      white-space: nowrap;
     }
 
     .nav-link:hover { color: var(--text); }
 
-    .logo-mark {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 1.5rem;
-    }
-
-    .logo-wrap {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin-bottom: 1rem;
-    }
-
-    .logo-icon {
-      width: 44px; height: 44px;
-      background: linear-gradient(135deg, var(--accent), var(--accent2));
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 4px 20px rgba(108,99,255,0.4);
-    }
-
-    .logo-icon svg { width: 24px; height: 24px; }
-
-    .logo-wordmark {
-      font-size: 1.4rem;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--text);
-      text-shadow: 0 1px 4px rgba(0,0,0,0.5);
-    }
-
-    .nav-logo .logo-icon {
-      width: 32px; height: 32px;
-      border-radius: 8px;
-      box-shadow: 0 2px 12px rgba(108,99,255,0.35);
-    }
-
-    .nav-logo .logo-icon svg { width: 18px; height: 18px; }
-
-    .nav-logo .logo-wordmark {
-      font-size: 0.85rem;
-      margin: 0;
-      text-shadow: none;
-    }
-
-    /* ─── HERO ─── */
+    /* Hero */
     .hero {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 7rem 2rem 4rem;
-      position: relative;
-      z-index: 2;
+      padding: var(--space-6) 0 var(--space-5);
       text-align: center;
     }
 
-    .hero-content {
-      max-width: 680px;
-      width: 100%;
+    .hero-inner { width: min(var(--narrow), calc(100% - 48px)); margin: 0 auto; }
+
+    .eyebrow {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #c4c0ff;
+      margin-bottom: var(--space-3);
     }
 
     h1 {
-      font-size: clamp(2.4rem, 6vw, 3.8rem);
+      font-size: clamp(2.25rem, 6vw, 3.6rem);
       font-weight: 700;
-      line-height: 1.1;
-      margin-bottom: 1.25rem;
-      letter-spacing: -0.02em;
-      text-shadow: 0 2px 12px rgba(0,0,0,0.5);
+      line-height: 1.08;
+      letter-spacing: -0.03em;
+      margin-bottom: var(--space-3);
+      text-shadow: 0 2px 16px rgba(0,0,0,0.45);
     }
 
     h1 span {
       background: linear-gradient(135deg, #c4c0ff 0%, #ff8fab 100%);
       -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
       background-clip: text;
+      color: transparent;
     }
 
     .tagline {
-      font-size: 1.1rem;
+      font-size: 1.125rem;
       color: var(--muted);
-      line-height: 1.6;
-      margin-bottom: 0;
-      max-width: 500px;
-      margin-left: auto;
-      margin-right: auto;
-      text-shadow: 0 1px 6px rgba(0,0,0,0.5);
+      line-height: 1.55;
+      max-width: 34rem;
+      margin: 0 auto var(--space-4);
     }
 
-    /* ─── OSL TEASE SECTION ─── */
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      font-family: inherit;
+      font-size: 0.95rem;
+      font-weight: 600;
+      border-radius: 10px;
+      padding: 0.8rem 1.35rem;
+      transition: transform 0.12s ease, opacity 0.2s ease, border-color 0.2s ease;
+    }
+
+    .btn:active { transform: scale(0.98); }
+
+    .btn-primary {
+      color: #fff;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      box-shadow: 0 8px 24px rgba(108,99,255,0.35);
+    }
+
+    .btn-primary:hover { opacity: 0.92; }
+
+    .btn-ghost {
+      color: var(--text);
+      background: rgba(255,255,255,0.06);
+      border: 1px solid var(--border);
+    }
+
+    .btn-ghost:hover { border-color: rgba(255,255,255,0.28); }
+
+    /* Product */
     .apps-section {
-      position: relative;
-      z-index: 2;
-      padding: 2rem 2rem 2rem;
+      padding: 0 0 var(--space-6);
     }
 
-    .apps-inner {
-      max-width: 680px;
-      margin: 0 auto;
-    }
-
-    /* App card — now a full-width tease for OnStage Live */
     .app-card {
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(200px, 0.65fr);
+      gap: var(--space-5);
+      align-items: center;
+      padding: var(--space-5);
       background: var(--card);
       border: 1px solid var(--border);
-      border-radius: 20px;
-      backdrop-filter: blur(12px);
-      padding: 2rem;
-      display: flex;
-      gap: 2rem;
-      align-items: flex-start;
-      text-decoration: none;
-      color: inherit;
-      transition: border-color 0.2s, transform 0.15s;
-      cursor: pointer;
+      border-radius: 24px;
+      backdrop-filter: blur(16px);
     }
 
-    .app-card:hover {
-      border-color: rgba(108,99,255,0.5);
-      transform: translateY(-2px);
-    }
-
-    .app-card-text { flex: 1; text-align: left; }
-
-    .app-eyebrow {
+    .app-kicker {
       font-size: 0.72rem;
       font-weight: 600;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 0.5rem;
+      color: #a5a0ff;
+      margin-bottom: 10px;
     }
 
-    .app-name { font-size: 1.5rem; font-weight: 700; margin-bottom: 0.25rem; }
+    .app-name {
+      font-size: clamp(1.75rem, 3vw, 2.15rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      margin-bottom: 8px;
+    }
 
     .app-tagline {
       color: #c4c0ff;
-      font-size: 0.9rem;
+      font-size: 1.05rem;
       font-weight: 600;
-      margin-bottom: 0.75rem;
-      letter-spacing: 0.03em;
+      margin-bottom: 12px;
     }
 
     .app-desc {
       color: var(--muted);
-      font-size: 0.9rem;
-      line-height: 1.6;
-      margin-bottom: 1.5rem;
+      font-size: 1rem;
+      line-height: 1.65;
+      max-width: 38rem;
+      margin-bottom: var(--space-3);
     }
 
-    /* Screenshot strip inside card */
-    .app-screenshots {
+    .app-screens {
       display: flex;
-      gap: 0.75rem;
-      margin-bottom: 1.5rem;
-      overflow: hidden;
+      gap: 12px;
+      overflow-x: auto;
+      padding-bottom: 4px;
+      margin-bottom: var(--space-4);
+      scrollbar-width: none;
     }
 
-    .app-screenshots img {
-      width: 80px;
-      border-radius: 12px;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.45);
-      object-fit: cover;
+    .app-screens::-webkit-scrollbar { display: none; }
+
+    .app-screens img {
+      width: 108px;
+      height: auto;
+      border-radius: 14px;
+      box-shadow: 0 10px 28px rgba(0,0,0,0.45);
       flex-shrink: 0;
     }
 
-    .app-cta {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      background: linear-gradient(135deg, var(--accent), #8b5cf6);
-      color: #fff;
-      font-size: 0.9rem;
-      font-weight: 600;
-      padding: 0.65rem 1.25rem;
-      border-radius: 8px;
-      text-decoration: none;
-      box-shadow: 0 4px 16px rgba(108,99,255,0.4);
-      transition: opacity 0.2s;
+    .hero-phone {
+      justify-self: end;
+      width: min(220px, 100%);
     }
 
-    .app-cta:hover { opacity: 0.9; }
-
-    /* Right side: hero phone shot */
-    .app-card-image { flex-shrink: 0; }
-
-    .app-card-image img {
-      width: 120px;
-      border-radius: 18px;
-      box-shadow: 0 12px 40px rgba(0,0,0,0.5);
+    .hero-phone img {
+      width: 100%;
+      display: block;
+      border-radius: 28px;
+      box-shadow: 0 24px 50px rgba(0,0,0,0.5);
     }
 
-    @media (max-width: 540px) {
-      .app-card { flex-direction: column; }
-      .app-card-text { text-align: center; }
-      .app-card-image { order: -1; margin: 0 auto; }
-      .app-screenshots { justify-content: center; }
-    }
-
-    /* ─── MORE APPS ─── */
-    .more-section {
-      position: relative;
-      z-index: 2;
-      padding: 1rem 2rem 2rem;
-    }
-
-    .more-inner {
-      max-width: 680px;
-      margin: 0 auto;
+    .coming-note {
+      margin-top: var(--space-3);
       text-align: center;
+      color: var(--quiet);
+      font-size: 0.88rem;
+      letter-spacing: 0.02em;
     }
 
-    .more-text {
-      color: var(--muted);
-      font-size: 0.85rem;
-      letter-spacing: 0.04em;
-    }
-
-    /* ─── EMAIL SIGNUP (moved to bottom) ─── */
-    .signup-section {
-      position: relative;
-      z-index: 2;
-      padding: 2rem 2rem 1rem;
-    }
+    /* Signup */
+    .signup-section { padding: 0 0 var(--space-6); }
 
     .signup-inner {
-      max-width: 680px;
+      width: min(var(--narrow), calc(100% - 48px));
       margin: 0 auto;
       text-align: center;
+      padding: var(--space-5) var(--space-4);
       background: var(--card);
       border: 1px solid var(--border);
-      border-radius: 16px;
-      backdrop-filter: blur(12px);
-      padding: 2rem;
+      border-radius: var(--radius);
+      backdrop-filter: blur(16px);
     }
 
     .signup-heading {
-      font-size: 1rem;
-      font-weight: 600;
-      margin-bottom: 0.35rem;
+      font-size: 1.35rem;
+      font-weight: 650;
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
     }
 
     .signup-label {
       color: var(--muted);
-      font-size: 0.85rem;
-      margin-bottom: 1.25rem;
-      letter-spacing: 0.02em;
+      font-size: 0.95rem;
+      margin-bottom: var(--space-3);
     }
 
     .email-form {
       display: flex;
-      gap: 0.75rem;
-      max-width: 420px;
-      margin: 0 auto 0.75rem;
-      flex-wrap: wrap;
-      justify-content: center;
+      gap: 10px;
+      max-width: 440px;
+      margin: 0 auto 12px;
     }
 
     .email-form input {
       flex: 1;
-      min-width: 220px;
-      background: rgba(10,10,20,0.6);
+      min-width: 0;
+      background: rgba(10,10,20,0.65);
       border: 1px solid var(--border);
       color: var(--text);
       font-family: inherit;
-      font-size: 0.9rem;
-      padding: 0.75rem 1rem;
-      border-radius: 8px;
+      font-size: 0.95rem;
+      padding: 0.8rem 1rem;
+      border-radius: 10px;
       outline: none;
-      transition: border-color 0.2s;
-      backdrop-filter: blur(10px);
     }
 
-    .email-form input::placeholder { color: rgba(240,240,248,0.4); }
+    .email-form input::placeholder { color: rgba(240,240,248,0.38); }
     .email-form input:focus { border-color: var(--accent); }
 
-    .email-form button {
-      background: linear-gradient(135deg, var(--accent), #8b5cf6);
-      color: #fff;
-      font-family: inherit;
-      font-size: 0.9rem;
-      font-weight: 600;
-      padding: 0.75rem 1.5rem;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: opacity 0.2s, transform 0.1s;
-      box-shadow: 0 4px 16px rgba(108,99,255,0.4);
-    }
-
-    .email-form button:hover { opacity: 0.9; }
-    .email-form button:active { transform: scale(0.98); }
-    .email-form button:disabled { opacity: 0.7; cursor: default; }
-
     .form-status {
-      font-size: 0.8rem;
-      min-height: 1.2rem;
-      margin-bottom: 0;
-      color: rgba(240,240,248,0.5);
+      font-size: 0.82rem;
+      color: var(--quiet);
+      min-height: 1.2em;
     }
 
     .form-status.success { color: #4ade80; }
-    .form-status.error   { color: #f87171; }
+    .form-status.error { color: #f87171; }
 
-    /* ─── FOOTER ─── */
     footer {
-      position: relative;
-      z-index: 2;
-      margin-top: 2rem;
-      padding: 0 2rem 2.5rem;
-      font-size: 0.75rem;
-      color: rgba(240,240,248,0.35);
-      text-align: center;
+      padding: 0 24px var(--space-6);
+      color: var(--quiet);
+      font-size: 0.8rem;
     }
 
-    footer a { color: inherit; text-decoration: none; }
-    footer a:hover { color: rgba(240,240,248,0.7); }
+    .footer-inner {
+      width: min(var(--content), calc(100% - 0px));
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 12px 24px;
+      padding-top: var(--space-4);
+      border-top: 1px solid var(--border);
+    }
+
+    footer a { text-decoration: none; }
+    footer a:hover { color: var(--muted); }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 18px;
+    }
+
+    @media (max-width: 860px) {
+      .app-card {
+        grid-template-columns: 1fr;
+        padding: var(--space-4);
+        text-align: center;
+      }
+
+      .app-desc { margin-left: auto; margin-right: auto; }
+
+      .app-screens { justify-content: center; }
+
+      .hero-phone {
+        justify-self: center;
+        order: -1;
+        width: 168px;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .nav-inner,
+      .hero-inner,
+      .section-inner {
+        width: calc(100% - 32px);
+      }
+
+      .hero { padding: var(--space-5) 0 var(--space-4); }
+
+      .logo-wordmark { letter-spacing: 0.06em; }
+
+      .email-form { flex-direction: column; }
+
+      .email-form .btn { width: 100%; }
+
+      .footer-inner {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .app-screens img { width: 96px; }
+    }
   </style>
 </head>
 <body>
+  <div class="bg-photo" aria-hidden="true"></div>
+  <div class="bg-overlay" aria-hidden="true"></div>
 
-  <div class="bg-photo"></div>
-  <div class="bg-overlay"></div>
-
-  <nav class="site-nav">
-    <div class="nav-inner">
-      <div class="nav-logo">
-        <div class="logo-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M9 3h6M9 3v7L4 20h16L15 10V3"/>
-            <line x1="6" y1="14" x2="18" y2="14"/>
-          </svg>
-        </div>
-        <span class="logo-wordmark">East Heights Labs</span>
-      </div>
-      <a href="/onstagelive" class="nav-link">OnStage Live →</a>
-    </div>
-  </nav>
-
-  <!-- HERO -->
-  <section class="hero">
-    <div class="hero-content">
-      <div class="logo-wrap">
-        <div class="logo-mark">
-          <div class="logo-icon">
+  <div class="wrap">
+    <nav class="site-nav">
+      <div class="nav-inner">
+        <a class="nav-logo" href="/">
+          <span class="logo-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M9 3h6M9 3v7L4 20h16L15 10V3"/>
-              <line x1="6" y1="14" x2="18" y2="14"/>
+              <path d="M9 3h6M9 3v7L4 20h16L15 10V3"></path>
+              <line x1="6" y1="14" x2="18" y2="14"></line>
             </svg>
-          </div>
+          </span>
           <span class="logo-wordmark">East Heights Labs</span>
+        </a>
+        <a href="/onstagelive" class="nav-link">OnStage Live</a>
+      </div>
+    </nav>
+
+    <header class="hero">
+      <div class="hero-inner">
+        <p class="eyebrow">Houston · East Heights Labs</p>
+        <h1>Apps built for<br><span>where you actually are.</span></h1>
+        <p class="tagline">We build apps that make it easier to find what's around you — starting with live music, tonight.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="/onstagelive">See OnStage Live</a>
+          <a class="btn btn-ghost" href="#signup">Stay in the loop</a>
         </div>
       </div>
-      <h1>Apps built for<br/><span>where you actually are.</span></h1>
-      <p class="tagline">We build apps to make it easier to find what's around you.</p>
-    </div>
-  </section>
+    </header>
 
-  <!-- ONSTAGELIVE TEASE CARD -->
-  <section class="apps-section">
-    <div class="apps-inner">
-      <a class="app-card" href="/onstagelive">
-        <div class="app-card-text">
-          <p class="app-eyebrow">Our first app</p>
-          <h2 class="app-name">OnStage Live</h2>
-          <p class="app-tagline">Find Live Music Happening Tonight</p>
-          <p class="app-desc">Every venue near you. Who's playing. When they actually hit the stage — not just when doors open.</p>
-          <div class="app-screenshots">
-            <img src="screenshot-welcome-crop.jpg" alt="OnStage welcome screen" />
-            <img src="screenshot-map-crop.jpg" alt="OnStage map view" />
-            <img src="screenshot-austin-crop.jpg" alt="OnStage Austin events" />
-            <img src="screenshot-onboarding-crop.jpg" alt="OnStage onboarding" />
+    <section class="apps-section" aria-labelledby="app-name">
+      <div class="section-inner">
+        <article class="app-card">
+          <div>
+            <p class="app-kicker">Our first app</p>
+            <h2 class="app-name" id="app-name">OnStage Live</h2>
+            <p class="app-tagline">Find live music happening tonight.</p>
+            <p class="app-desc">Every venue near you. Who's playing. When they actually hit the stage — not just when doors open.</p>
+            <div class="app-screens" aria-label="App screenshots">
+              <img src="screenshot-map-crop.jpg" alt="Map of nearby venues">
+              <img src="screenshot-austin-crop.jpg" alt="Tonight's events list">
+              <img src="screenshot-onboarding-crop.jpg" alt="Onboarding walkthrough">
+            </div>
+            <a class="btn btn-primary" href="/onstagelive">See OnStage Live →</a>
           </div>
-          <span class="app-cta">See OnStage Live →</span>
+          <div class="hero-phone">
+            <img src="screenshot-welcome-crop.jpg" alt="OnStage Live welcome screen">
+          </div>
+        </article>
+        <p class="coming-note">More apps coming soon.</p>
+      </div>
+    </section>
+
+    <section class="signup-section" id="signup" aria-labelledby="signup-heading">
+      <div class="signup-inner">
+        <h2 class="signup-heading" id="signup-heading">Stay in the loop</h2>
+        <p class="signup-label">Get a note when we launch the next app. No spam.</p>
+        <form class="email-form" id="signup-form">
+          <input type="email" id="email-input" name="email" placeholder="your@email.com" required autocomplete="email">
+          <button class="btn btn-primary" type="submit" id="submit-btn">Notify me</button>
+        </form>
+        <p class="form-status" id="form-status">Just a ping when something new ships.</p>
+      </div>
+    </section>
+
+    <footer>
+      <div class="footer-inner">
+        <span>© 2026 East Heights Labs, LLC · Houston, TX</span>
+        <div class="footer-links">
+          <a href="mailto:hello@eastheightslabs.com">hello@eastheightslabs.com</a>
+          <a href="/onstagelive">OnStage Live</a>
+          <a href="/privacy.html">Privacy Policy</a>
         </div>
-        <div class="app-card-image">
-          <img src="screenshot-welcome-crop.jpg" alt="OnStage app screenshot" />
-        </div>
-      </a>
-    </div>
-  </section>
-
-  <!-- MORE APPS -->
-  <section class="more-section">
-    <div class="more-inner">
-      <p class="more-text">More apps coming soon.</p>
-    </div>
-  </section>
-
-  <!-- EMAIL SIGNUP (bottom) -->
-  <section class="signup-section">
-    <div class="signup-inner">
-      <p class="signup-heading">Stay in the loop</p>
-      <p class="signup-label">Get notified when we launch new apps.</p>
-      <form class="email-form" id="signup-form">
-        <input type="email" id="email-input" placeholder="your@email.com" required />
-        <button type="submit" id="submit-btn">Notify me</button>
-      </form>
-      <p class="form-status" id="form-status">No spam. Just a ping when we launch.</p>
-    </div>
-  </section>
-
-  <footer>
-    <span>© 2026 East Heights Labs, LLC · Houston, TX</span>
-    &nbsp;·&nbsp;
-    <a href="mailto:hello@eastheightslabs.com">hello@eastheightslabs.com</a>
-    &nbsp;·&nbsp;
-    <a href="/onstagelive">OnStage Live →</a>
-    &nbsp;·&nbsp;
-    <a href="/privacy.html">Privacy Policy</a>
-  </footer>
+      </div>
+    </footer>
+  </div>
 
   <script>
     document.getElementById('signup-form').addEventListener('submit', async function(e) {
       e.preventDefault();
-      const email = document.getElementById('email-input').value;
       const btn = document.getElementById('submit-btn');
       const status = document.getElementById('form-status');
-
       btn.disabled = true;
       btn.textContent = 'Sending…';
       status.className = 'form-status';
       status.textContent = '';
-
       try {
         const res = await fetch('/api/subscribe', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email })
+          body: JSON.stringify({ email: document.getElementById('email-input').value })
         });
-
-        if (res.ok) {
-          btn.textContent = '✓ You\'re on the list';
-          btn.style.background = 'linear-gradient(135deg, #22c55e, #16a34a)';
-          document.getElementById('email-input').disabled = true;
-          status.className = 'form-status success';
-          status.textContent = 'We\'ll reach out when we launch.';
-        } else {
-          throw new Error('server error');
-        }
+        if (!res.ok) throw new Error('server error');
+        btn.textContent = "You're on the list";
+        btn.style.background = 'linear-gradient(135deg, #22c55e, #16a34a)';
+        document.getElementById('email-input').disabled = true;
+        status.className = 'form-status success';
+        status.textContent = "We'll reach out when we launch.";
       } catch {
         btn.disabled = false;
         btn.textContent = 'Notify me';
@@ -537,6 +543,5 @@
       }
     });
   </script>
-
 </body>
 </html>
