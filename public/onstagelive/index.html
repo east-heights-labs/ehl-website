@@ -1,381 +1,383 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="description" content="OnStage Live — Find Live Music Happening Tonight. Every venue near you. Who's playing. When they hit the stage."/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="OnStage Live — Find live music happening tonight. Every venue near you. Who's playing. When they hit the stage.">
   <title>OnStage Live — East Heights Labs</title>
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" href="/favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
-
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
       --accent: #6c63ff;
-      --accent2: #ff6584;
+      --accent-2: #8b5cf6;
+      --accent-pink: #ff6584;
       --text: #f0f0f8;
-      --muted: rgba(240,240,248,0.6);
-      --card: rgba(10,10,20,0.55);
+      --muted: rgba(240,240,248,0.62);
+      --quiet: rgba(240,240,248,0.38);
+      --card: rgba(8, 8, 18, 0.62);
       --border: rgba(255,255,255,0.12);
+      --nav-h: 64px;
+      --space-3: 24px;
+      --space-4: 32px;
+      --space-5: 48px;
+      --space-6: 64px;
+      --content: 1080px;
+      --narrow: 720px;
     }
 
-    html, body { height: 100%; }
+    html { scroll-behavior: smooth; }
 
     body {
-      font-family: 'Inter', system-ui, sans-serif;
+      font-family: Inter, system-ui, sans-serif;
       color: var(--text);
-      background: #05050f;
       min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 2rem 1.25rem 3rem;
+      background: #05050f;
+      overflow-x: hidden;
     }
 
-    .container {
-      max-width: 680px;
-      width: 100%;
+    .bg-photo,
+    .bg-overlay {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
     }
 
-    /* ─── NAV ─── */
+    .bg-photo {
+      background-image: url('../hero.jpg');
+      background-size: cover;
+      background-position: center 40%;
+      z-index: 0;
+    }
+
+    .bg-overlay {
+      z-index: 1;
+      background:
+        linear-gradient(to bottom,
+          rgba(5,5,15,0.58) 0%,
+          rgba(5,5,15,0.78) 38%,
+          rgba(5,5,15,0.94) 72%,
+          rgba(5,5,15,0.98) 100%);
+    }
+
+    .wrap { position: relative; z-index: 2; }
+
     .site-nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      height: var(--nav-h);
+      background: rgba(5,5,15,0.72);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-inner,
+    .section-inner {
+      width: min(var(--content), calc(100% - 48px));
+      margin: 0 auto;
+    }
+
+    .nav-inner {
+      height: 100%;
       display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 1.25rem;
-      margin-bottom: 2.5rem;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-3);
     }
 
-    .back-link {
-      color: var(--muted);
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
       text-decoration: none;
-      font-size: 0.9rem;
-      transition: color 0.2s;
+      color: inherit;
+      min-width: 0;
     }
 
-    .back-link:hover { color: var(--text); }
-
-    .wordmark {
-      font-size: 1.25rem;
-      font-weight: 600;
-      letter-spacing: 0.04em;
-      color: var(--text);
+    .logo-icon {
+      width: 32px;
+      height: 32px;
+      flex-shrink: 0;
+      background: linear-gradient(135deg, var(--accent), var(--accent-pink));
+      border-radius: 8px;
+      display: grid;
+      place-items: center;
+      box-shadow: 0 2px 12px rgba(108,99,255,0.35);
     }
 
-    /* ─── HERO ─── */
-    .hero {
-      margin-bottom: 2.5rem;
-      text-align: center;
-    }
+    .logo-icon svg { width: 18px; height: 18px; }
 
-    .coming-soon-badge {
-      display: inline-block;
-      background: rgba(108,99,255,0.18);
-      border: 1px solid rgba(108,99,255,0.35);
-      color: #c4c0ff;
-      font-size: 0.75rem;
+    .logo-wordmark {
+      font-size: 0.82rem;
       font-weight: 600;
       letter-spacing: 0.08em;
       text-transform: uppercase;
-      padding: 0.35rem 1rem;
-      border-radius: 100px;
-      margin-bottom: 1.25rem;
+      white-space: nowrap;
     }
 
-    .hero h1 {
-      font-size: clamp(2rem, 6vw, 2.75rem);
+    .nav-current {
+      color: var(--muted);
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    .hero {
+      padding: var(--space-6) 0 var(--space-5);
+    }
+
+    .hero-grid {
+      width: min(var(--content), calc(100% - 48px));
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 240px;
+      gap: var(--space-5);
+      align-items: center;
+    }
+
+    .kicker {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #c4c0ff;
+      margin-bottom: 14px;
+    }
+
+    h1 {
+      font-size: clamp(2.2rem, 5vw, 3.25rem);
       font-weight: 700;
-      line-height: 1.15;
-      letter-spacing: -0.02em;
-      margin-bottom: 0.75rem;
+      letter-spacing: -0.03em;
+      line-height: 1.05;
+      margin-bottom: 12px;
     }
 
-    .hero .tagline {
-      font-size: clamp(1.05rem, 3vw, 1.25rem);
+    .tagline {
+      font-size: 1.2rem;
       font-weight: 600;
       color: #c4c0ff;
-      margin-bottom: 0.75rem;
+      margin-bottom: 12px;
     }
 
-    .hero .desc {
-      font-size: 1rem;
+    .desc {
+      font-size: 1.05rem;
       color: var(--muted);
-      line-height: 1.65;
-      margin-bottom: 1.75rem;
-      max-width: 540px;
-      margin-left: auto;
-      margin-right: auto;
+      line-height: 1.6;
+      max-width: 34rem;
+      margin-bottom: var(--space-4);
     }
 
-    /* App Store buttons */
-    .store-buttons {
+    .hero-actions {
       display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
-      width: 100%;
-      max-width: 280px;
-      margin: 0 auto 2rem;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
     }
 
-    .app-store-btn {
+    .btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 0.65rem;
-      background: #000;
-      color: #fff;
+      gap: 8px;
+      border: none;
+      cursor: pointer;
       text-decoration: none;
       font-family: inherit;
       font-size: 0.95rem;
       font-weight: 600;
-      padding: 0.85rem 1.25rem;
-      border-radius: 100px;
+      border-radius: 10px;
+      padding: 0.8rem 1.35rem;
+      transition: transform 0.12s ease, opacity 0.2s ease, border-color 0.2s ease;
+    }
+
+    .btn:active { transform: scale(0.98); }
+
+    .btn-primary {
+      color: #fff;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      box-shadow: 0 8px 24px rgba(108,99,255,0.35);
+    }
+
+    .btn-store {
+      color: #fff;
+      background: rgba(0,0,0,0.55);
       border: 1px solid var(--border);
+    }
+
+    .btn-store:hover { border-color: rgba(255,255,255,0.32); }
+
+    .btn-ghost {
+      color: var(--text);
+      background: rgba(255,255,255,0.06);
+      border: 1px solid var(--border);
+    }
+
+    .hero-phone { width: 100%; }
+
+    .hero-phone img {
       width: 100%;
-      transition: opacity 0.2s, border-color 0.2s;
-    }
-
-    .app-store-btn:hover {
-      opacity: 0.9;
-      border-color: rgba(255,255,255,0.3);
-    }
-
-    .app-store-btn svg {
-      width: 20px;
-      height: 20px;
-      flex-shrink: 0;
-    }
-
-    /* Hero screenshot — clickable */
-    .hero-shot {
       display: block;
-      width: 100%;
-      max-width: 260px;
-      height: auto;
-      margin: 0 auto;
-      border-radius: 20px;
-      box-shadow: 0 24px 64px rgba(0,0,0,0.5);
-      object-fit: contain;
+      border-radius: 28px;
+      box-shadow: 0 24px 50px rgba(0,0,0,0.5);
       cursor: zoom-in;
-      transition: transform 0.15s;
     }
 
-    .hero-shot:hover { transform: scale(1.02); }
+    .screens { padding: 0 0 var(--space-6); }
 
-    /* ─── SCREENSHOT GALLERY ─── */
-    .screenshots {
-      margin-bottom: 3rem;
-    }
-
-    .screenshots-row {
+    .screens-row {
       display: flex;
-      gap: 1rem;
+      gap: 16px;
+      justify-content: center;
       overflow-x: auto;
-      flex-wrap: nowrap;
-      padding-bottom: 0.5rem;
-      -webkit-overflow-scrolling: touch;
-      justify-content: flex-start;
+      padding-bottom: 4px;
+      scrollbar-width: none;
     }
 
-    .screenshots-row img {
-      flex: 0 0 auto;
-      width: 160px;
-      max-width: 160px;
-      height: auto;
-      border-radius: 20px;
-      box-shadow: 0 24px 64px rgba(0,0,0,0.5);
-      object-fit: contain;
+    .screens-row::-webkit-scrollbar { display: none; }
+
+    .screens-row img {
+      width: 168px;
+      flex-shrink: 0;
+      border-radius: 22px;
+      box-shadow: 0 16px 40px rgba(0,0,0,0.45);
       cursor: zoom-in;
-      transition: transform 0.15s;
     }
 
-    .screenshots-row img:hover { transform: scale(1.04); }
+    .features { padding: 0 0 var(--space-6); }
 
-    @media (min-width: 680px) {
-      .screenshots-row {
-        justify-content: center;
-        overflow-x: visible;
-      }
+    .panel {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      backdrop-filter: blur(16px);
+      padding: var(--space-5);
     }
 
-    /* ─── FEATURES ─── */
-    .features {
-      margin-bottom: 3.5rem;
-    }
-
-    .features h2 {
+    .panel h2 {
       font-size: 1.35rem;
-      font-weight: 600;
-      margin-bottom: 1.25rem;
+      font-weight: 650;
+      letter-spacing: -0.02em;
+      margin-bottom: var(--space-4);
     }
 
     .features-grid {
       display: grid;
-      grid-template-columns: 1fr;
-      gap: 1.25rem;
-    }
-
-    @media (min-width: 480px) {
-      .features-grid {
-        grid-template-columns: 1fr 1fr;
-      }
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 22px 28px;
     }
 
     .feature {
       display: flex;
-      gap: 0.75rem;
+      gap: 12px;
       align-items: flex-start;
     }
 
-    .feature-icon {
-      font-size: 1.25rem;
-      line-height: 1.4;
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      margin-top: 7px;
       flex-shrink: 0;
     }
 
-    .feature-body h3 {
-      font-size: 0.95rem;
-      font-weight: 600;
-      margin-bottom: 0.25rem;
-    }
+    .dot-purple { background: #a78bfa; }
+    .dot-orange { background: #fb923c; }
+    .dot-blue   { background: #818cf8; }
+    .dot-pink   { background: #f472b6; }
+    .dot-mint   { background: #34d399; }
 
-    .feature-body p {
-      font-size: 0.875rem;
-      color: var(--muted);
-      line-height: 1.5;
-    }
+    .feature h3 { font-size: 0.98rem; font-weight: 600; margin-bottom: 4px; }
+    .feature p  { font-size: 0.9rem; color: var(--muted); line-height: 1.5; }
 
-    /* ─── EMAIL SIGNUP (bottom) ─── */
-    .signup-section {
-      margin-bottom: 2.5rem;
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      backdrop-filter: blur(12px);
-      padding: 2rem;
+    .signup-section { padding: 0 0 var(--space-6); }
+
+    .signup-inner {
+      width: min(var(--narrow), calc(100% - 48px));
+      margin: 0 auto;
       text-align: center;
+      padding: var(--space-5) var(--space-4);
     }
 
     .signup-heading {
-      font-size: 1rem;
-      font-weight: 600;
-      margin-bottom: 0.35rem;
+      font-size: 1.35rem;
+      font-weight: 650;
+      margin-bottom: 8px;
     }
 
     .signup-label {
       color: var(--muted);
-      font-size: 0.85rem;
-      margin-bottom: 1.25rem;
-      letter-spacing: 0.02em;
+      font-size: 0.95rem;
+      margin-bottom: var(--space-3);
     }
 
     .email-form {
       display: flex;
-      gap: 0.75rem;
-      max-width: 420px;
-      margin: 0 auto 0.75rem;
-      flex-wrap: wrap;
-      justify-content: center;
+      gap: 10px;
+      max-width: 440px;
+      margin: 0 auto 12px;
     }
 
     .email-form input {
       flex: 1;
-      min-width: 200px;
-      background: rgba(10,10,20,0.6);
+      min-width: 0;
+      background: rgba(10,10,20,0.65);
       border: 1px solid var(--border);
       color: var(--text);
       font-family: inherit;
-      font-size: 0.9rem;
-      padding: 0.75rem 1rem;
-      border-radius: 8px;
+      font-size: 0.95rem;
+      padding: 0.8rem 1rem;
+      border-radius: 10px;
       outline: none;
-      transition: border-color 0.2s;
-      backdrop-filter: blur(10px);
     }
 
-    .email-form input::placeholder { color: rgba(240,240,248,0.4); }
+    .email-form input::placeholder { color: rgba(240,240,248,0.38); }
     .email-form input:focus { border-color: var(--accent); }
 
-    .email-form button {
-      background: linear-gradient(135deg, var(--accent), #8b5cf6);
-      color: #fff;
-      font-family: inherit;
-      font-size: 0.9rem;
-      font-weight: 600;
-      padding: 0.75rem 1.5rem;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: opacity 0.2s, transform 0.1s;
-      box-shadow: 0 4px 16px rgba(108,99,255,0.4);
-    }
-
-    .email-form button:hover { opacity: 0.9; }
-    .email-form button:active { transform: scale(0.98); }
-    .email-form button:disabled { opacity: 0.7; cursor: default; }
-
-    .form-status {
-      font-size: 0.8rem;
-      min-height: 1.2rem;
-      margin-bottom: 0;
-      color: rgba(240,240,248,0.5);
-    }
-
+    .form-status { font-size: 0.82rem; color: var(--quiet); min-height: 1.2em; }
     .form-status.success { color: #4ade80; }
     .form-status.error   { color: #f87171; }
 
-    /* ─── FOOTER ─── */
-    footer {
-      margin-top: auto;
-      padding-top: 1.5rem;
-      border-top: 1px solid var(--border);
-      font-size: 0.75rem;
-      color: rgba(240,240,248,0.35);
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-    }
+    footer { padding: 0 24px var(--space-6); color: var(--quiet); font-size: 0.8rem; }
 
-    footer a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    footer a:hover { color: rgba(240,240,248,0.7); }
-
-    .footer-links {
+    .footer-inner {
+      width: min(var(--content), 100%);
+      margin: 0 auto;
       display: flex;
       flex-wrap: wrap;
-      gap: 0.5rem 1rem;
+      justify-content: space-between;
+      gap: 12px 24px;
+      padding-top: var(--space-4);
+      border-top: 1px solid var(--border);
     }
 
-    /* ─── LIGHTBOX ─── */
+    footer a { color: inherit; text-decoration: none; }
+    footer a:hover { color: var(--muted); }
+    .footer-links { display: flex; flex-wrap: wrap; gap: 8px 18px; }
+
     .lightbox {
       display: none;
       position: fixed;
       inset: 0;
-      background: rgba(0, 0, 0, 0.92);
+      background: rgba(0,0,0,0.92);
       z-index: 9999;
       align-items: center;
       justify-content: center;
       cursor: zoom-out;
     }
 
-    .lightbox.active {
-      display: flex;
-    }
+    .lightbox.active { display: flex; }
 
     .lightbox img {
       max-width: min(90vw, 400px);
       max-height: 90vh;
-      object-fit: contain;
       border-radius: 16px;
-      box-shadow: 0 32px 80px rgba(0,0,0,0.6);
-      cursor: default;
-      pointer-events: none;
     }
 
     .lightbox-close {
@@ -385,138 +387,148 @@
       color: rgba(255,255,255,0.6);
       font-size: 1.75rem;
       cursor: pointer;
-      line-height: 1;
-      transition: color 0.2s;
-      pointer-events: all;
     }
 
-    .lightbox-close:hover { color: #fff; }
+    @media (max-width: 860px) {
+      .hero-grid { grid-template-columns: 1fr; text-align: center; }
+      .desc { margin-left: auto; margin-right: auto; }
+      .hero-actions { justify-content: center; }
+      .hero-phone { width: 180px; margin: 0 auto; order: -1; }
+      .features-grid { grid-template-columns: 1fr; }
+      .feature { text-align: left; }
+    }
+
+    @media (max-width: 560px) {
+      .nav-inner, .hero-grid, .section-inner { width: calc(100% - 32px); }
+      .email-form { flex-direction: column; }
+      .email-form .btn { width: 100%; }
+      .footer-inner { flex-direction: column; }
+      .screens-row img { width: 140px; }
+    }
   </style>
 </head>
 <body>
+  <div class="bg-photo" aria-hidden="true"></div>
+  <div class="bg-overlay" aria-hidden="true"></div>
 
-  <div class="container">
-
+  <div class="wrap">
     <nav class="site-nav">
-      <a class="back-link" href="/">← East Heights Labs</a>
-      <div class="wordmark">OnStage Live</div>
+      <div class="nav-inner">
+        <a class="nav-logo" href="/">
+          <span class="logo-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M9 3h6M9 3v7L4 20h16L15 10V3"></path>
+              <line x1="6" y1="14" x2="18" y2="14"></line>
+            </svg>
+          </span>
+          <span class="logo-wordmark">East Heights Labs</span>
+        </a>
+        <span class="nav-current">OnStage Live</span>
+      </div>
     </nav>
 
-    <!-- HERO -->
-    <section class="hero">
-      <h1>OnStage Live</h1>
-      <p class="tagline">Find Live Music Happening Tonight</p>
-      <p class="desc">Every venue near you. Who's playing. When they hit the stage.</p>
-
-      <div class="store-buttons">
-        <a class="app-store-btn" href="#">
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-            <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
-          </svg>
-          Download on the App Store
-        </a>
+    <header class="hero">
+      <div class="hero-grid">
+        <div>
+          <p class="kicker">East Heights Labs · First app</p>
+          <h1>OnStage Live</h1>
+          <p class="tagline">Find live music happening tonight.</p>
+          <p class="desc">Every venue near you. Who's playing. When they actually hit the stage — not just when doors open.</p>
+          <div class="hero-actions">
+            <a class="btn btn-store" href="#">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"></path>
+              </svg>
+              Download on the App Store
+            </a>
+            <a class="btn btn-ghost" href="#signup">Get updates</a>
+          </div>
+        </div>
+        <div class="hero-phone">
+          <img class="lightbox-trigger" src="../screenshot-welcome-crop.jpg" alt="OnStage Live welcome screen" data-full="../screenshot-welcome-crop.jpg">
+        </div>
       </div>
+    </header>
 
-      <img
-        class="hero-shot lightbox-trigger"
-        src="../screenshot-welcome-crop.jpg"
-        alt="OnStage Live welcome screen showing feature list"
-        width="260"
-        data-full="../screenshot-welcome-crop.jpg"
-      />
-    </section>
-
-    <!-- SCREENSHOT GALLERY -->
-    <section class="screenshots" aria-label="App screenshots">
-      <div class="screenshots-row">
-        <img
-          class="lightbox-trigger"
-          src="../screenshot-map-crop.jpg"
-          alt="Houston map with purple venue pins and tonight's event list"
-          width="160"
-          data-full="../screenshot-map-crop.jpg"
-        />
-        <img
-          class="lightbox-trigger"
-          src="../screenshot-austin-crop.jpg"
-          alt="Austin map with multi-city shows including Zeds Dead"
-          width="160"
-          data-full="../screenshot-austin-crop.jpg"
-        />
-        <img
-          class="lightbox-trigger"
-          src="../screenshot-onboarding-crop.jpg"
-          alt="OnStage Live onboarding walkthrough overlay"
-          width="160"
-          data-full="../screenshot-onboarding-crop.jpg"
-        />
+    <section class="screens" aria-label="App screenshots">
+      <div class="section-inner">
+        <div class="screens-row">
+          <img class="lightbox-trigger" src="../screenshot-map-crop.jpg" alt="Houston map with venue pins" data-full="../screenshot-map-crop.jpg">
+          <img class="lightbox-trigger" src="../screenshot-austin-crop.jpg" alt="Austin map with tonight's shows" data-full="../screenshot-austin-crop.jpg">
+          <img class="lightbox-trigger" src="../screenshot-onboarding-crop.jpg" alt="OnStage Live onboarding" data-full="../screenshot-onboarding-crop.jpg">
+        </div>
       </div>
     </section>
 
-    <!-- FEATURES -->
     <section class="features">
-      <h2>Features</h2>
-      <div class="features-grid">
-        <div class="feature">
-          <span class="feature-icon" aria-hidden="true">🟣</span>
-          <div class="feature-body">
-            <h3>Music venues</h3>
-            <p>Purple markers, tap to see who's playing tonight</p>
-          </div>
-        </div>
-        <div class="feature">
-          <span class="feature-icon" aria-hidden="true">🟠</span>
-          <div class="feature-body">
-            <h3>Other live events</h3>
-            <p>Orange pins, comedy, sports, theater, and more</p>
-          </div>
-        </div>
-        <div class="feature">
-          <span class="feature-icon" aria-hidden="true">🔍</span>
-          <div class="feature-body">
-            <h3>Search venues &amp; artists</h3>
-            <p>Find any venue or artist across all cities</p>
-          </div>
-        </div>
-        <div class="feature">
-          <span class="feature-icon" aria-hidden="true">📅</span>
-          <div class="feature-body">
-            <h3>Plan ahead</h3>
-            <p>Browse any night of the week</p>
-          </div>
-        </div>
-        <div class="feature">
-          <span class="feature-icon" aria-hidden="true">⏱</span>
-          <div class="feature-body">
-            <h3>Real stage times</h3>
-            <p>Community-reported, not just doors open</p>
+      <div class="section-inner">
+        <div class="panel">
+          <h2>What's in the app</h2>
+          <div class="features-grid">
+            <div class="feature">
+              <span class="dot dot-purple" aria-hidden="true"></span>
+              <div>
+                <h3>Music venues</h3>
+                <p>Purple markers. Tap to see who's playing tonight.</p>
+              </div>
+            </div>
+            <div class="feature">
+              <span class="dot dot-orange" aria-hidden="true"></span>
+              <div>
+                <h3>Other live events</h3>
+                <p>Orange pins for comedy, sports, theater, and more.</p>
+              </div>
+            </div>
+            <div class="feature">
+              <span class="dot dot-blue" aria-hidden="true"></span>
+              <div>
+                <h3>Search venues &amp; artists</h3>
+                <p>Find any venue or artist across all cities.</p>
+              </div>
+            </div>
+            <div class="feature">
+              <span class="dot dot-pink" aria-hidden="true"></span>
+              <div>
+                <h3>Plan ahead</h3>
+                <p>Browse any night of the week, not just tonight.</p>
+              </div>
+            </div>
+            <div class="feature">
+              <span class="dot dot-mint" aria-hidden="true"></span>
+              <div>
+                <h3>Real stage times</h3>
+                <p>Community-reported, not just when doors open.</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- EMAIL SIGNUP (bottom) -->
-    <div class="signup-section">
-      <p class="signup-heading">Be the first to know</p>
-      <p class="signup-label">Get notified when OnStage Live drops on the App Store.</p>
-      <form class="email-form" id="signup-form">
-        <input type="email" id="email-input" placeholder="your@email.com" required />
-        <button type="submit" id="submit-btn">Notify me</button>
-      </form>
-      <p class="form-status" id="form-status">No spam. Just a ping when we launch.</p>
-    </div>
+    <section class="signup-section" id="signup">
+      <div class="signup-inner panel">
+        <h2 class="signup-heading">Stay in the loop</h2>
+        <p class="signup-label">Launch notes, new cities, and the next East Heights app. No spam.</p>
+        <form class="email-form" id="signup-form">
+          <input type="email" id="email-input" name="email" placeholder="your@email.com" required autocomplete="email">
+          <button class="btn btn-primary" type="submit" id="submit-btn">Notify me</button>
+        </form>
+        <p class="form-status" id="form-status">Just a ping when something new ships.</p>
+      </div>
+    </section>
 
     <footer>
-      <div class="footer-links">
-        <a href="mailto:info@eastheightslabs.com">Contact Support</a>
-        <a href="/">← eastheightslabs.com</a>
+      <div class="footer-inner">
+        <span>© 2026 East Heights Labs, LLC · Houston, TX</span>
+        <div class="footer-links">
+          <a href="mailto:hello@eastheightslabs.com">hello@eastheightslabs.com</a>
+          <a href="/">Studio home</a>
+          <a href="/privacy.html">Privacy Policy</a>
+        </div>
       </div>
-      <span>© 2026 East Heights Labs, LLC</span>
     </footer>
-
   </div>
 
-  <!-- LIGHTBOX -->
   <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Screenshot viewer">
     <span class="lightbox-close" id="lightbox-close" aria-label="Close">×</span>
     <img id="lightbox-img" src="" alt="">
@@ -539,56 +551,35 @@
       document.body.style.overflow = '';
     }
 
-    // Attach to all lightbox-trigger images
     document.querySelectorAll('.lightbox-trigger').forEach(img => {
-      img.addEventListener('click', () => {
-        const full = img.dataset.full || img.src;
-        openLightbox(full, img.alt);
-      });
+      img.addEventListener('click', () => openLightbox(img.dataset.full || img.src, img.alt));
     });
 
-    // Close on backdrop click (but not on the image itself)
     lightbox.addEventListener('click', (e) => {
-      if (e.target === lightbox || e.target === lightboxClose) {
-        closeLightbox();
-      }
+      if (e.target === lightbox || e.target === lightboxClose) closeLightbox();
     });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
 
-    lightboxClose.addEventListener('click', closeLightbox);
-
-    // Close on Escape key
-    document.addEventListener('keydown', e => {
-      if (e.key === 'Escape') closeLightbox();
-    });
-
-    // Subscribe form
     document.getElementById('signup-form').addEventListener('submit', async function(e) {
       e.preventDefault();
-      const email = document.getElementById('email-input').value;
       const btn = document.getElementById('submit-btn');
       const status = document.getElementById('form-status');
-
       btn.disabled = true;
       btn.textContent = 'Sending…';
       status.className = 'form-status';
       status.textContent = '';
-
       try {
         const res = await fetch('/api/subscribe', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email })
+          body: JSON.stringify({ email: document.getElementById('email-input').value })
         });
-
-        if (res.ok) {
-          btn.textContent = '✓ You\'re on the list';
-          btn.style.background = 'linear-gradient(135deg, #22c55e, #16a34a)';
-          document.getElementById('email-input').disabled = true;
-          status.className = 'form-status success';
-          status.textContent = 'We\'ll reach out when OnStage Live launches.';
-        } else {
-          throw new Error('server error');
-        }
+        if (!res.ok) throw new Error('server error');
+        btn.textContent = "You're on the list";
+        btn.style.background = 'linear-gradient(135deg, #22c55e, #16a34a)';
+        document.getElementById('email-input').disabled = true;
+        status.className = 'form-status success';
+        status.textContent = "We'll reach out when something new ships.";
       } catch {
         btn.disabled = false;
         btn.textContent = 'Notify me';
@@ -597,6 +588,5 @@
       }
     });
   </script>
-
 </body>
 </html>
