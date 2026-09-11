@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="OnStage Live — Find Live Music Happening Tonight. Every venue near you. Who's playing. When they hit the stage."/>
+  <title>OnStage Live — East Heights Labs</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --accent: #6c63ff;
+      --accent2: #ff6584;
+      --text: #f0f0f8;
+      --muted: rgba(240,240,248,0.6);
+      --card: rgba(10,10,20,0.55);
+      --border: rgba(255,255,255,0.12);
+    }
+
+    html, body { height: 100%; }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      color: var(--text);
+      background: #05050f;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem 1.25rem 3rem;
+    }
+
+    .container {
+      max-width: 680px;
+      width: 100%;
+    }
+
+    /* Header / nav */
+    .site-nav {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1.25rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .back-link {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: color 0.2s;
+    }
+
+    .back-link:hover { color: var(--text); }
+
+    .wordmark {
+      font-size: 1.25rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      color: var(--text);
+    }
+
+    /* Hero */
+    .hero {
+      margin-bottom: 2.5rem;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: clamp(2rem, 6vw, 2.75rem);
+      font-weight: 700;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.75rem;
+    }
+
+    .hero .tagline {
+      font-size: clamp(1.05rem, 3vw, 1.25rem);
+      font-weight: 600;
+      color: #c4c0ff;
+      margin-bottom: 0.75rem;
+    }
+
+    .hero .desc {
+      font-size: 1rem;
+      color: var(--muted);
+      line-height: 1.65;
+      margin-bottom: 1.75rem;
+      max-width: 540px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .store-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      width: 100%;
+      max-width: 280px;
+      margin: 0 auto 2rem;
+    }
+
+    .app-store-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.65rem;
+      background: #000;
+      color: #fff;
+      text-decoration: none;
+      font-family: inherit;
+      font-size: 0.95rem;
+      font-weight: 600;
+      padding: 0.85rem 1.25rem;
+      border-radius: 100px;
+      border: 1px solid var(--border);
+      width: 100%;
+      transition: opacity 0.2s, border-color 0.2s;
+    }
+
+    .app-store-btn:hover {
+      opacity: 0.9;
+      border-color: rgba(255,255,255,0.3);
+    }
+
+    .app-store-btn svg {
+      width: 20px;
+      height: 20px;
+      flex-shrink: 0;
+    }
+
+    .android-btn {
+      display: none; /* coming soon */
+    }
+
+    /* Hero screenshot */
+    .hero-shot {
+      display: block;
+      width: 100%;
+      max-width: 260px;
+      height: auto;
+      margin: 0 auto;
+      border-radius: 20px;
+      box-shadow: 0 24px 64px rgba(0,0,0,0.5);
+      object-fit: contain;
+    }
+
+    /* Screenshot gallery */
+    .screenshots {
+      margin-bottom: 3rem;
+    }
+
+    .screenshots-row {
+      display: flex;
+      gap: 1rem;
+      overflow-x: auto;
+      flex-wrap: nowrap;
+      padding-bottom: 0.5rem;
+      -webkit-overflow-scrolling: touch;
+      justify-content: flex-start;
+    }
+
+    .screenshots-row img {
+      flex: 0 0 auto;
+      width: 160px;
+      max-width: 160px;
+      height: auto;
+      border-radius: 20px;
+      box-shadow: 0 24px 64px rgba(0,0,0,0.5);
+      object-fit: contain;
+    }
+
+    @media (min-width: 680px) {
+      .screenshots-row {
+        justify-content: center;
+        overflow-x: visible;
+      }
+    }
+
+    /* Features */
+    .features {
+      margin-bottom: 3.5rem;
+    }
+
+    .features h2 {
+      font-size: 1.35rem;
+      font-weight: 600;
+      margin-bottom: 1.25rem;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.25rem;
+    }
+
+    @media (min-width: 480px) {
+      .features-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .feature {
+      display: flex;
+      gap: 0.75rem;
+      align-items: flex-start;
+    }
+
+    .feature-icon {
+      font-size: 1.25rem;
+      line-height: 1.4;
+      flex-shrink: 0;
+    }
+
+    .feature-body h3 {
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+
+    .feature-body p {
+      font-size: 0.875rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    /* Footer */
+    footer {
+      margin-top: auto;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.75rem;
+      color: rgba(240,240,248,0.35);
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    footer a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    footer a:hover { color: rgba(240,240,248,0.7); }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem 1rem;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+
+    <nav class="site-nav">
+      <a class="back-link" href="/">← East Heights Labs</a>
+      <div class="wordmark">OnStage Live</div>
+    </nav>
+
+    <section class="hero">
+      <h1>OnStage Live</h1>
+      <p class="tagline">Find Live Music Happening Tonight</p>
+      <p class="desc">Every venue near you. Who’s playing. When they hit the stage.</p>
+      <div class="store-buttons">
+        <a class="app-store-btn" href="#">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+          </svg>
+          Download on the App Store
+        </a>
+        <!-- coming soon -->
+        <a class="android-btn" href="#" style="display:none">Get it on Google Play</a>
+      </div>
+      <img
+        class="hero-shot"
+        src="../screenshot-welcome.jpg"
+        alt="OnStage Live welcome screen showing feature list"
+        width="260"
+      />
+    </section>
+
+    <section class="screenshots" aria-label="App screenshots">
+      <div class="screenshots-row">
+        <img
+          src="../screenshot-map.jpg"
+          alt="Houston map with purple venue pins and tonight’s event list"
+          width="160"
+        />
+        <img
+          src="../screenshot-austin.jpg"
+          alt="Austin map with multi-city shows including Zeds Dead"
+          width="160"
+        />
+        <img
+          src="../screenshot-onboarding.jpg"
+          alt="OnStage Live onboarding walkthrough overlay"
+          width="160"
+        />
+      </div>
+    </section>
+
+    <section class="features">
+      <h2>Features</h2>
+      <div class="features-grid">
+        <div class="feature">
+          <span class="feature-icon" aria-hidden="true">🟣</span>
+          <div class="feature-body">
+            <h3>Music venues</h3>
+            <p>Purple markers, tap to see who's playing tonight</p>
+          </div>
+        </div>
+        <div class="feature">
+          <span class="feature-icon" aria-hidden="true">🟠</span>
+          <div class="feature-body">
+            <h3>Other live events</h3>
+            <p>Orange pins, comedy, sports, theater, and more</p>
+          </div>
+        </div>
+        <div class="feature">
+          <span class="feature-icon" aria-hidden="true">🔍</span>
+          <div class="feature-body">
+            <h3>Search venues &amp; artists</h3>
+            <p>Find any venue or artist across all cities</p>
+          </div>
+        </div>
+        <div class="feature">
+          <span class="feature-icon" aria-hidden="true">📅</span>
+          <div class="feature-body">
+            <h3>Plan ahead</h3>
+            <p>Browse any night of the week</p>
+          </div>
+        </div>
+        <div class="feature">
+          <span class="feature-icon" aria-hidden="true">⏱</span>
+          <div class="feature-body">
+            <h3>Real stage times</h3>
+            <p>Community-reported, not just doors open</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="footer-links">
+        <a href="mailto:info@eastheightslabs.com">Contact Support</a>
+        <a href="/">← eastheightslabs.com</a>
+      </div>
+      <span>© 2026 East Heights Labs, LLC</span>
+    </footer>
+
+  </div>
+
+</body>
+</html>
