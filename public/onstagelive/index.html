@@ -37,7 +37,7 @@
       width: 100%;
     }
 
-    /* Header / nav */
+    /* ─── NAV ─── */
     .site-nav {
       display: flex;
       flex-direction: column;
@@ -62,10 +62,24 @@
       color: var(--text);
     }
 
-    /* Hero */
+    /* ─── HERO ─── */
     .hero {
       margin-bottom: 2.5rem;
       text-align: center;
+    }
+
+    .coming-soon-badge {
+      display: inline-block;
+      background: rgba(108,99,255,0.18);
+      border: 1px solid rgba(108,99,255,0.35);
+      color: #c4c0ff;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.35rem 1rem;
+      border-radius: 100px;
+      margin-bottom: 1.25rem;
     }
 
     .hero h1 {
@@ -93,6 +107,7 @@
       margin-right: auto;
     }
 
+    /* App Store buttons */
     .store-buttons {
       display: flex;
       flex-direction: column;
@@ -131,25 +146,7 @@
       flex-shrink: 0;
     }
 
-    .android-btn {
-      display: none; /* coming soon */
-    }
-
-    .coming-soon-badge {
-      display: inline-block;
-      background: rgba(108,99,255,0.18);
-      border: 1px solid rgba(108,99,255,0.35);
-      color: #c4c0ff;
-      font-size: 0.75rem;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      padding: 0.35rem 1rem;
-      border-radius: 100px;
-      margin-bottom: 1.25rem;
-    }
-
-    /* Hero screenshot */
+    /* Hero screenshot — clickable */
     .hero-shot {
       display: block;
       width: 100%;
@@ -159,9 +156,13 @@
       border-radius: 20px;
       box-shadow: 0 24px 64px rgba(0,0,0,0.5);
       object-fit: contain;
+      cursor: zoom-in;
+      transition: transform 0.15s;
     }
 
-    /* Screenshot gallery */
+    .hero-shot:hover { transform: scale(1.02); }
+
+    /* ─── SCREENSHOT GALLERY ─── */
     .screenshots {
       margin-bottom: 3rem;
     }
@@ -184,7 +185,11 @@
       border-radius: 20px;
       box-shadow: 0 24px 64px rgba(0,0,0,0.5);
       object-fit: contain;
+      cursor: zoom-in;
+      transition: transform 0.15s;
     }
+
+    .screenshots-row img:hover { transform: scale(1.04); }
 
     @media (min-width: 680px) {
       .screenshots-row {
@@ -193,7 +198,7 @@
       }
     }
 
-    /* Features */
+    /* ─── FEATURES ─── */
     .features {
       margin-bottom: 3.5rem;
     }
@@ -240,7 +245,86 @@
       line-height: 1.5;
     }
 
-    /* Footer */
+    /* ─── EMAIL SIGNUP (bottom) ─── */
+    .signup-section {
+      margin-bottom: 2.5rem;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      backdrop-filter: blur(12px);
+      padding: 2rem;
+      text-align: center;
+    }
+
+    .signup-heading {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 0.35rem;
+    }
+
+    .signup-label {
+      color: var(--muted);
+      font-size: 0.85rem;
+      margin-bottom: 1.25rem;
+      letter-spacing: 0.02em;
+    }
+
+    .email-form {
+      display: flex;
+      gap: 0.75rem;
+      max-width: 420px;
+      margin: 0 auto 0.75rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .email-form input {
+      flex: 1;
+      min-width: 200px;
+      background: rgba(10,10,20,0.6);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-family: inherit;
+      font-size: 0.9rem;
+      padding: 0.75rem 1rem;
+      border-radius: 8px;
+      outline: none;
+      transition: border-color 0.2s;
+      backdrop-filter: blur(10px);
+    }
+
+    .email-form input::placeholder { color: rgba(240,240,248,0.4); }
+    .email-form input:focus { border-color: var(--accent); }
+
+    .email-form button {
+      background: linear-gradient(135deg, var(--accent), #8b5cf6);
+      color: #fff;
+      font-family: inherit;
+      font-size: 0.9rem;
+      font-weight: 600;
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: opacity 0.2s, transform 0.1s;
+      box-shadow: 0 4px 16px rgba(108,99,255,0.4);
+    }
+
+    .email-form button:hover { opacity: 0.9; }
+    .email-form button:active { transform: scale(0.98); }
+    .email-form button:disabled { opacity: 0.7; cursor: default; }
+
+    .form-status {
+      font-size: 0.8rem;
+      min-height: 1.2rem;
+      margin-bottom: 0;
+      color: rgba(240,240,248,0.5);
+    }
+
+    .form-status.success { color: #4ade80; }
+    .form-status.error   { color: #f87171; }
+
+    /* ─── FOOTER ─── */
     footer {
       margin-top: auto;
       padding-top: 1.5rem;
@@ -265,29 +349,45 @@
       gap: 0.5rem 1rem;
     }
 
-    /* Lightbox overlay */
+    /* ─── LIGHTBOX ─── */
     .lightbox {
       display: none;
       position: fixed;
       inset: 0;
-      background: rgba(0, 0, 0, 0.88);
+      background: rgba(0, 0, 0, 0.92);
       z-index: 9999;
       align-items: center;
       justify-content: center;
       cursor: zoom-out;
     }
+
     .lightbox.active {
       display: flex;
     }
+
     .lightbox img {
-      max-width: 90vw;
+      max-width: min(90vw, 400px);
       max-height: 90vh;
       object-fit: contain;
-      border-radius: 12px;
+      border-radius: 16px;
       box-shadow: 0 32px 80px rgba(0,0,0,0.6);
       cursor: default;
       pointer-events: none;
     }
+
+    .lightbox-close {
+      position: absolute;
+      top: 1.25rem;
+      right: 1.5rem;
+      color: rgba(255,255,255,0.6);
+      font-size: 1.75rem;
+      cursor: pointer;
+      line-height: 1;
+      transition: color 0.2s;
+      pointer-events: all;
+    }
+
+    .lightbox-close:hover { color: #fff; }
   </style>
 </head>
 <body>
@@ -299,11 +399,13 @@
       <div class="wordmark">OnStage Live</div>
     </nav>
 
+    <!-- HERO -->
     <section class="hero">
+      <div class="coming-soon-badge">Coming Soon — Available on the App Store</div>
       <h1>OnStage Live</h1>
       <p class="tagline">Find Live Music Happening Tonight</p>
-      <p class="desc">Every venue near you. Who’s playing. When they hit the stage.</p>
-      <div class="coming-soon-badge">Coming Soon — Available on the App Store</div>
+      <p class="desc">Every venue near you. Who's playing. When they hit the stage.</p>
+
       <div class="store-buttons">
         <a class="app-store-btn" href="#">
           <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -311,37 +413,45 @@
           </svg>
           Download on the App Store
         </a>
-        <!-- coming soon -->
-        <a class="android-btn" href="#" style="display:none">Get it on Google Play</a>
       </div>
+
       <img
-        class="hero-shot"
+        class="hero-shot lightbox-trigger"
         src="../screenshot-welcome-crop.jpg"
         alt="OnStage Live welcome screen showing feature list"
         width="260"
+        data-full="../screenshot-welcome-crop.jpg"
       />
     </section>
 
+    <!-- SCREENSHOT GALLERY -->
     <section class="screenshots" aria-label="App screenshots">
       <div class="screenshots-row">
         <img
+          class="lightbox-trigger"
           src="../screenshot-map-crop.jpg"
-          alt="Houston map with purple venue pins and tonight’s event list"
+          alt="Houston map with purple venue pins and tonight's event list"
           width="160"
+          data-full="../screenshot-map-crop.jpg"
         />
         <img
+          class="lightbox-trigger"
           src="../screenshot-austin-crop.jpg"
           alt="Austin map with multi-city shows including Zeds Dead"
           width="160"
+          data-full="../screenshot-austin-crop.jpg"
         />
         <img
+          class="lightbox-trigger"
           src="../screenshot-onboarding-crop.jpg"
           alt="OnStage Live onboarding walkthrough overlay"
           width="160"
+          data-full="../screenshot-onboarding-crop.jpg"
         />
       </div>
     </section>
 
+    <!-- FEATURES -->
     <section class="features">
       <h2>Features</h2>
       <div class="features-grid">
@@ -383,6 +493,17 @@
       </div>
     </section>
 
+    <!-- EMAIL SIGNUP (bottom) -->
+    <div class="signup-section">
+      <p class="signup-heading">Be the first to know</p>
+      <p class="signup-label">Get notified when OnStage Live drops on the App Store.</p>
+      <form class="email-form" id="signup-form">
+        <input type="email" id="email-input" placeholder="your@email.com" required />
+        <button type="submit" id="submit-btn">Notify me</button>
+      </form>
+      <p class="form-status" id="form-status">No spam. Just a ping when we launch.</p>
+    </div>
+
     <footer>
       <div class="footer-links">
         <a href="mailto:info@eastheightslabs.com">Contact Support</a>
@@ -393,36 +514,84 @@
 
   </div>
 
+  <!-- LIGHTBOX -->
   <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Screenshot viewer">
+    <span class="lightbox-close" id="lightbox-close" aria-label="Close">×</span>
     <img id="lightbox-img" src="" alt="">
   </div>
 
   <script>
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.getElementById('lightbox-img');
+    const lightboxClose = document.getElementById('lightbox-close');
 
-    // Open lightbox on any screenshot click
-    document.querySelectorAll('.screenshots img').forEach(img => {
-      img.style.cursor = 'zoom-in';
+    function openLightbox(src, alt) {
+      lightboxImg.src = src;
+      lightboxImg.alt = alt;
+      lightbox.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      lightbox.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    // Attach to all lightbox-trigger images
+    document.querySelectorAll('.lightbox-trigger').forEach(img => {
       img.addEventListener('click', () => {
-        lightboxImg.src = img.src;
-        lightboxImg.alt = img.alt;
-        lightbox.classList.add('active');
-        document.body.style.overflow = 'hidden';
+        const full = img.dataset.full || img.src;
+        openLightbox(full, img.alt);
       });
     });
 
-    // Close on backdrop click
-    lightbox.addEventListener('click', () => {
-      lightbox.classList.remove('active');
-      document.body.style.overflow = '';
+    // Close on backdrop click (but not on the image itself)
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox || e.target === lightboxClose) {
+        closeLightbox();
+      }
     });
+
+    lightboxClose.addEventListener('click', closeLightbox);
 
     // Close on Escape key
     document.addEventListener('keydown', e => {
-      if (e.key === 'Escape') {
-        lightbox.classList.remove('active');
-        document.body.style.overflow = '';
+      if (e.key === 'Escape') closeLightbox();
+    });
+
+    // Subscribe form
+    document.getElementById('signup-form').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const email = document.getElementById('email-input').value;
+      const btn = document.getElementById('submit-btn');
+      const status = document.getElementById('form-status');
+
+      btn.disabled = true;
+      btn.textContent = 'Sending…';
+      status.className = 'form-status';
+      status.textContent = '';
+
+      try {
+        const res = await fetch('/api/subscribe', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email })
+        });
+
+        if (res.ok) {
+          btn.textContent = '✓ You\'re on the list';
+          btn.style.background = 'linear-gradient(135deg, #22c55e, #16a34a)';
+          document.getElementById('email-input').disabled = true;
+          status.className = 'form-status success';
+          status.textContent = 'We\'ll reach out when OnStage Live launches.';
+        } else {
+          throw new Error('server error');
+        }
+      } catch {
+        btn.disabled = false;
+        btn.textContent = 'Notify me';
+        status.className = 'form-status error';
+        status.textContent = 'Something went wrong — try again.';
       }
     });
   </script>
