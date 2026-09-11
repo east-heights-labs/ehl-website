@@ -134,6 +134,7 @@
       text-shadow: none;
     }
 
+    /* ─── HERO ─── */
     .hero {
       min-height: 100vh;
       display: flex;
@@ -177,6 +178,7 @@
       text-shadow: 0 1px 6px rgba(0,0,0,0.5);
     }
 
+    /* ─── OSL TEASE SECTION ─── */
     .apps-section {
       position: relative;
       z-index: 2;
@@ -188,39 +190,75 @@
       margin: 0 auto;
     }
 
+    /* App card — now a full-width tease for OnStage Live */
     .app-card {
       background: var(--card);
       border: 1px solid var(--border);
-      border-radius: 16px;
+      border-radius: 20px;
       backdrop-filter: blur(12px);
       padding: 2rem;
       display: flex;
       gap: 2rem;
-      align-items: center;
+      align-items: flex-start;
+      text-decoration: none;
+      color: inherit;
+      transition: border-color 0.2s, transform 0.15s;
+      cursor: pointer;
+    }
+
+    .app-card:hover {
+      border-color: rgba(108,99,255,0.5);
+      transform: translateY(-2px);
     }
 
     .app-card-text { flex: 1; text-align: left; }
 
-    .app-name { font-size: 1.4rem; font-weight: 700; margin-bottom: 0.25rem; }
+    .app-eyebrow {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+    }
+
+    .app-name { font-size: 1.5rem; font-weight: 700; margin-bottom: 0.25rem; }
 
     .app-tagline {
-      color: var(--accent);
-      font-size: 0.85rem;
+      color: #c4c0ff;
+      font-size: 0.9rem;
       font-weight: 600;
       margin-bottom: 0.75rem;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
+      letter-spacing: 0.03em;
     }
 
     .app-desc {
       color: var(--muted);
       font-size: 0.9rem;
       line-height: 1.6;
-      margin-bottom: 1.25rem;
+      margin-bottom: 1.5rem;
+    }
+
+    /* Screenshot strip inside card */
+    .app-screenshots {
+      display: flex;
+      gap: 0.75rem;
+      margin-bottom: 1.5rem;
+      overflow: hidden;
+    }
+
+    .app-screenshots img {
+      width: 80px;
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.45);
+      object-fit: cover;
+      flex-shrink: 0;
     }
 
     .app-cta {
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
       background: linear-gradient(135deg, var(--accent), #8b5cf6);
       color: #fff;
       font-size: 0.9rem;
@@ -234,20 +272,23 @@
 
     .app-cta:hover { opacity: 0.9; }
 
+    /* Right side: hero phone shot */
     .app-card-image { flex-shrink: 0; }
 
     .app-card-image img {
       width: 120px;
-      border-radius: 16px;
-      box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+      border-radius: 18px;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.5);
     }
 
     @media (max-width: 540px) {
       .app-card { flex-direction: column; }
       .app-card-text { text-align: center; }
-      .app-card-image { order: -1; }
+      .app-card-image { order: -1; margin: 0 auto; }
+      .app-screenshots { justify-content: center; }
     }
 
+    /* ─── MORE APPS ─── */
     .more-section {
       position: relative;
       z-index: 2;
@@ -266,6 +307,7 @@
       letter-spacing: 0.04em;
     }
 
+    /* ─── EMAIL SIGNUP (moved to bottom) ─── */
     .signup-section {
       position: relative;
       z-index: 2;
@@ -276,14 +318,24 @@
       max-width: 680px;
       margin: 0 auto;
       text-align: center;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      backdrop-filter: blur(12px);
+      padding: 2rem;
+    }
+
+    .signup-heading {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 0.35rem;
     }
 
     .signup-label {
       color: var(--muted);
       font-size: 0.85rem;
-      margin-bottom: 1rem;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
+      margin-bottom: 1.25rem;
+      letter-spacing: 0.02em;
     }
 
     .email-form {
@@ -341,6 +393,7 @@
     .form-status.success { color: #4ade80; }
     .form-status.error   { color: #f87171; }
 
+    /* ─── FOOTER ─── */
     footer {
       position: relative;
       z-index: 2;
@@ -371,10 +424,11 @@
         </div>
         <span class="logo-wordmark">East Heights Labs</span>
       </div>
-      <a href="/onstagelive" class="nav-link">OnStage</a>
+      <a href="/onstagelive" class="nav-link">OnStage Live →</a>
     </div>
   </nav>
 
+  <!-- HERO -->
   <section class="hero">
     <div class="hero-content">
       <div class="logo-wrap">
@@ -393,31 +447,42 @@
     </div>
   </section>
 
+  <!-- ONSTAGELIVE TEASE CARD -->
   <section class="apps-section">
     <div class="apps-inner">
-      <div class="app-card">
+      <a class="app-card" href="/onstagelive">
         <div class="app-card-text">
-          <h2 class="app-name">OnStage</h2>
-          <p class="app-tagline">Find Live Music Near You</p>
-          <p class="app-desc">Discover what's playing tonight at venues near you — with real stage times, not just doors.</p>
-          <a href="/onstagelive" class="app-cta">Explore OnStage →</a>
+          <p class="app-eyebrow">Our first app</p>
+          <h2 class="app-name">OnStage Live</h2>
+          <p class="app-tagline">Find Live Music Happening Tonight</p>
+          <p class="app-desc">Every venue near you. Who's playing. When they actually hit the stage — not just when doors open.</p>
+          <div class="app-screenshots">
+            <img src="screenshot-welcome-crop.jpg" alt="OnStage welcome screen" />
+            <img src="screenshot-map-crop.jpg" alt="OnStage map view" />
+            <img src="screenshot-austin-crop.jpg" alt="OnStage Austin events" />
+            <img src="screenshot-onboarding-crop.jpg" alt="OnStage onboarding" />
+          </div>
+          <span class="app-cta">See OnStage Live →</span>
         </div>
         <div class="app-card-image">
           <img src="screenshot-welcome-crop.jpg" alt="OnStage app screenshot" />
         </div>
-      </div>
+      </a>
     </div>
   </section>
 
+  <!-- MORE APPS -->
   <section class="more-section">
     <div class="more-inner">
       <p class="more-text">More apps coming soon.</p>
     </div>
   </section>
 
+  <!-- EMAIL SIGNUP (bottom) -->
   <section class="signup-section">
     <div class="signup-inner">
-      <p class="signup-label">Stay in the loop</p>
+      <p class="signup-heading">Stay in the loop</p>
+      <p class="signup-label">Get notified when we launch new apps.</p>
       <form class="email-form" id="signup-form">
         <input type="email" id="email-input" placeholder="your@email.com" required />
         <button type="submit" id="submit-btn">Notify me</button>
@@ -431,7 +496,7 @@
     &nbsp;·&nbsp;
     <a href="mailto:hello@eastheightslabs.com">hello@eastheightslabs.com</a>
     &nbsp;·&nbsp;
-    <a href="/onstagelive">OnStage →</a>
+    <a href="/onstagelive">OnStage Live →</a>
     &nbsp;·&nbsp;
     <a href="/privacy.html">Privacy Policy</a>
   </footer>
