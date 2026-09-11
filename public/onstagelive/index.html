@@ -135,6 +135,20 @@
       display: none; /* coming soon */
     }
 
+    .coming-soon-badge {
+      display: inline-block;
+      background: rgba(108,99,255,0.18);
+      border: 1px solid rgba(108,99,255,0.35);
+      color: #c4c0ff;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.35rem 1rem;
+      border-radius: 100px;
+      margin-bottom: 1.25rem;
+    }
+
     /* Hero screenshot */
     .hero-shot {
       display: block;
@@ -250,6 +264,30 @@
       flex-wrap: wrap;
       gap: 0.5rem 1rem;
     }
+
+    /* Lightbox overlay */
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.88);
+      z-index: 9999;
+      align-items: center;
+      justify-content: center;
+      cursor: zoom-out;
+    }
+    .lightbox.active {
+      display: flex;
+    }
+    .lightbox img {
+      max-width: 90vw;
+      max-height: 90vh;
+      object-fit: contain;
+      border-radius: 12px;
+      box-shadow: 0 32px 80px rgba(0,0,0,0.6);
+      cursor: default;
+      pointer-events: none;
+    }
   </style>
 </head>
 <body>
@@ -265,6 +303,7 @@
       <h1>OnStage Live</h1>
       <p class="tagline">Find Live Music Happening Tonight</p>
       <p class="desc">Every venue near you. Who’s playing. When they hit the stage.</p>
+      <div class="coming-soon-badge">Coming Soon — Available on the App Store</div>
       <div class="store-buttons">
         <a class="app-store-btn" href="#">
           <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -277,7 +316,7 @@
       </div>
       <img
         class="hero-shot"
-        src="../screenshot-welcome.jpg"
+        src="../screenshot-welcome-crop.jpg"
         alt="OnStage Live welcome screen showing feature list"
         width="260"
       />
@@ -286,17 +325,17 @@
     <section class="screenshots" aria-label="App screenshots">
       <div class="screenshots-row">
         <img
-          src="../screenshot-map.jpg"
+          src="../screenshot-map-crop.jpg"
           alt="Houston map with purple venue pins and tonight’s event list"
           width="160"
         />
         <img
-          src="../screenshot-austin.jpg"
+          src="../screenshot-austin-crop.jpg"
           alt="Austin map with multi-city shows including Zeds Dead"
           width="160"
         />
         <img
-          src="../screenshot-onboarding.jpg"
+          src="../screenshot-onboarding-crop.jpg"
           alt="OnStage Live onboarding walkthrough overlay"
           width="160"
         />
@@ -353,6 +392,40 @@
     </footer>
 
   </div>
+
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Screenshot viewer">
+    <img id="lightbox-img" src="" alt="">
+  </div>
+
+  <script>
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+
+    // Open lightbox on any screenshot click
+    document.querySelectorAll('.screenshots img').forEach(img => {
+      img.style.cursor = 'zoom-in';
+      img.addEventListener('click', () => {
+        lightboxImg.src = img.src;
+        lightboxImg.alt = img.alt;
+        lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+
+    // Close on backdrop click
+    lightbox.addEventListener('click', () => {
+      lightbox.classList.remove('active');
+      document.body.style.overflow = '';
+    });
+
+    // Close on Escape key
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') {
+        lightbox.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    });
+  </script>
 
 </body>
 </html>

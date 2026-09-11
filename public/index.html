@@ -25,11 +25,6 @@
       font-family: 'Inter', system-ui, sans-serif;
       color: var(--text);
       min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 2rem;
       overflow-x: hidden;
       position: relative;
     }
@@ -55,13 +50,40 @@
       z-index: 1;
     }
 
-    .container {
-      position: relative;
-      z-index: 2;
-      max-width: 680px;
-      width: 100%;
-      text-align: center;
+    .site-nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(5,5,15,0.7);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
     }
+
+    .nav-inner {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .nav-link {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .nav-link:hover { color: var(--text); }
 
     .logo-mark {
       display: inline-flex;
@@ -98,20 +120,34 @@
       text-shadow: 0 1px 4px rgba(0,0,0,0.5);
     }
 
-    .badge {
-      display: inline-block;
-      background: rgba(108,99,255,0.2);
-      border: 1px solid rgba(108,99,255,0.4);
-      color: #c4c0ff;
-      font-size: 0.7rem;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      padding: 0.3rem 0.8rem;
-      border-radius: 100px;
-      margin-top: 0.6rem;
-      margin-bottom: 0;
-      backdrop-filter: blur(8px);
+    .nav-logo .logo-icon {
+      width: 32px; height: 32px;
+      border-radius: 8px;
+      box-shadow: 0 2px 12px rgba(108,99,255,0.35);
+    }
+
+    .nav-logo .logo-icon svg { width: 18px; height: 18px; }
+
+    .nav-logo .logo-wordmark {
+      font-size: 0.85rem;
+      margin: 0;
+      text-shadow: none;
+    }
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 7rem 2rem 4rem;
+      position: relative;
+      z-index: 2;
+      text-align: center;
+    }
+
+    .hero-content {
+      max-width: 680px;
+      width: 100%;
     }
 
     h1 {
@@ -134,11 +170,120 @@
       font-size: 1.1rem;
       color: var(--muted);
       line-height: 1.6;
-      margin-bottom: 3rem;
+      margin-bottom: 0;
       max-width: 500px;
       margin-left: auto;
       margin-right: auto;
       text-shadow: 0 1px 6px rgba(0,0,0,0.5);
+    }
+
+    .apps-section {
+      position: relative;
+      z-index: 2;
+      padding: 2rem 2rem 2rem;
+    }
+
+    .apps-inner {
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    .app-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      backdrop-filter: blur(12px);
+      padding: 2rem;
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .app-card-text { flex: 1; text-align: left; }
+
+    .app-name { font-size: 1.4rem; font-weight: 700; margin-bottom: 0.25rem; }
+
+    .app-tagline {
+      color: var(--accent);
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .app-desc {
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.6;
+      margin-bottom: 1.25rem;
+    }
+
+    .app-cta {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--accent), #8b5cf6);
+      color: #fff;
+      font-size: 0.9rem;
+      font-weight: 600;
+      padding: 0.65rem 1.25rem;
+      border-radius: 8px;
+      text-decoration: none;
+      box-shadow: 0 4px 16px rgba(108,99,255,0.4);
+      transition: opacity 0.2s;
+    }
+
+    .app-cta:hover { opacity: 0.9; }
+
+    .app-card-image { flex-shrink: 0; }
+
+    .app-card-image img {
+      width: 120px;
+      border-radius: 16px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+    }
+
+    @media (max-width: 540px) {
+      .app-card { flex-direction: column; }
+      .app-card-text { text-align: center; }
+      .app-card-image { order: -1; }
+    }
+
+    .more-section {
+      position: relative;
+      z-index: 2;
+      padding: 1rem 2rem 2rem;
+    }
+
+    .more-inner {
+      max-width: 680px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .more-text {
+      color: var(--muted);
+      font-size: 0.85rem;
+      letter-spacing: 0.04em;
+    }
+
+    .signup-section {
+      position: relative;
+      z-index: 2;
+      padding: 2rem 2rem 1rem;
+    }
+
+    .signup-inner {
+      max-width: 680px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .signup-label {
+      color: var(--muted);
+      font-size: 0.85rem;
+      margin-bottom: 1rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
     }
 
     .email-form {
@@ -189,7 +334,7 @@
     .form-status {
       font-size: 0.8rem;
       min-height: 1.2rem;
-      margin-bottom: 2.5rem;
+      margin-bottom: 0;
       color: rgba(240,240,248,0.5);
     }
 
@@ -199,9 +344,11 @@
     footer {
       position: relative;
       z-index: 2;
-      margin-top: 3rem;
+      margin-top: 2rem;
+      padding: 0 2rem 2.5rem;
       font-size: 0.75rem;
       color: rgba(240,240,248,0.35);
+      text-align: center;
     }
 
     footer a { color: inherit; text-decoration: none; }
@@ -213,10 +360,9 @@
   <div class="bg-photo"></div>
   <div class="bg-overlay"></div>
 
-  <div class="container">
-
-    <div class="logo-wrap">
-      <div class="logo-mark">
+  <nav class="site-nav">
+    <div class="nav-inner">
+      <div class="nav-logo">
         <div class="logo-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M9 3h6M9 3v7L4 20h16L15 10V3"/>
@@ -225,20 +371,60 @@
         </div>
         <span class="logo-wordmark">East Heights Labs</span>
       </div>
-      <div class="badge">Coming Soon</div>
+      <a href="/onstagelive" class="nav-link">OnStage</a>
     </div>
+  </nav>
 
-    <h1>Apps built for<br/><span>where you actually are.</span></h1>
+  <section class="hero">
+    <div class="hero-content">
+      <div class="logo-wrap">
+        <div class="logo-mark">
+          <div class="logo-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M9 3h6M9 3v7L4 20h16L15 10V3"/>
+              <line x1="6" y1="14" x2="18" y2="14"/>
+            </svg>
+          </div>
+          <span class="logo-wordmark">East Heights Labs</span>
+        </div>
+      </div>
+      <h1>Apps built for<br/><span>where you actually are.</span></h1>
+      <p class="tagline">We build apps to make it easier to find what's around you.</p>
+    </div>
+  </section>
 
-    <p class="tagline">We build apps to make it easier to find what's around you.</p>
+  <section class="apps-section">
+    <div class="apps-inner">
+      <div class="app-card">
+        <div class="app-card-text">
+          <h2 class="app-name">OnStage</h2>
+          <p class="app-tagline">Find Live Music Near You</p>
+          <p class="app-desc">Discover what's playing tonight at venues near you — with real stage times, not just doors.</p>
+          <a href="/onstagelive" class="app-cta">Explore OnStage →</a>
+        </div>
+        <div class="app-card-image">
+          <img src="screenshot-welcome-crop.jpg" alt="OnStage app screenshot" />
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <form class="email-form" id="signup-form">
-      <input type="email" id="email-input" placeholder="your@email.com" required />
-      <button type="submit" id="submit-btn">Notify me</button>
-    </form>
-    <p class="form-status" id="form-status">No spam. Just a ping when we launch.</p>
+  <section class="more-section">
+    <div class="more-inner">
+      <p class="more-text">More apps coming soon.</p>
+    </div>
+  </section>
 
-  </div>
+  <section class="signup-section">
+    <div class="signup-inner">
+      <p class="signup-label">Stay in the loop</p>
+      <form class="email-form" id="signup-form">
+        <input type="email" id="email-input" placeholder="your@email.com" required />
+        <button type="submit" id="submit-btn">Notify me</button>
+      </form>
+      <p class="form-status" id="form-status">No spam. Just a ping when we launch.</p>
+    </div>
+  </section>
 
   <footer>
     <span>© 2026 East Heights Labs, LLC · Houston, TX</span>
