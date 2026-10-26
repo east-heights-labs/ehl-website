@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Terms of Service — ShowHunter by East Heights Labs, LLC"/>
+  <title>Terms of Service — ShowHunter · East Heights Labs</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --accent: #6c63ff; --accent2: #ff6584; --text: #f0f0f8; --muted: rgba(240,240,248,0.6); --card: rgba(10,10,20,0.55); --border: rgba(255,255,255,0.12); }
+    html, body { height: 100%; }
+    body { font-family: 'Inter', system-ui, sans-serif; color: var(--text); min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 0; overflow-x: hidden; position: relative; background: #05050f; }
+    .bg-photo { position: fixed; inset: 0; background-image: url('../hero.jpg'); background-size: cover; background-position: center 40%; z-index: 0; }
+    .bg-overlay { position: fixed; inset: 0; background: linear-gradient(to bottom, rgba(5,5,15,0.75) 0%, rgba(5,5,15,0.88) 50%, rgba(5,5,15,0.95) 100%); z-index: 1; }
+    header { position: relative; z-index: 2; width: 100%; max-width: 760px; padding: 2rem 2rem 0; }
+    .logo-mark { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; }
+    .logo-icon { width: 36px; height: 36px; background: linear-gradient(135deg, var(--accent), var(--accent2)); border-radius: 8px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(108,99,255,0.4); flex-shrink: 0; }
+    .logo-icon svg { width: 20px; height: 20px; }
+    .logo-wordmark { font-size: 1.1rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text); }
+    main { position: relative; z-index: 2; width: 100%; max-width: 760px; padding: 3rem 2rem 5rem; }
+    .page-title { font-size: clamp(1.8rem, 5vw, 2.6rem); font-weight: 700; letter-spacing: -0.02em; margin-bottom: 0.4rem; text-shadow: 0 2px 12px rgba(0,0,0,0.5); }
+    .page-title span { background: linear-gradient(135deg, #c4c0ff 0%, #ff8fab 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .meta { font-size: 0.8rem; color: var(--muted); margin-bottom: 3rem; }
+    section { margin-bottom: 2.5rem; }
+    h2 { font-size: 1rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #c4c0ff; margin-bottom: 0.9rem; margin-top: 2rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border); }
+    h3 { font-size: 0.95rem; font-weight: 600; color: var(--text); margin: 1.2rem 0 0.5rem; }
+    p { font-size: 0.93rem; color: var(--muted); line-height: 1.75; margin-bottom: 0.8rem; }
+    ul, ol { margin: 0.4rem 0 0.8rem 1.2rem; }
+    ul li, ol li { font-size: 0.93rem; color: var(--muted); line-height: 1.75; margin-bottom: 0.3rem; }
+    table { width: 100%; border-collapse: collapse; margin: 0.8rem 0; font-size: 0.88rem; }
+    th { text-align: left; color: rgba(240,240,248,0.5); font-weight: 600; font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.5rem 0.75rem; border-bottom: 1px solid var(--border); }
+    td { padding: 0.6rem 0.75rem; color: var(--muted); border-bottom: 1px solid rgba(255,255,255,0.05); vertical-align: top; }
+    td:first-child { color: var(--text); font-weight: 500; }
+    a { color: #c4c0ff; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .contact-block { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 1.25rem 1.5rem; backdrop-filter: blur(10px); }
+    .contact-block p { margin: 0; }
+    blockquote { border-left: 3px solid var(--accent); padding-left: 1rem; margin: 1rem 0; font-style: italic; color: var(--muted); }
+    strong { color: var(--text); font-weight: 600; }
+    nav { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 1.25rem 1.5rem; margin-bottom: 2rem; }
+    nav ul { list-style: none; margin: 0; }
+    nav ul li { margin-bottom: 0.4rem; }
+    footer { position: relative; z-index: 2; padding: 0 2rem 2rem; font-size: 0.75rem; color: rgba(240,240,248,0.3); width: 100%; max-width: 760px; }
+    footer a { color: inherit; }
+    footer a:hover { color: rgba(240,240,248,0.6); }
+  </style>
+</head>
+<body>
+  <div class="bg-photo"></div>
+  <div class="bg-overlay"></div>
+  <header>
+    <a class="logo-mark" href="/">
+      <div class="logo-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M9 3h6M9 3v7L4 20h16L15 10V3"></path>
+        </svg>
+      </div>
+      <span class="logo-wordmark">ShowHunter</span>
+    </a>
+  </header>
+  <main>
+    <h1 class="page-title">Terms of Service — <span>ShowHunter</span></h1>
+    <p class="meta">East Heights Labs, LLC &nbsp;·&nbsp; Houston, TX &nbsp;·&nbsp; ShowHunter</p>
+    <p><strong>Draft date:</strong> 2026-10-26<br />
+<strong>Supersedes:</strong> OnStage-ToS-draft-2026-09-06.md (MHW_v2
+markups by A. Woo incorporated)<br />
+<strong>Change summary:</strong> Aaron Woo (MHW Counsel) markups
+incorporated (Oct 2026); app rebranded to ShowHunter; address update
+(East Heights Labs PO Box); MapKit/CoreLocation third-party data
+disclosure added (§6); OnStage Premium renamed to OnStage Live; price
+updated to $9.99/year; trial updated to 14 days; §3.4 and §4.1 language
+corrected; §7.5 expanded with venue QR code / fan follow feature;
+missing periods fixed; change log updated.<br />
+<strong>For review by:</strong> East Heights Labs LLC + legal counsel
+before publication</p>
+<hr />
+<hr />
+<p><strong>Effective Date:</strong> [DATE]<br />
+<strong>Last Updated:</strong> [DATE]<br />
+<strong>Developer:</strong> East Heights Labs, LLC<br />
+1900 W Gray St, P.O. Box #130180<br />
+Houston, TX 77219</p>
+<hr />
+<h2 id="acceptance-of-terms">1. Acceptance of Terms</h2>
+<p>By downloading, installing, or using ShowHunter (the “App”), you
+agree to be bound by these Terms of Service (“Terms”). If you do not
+agree, do not use the App.</p>
+<p>These Terms apply to all users of the App, including users who access
+the App without creating an account.</p>
+<p>East Heights Labs LLC (“we,” “us,” or “our”) reserves the right to
+update these Terms at any time. We will indicate the date of the most
+recent revision at the top of this page. Continued use of the App after
+any changes constitutes your acceptance of the updated Terms.</p>
+<hr />
+<h2 id="description-of-service">2. Description of Service</h2>
+<p>ShowHunter is a live music discovery application that displays
+concerts, venue information, and community-reported stage times for
+events near your location. The App aggregates data from third-party
+sources and community contributions to help users find live music.</p>
+<p>We do not sell tickets. We do not represent artists, venues, or
+promoters. Event information displayed in the App is provided for
+informational purposes and may not be complete or accurate.</p>
+<h3 id="event-listing-completeness">2.1 Event Listing Completeness</h3>
+<p>ShowHunter aggregates event data on a commercially reasonable basis.
+A venue appearing in the App may show no upcoming events even when shows
+are scheduled. This can occur because:</p>
+<ol type="1">
+<li><strong>Ticketing platform gap:</strong> The venue is selling
+tickets through a platform or broker with which we do not have a data
+relationship.</li>
+<li><strong>Unverified venue:</strong> The venue does not have a
+verified account with ShowHunter and has not been claimed through the
+ShowHunter Venue Dashboard.</li>
+<li><strong>Verified but not updated:</strong> The venue has a verified
+ShowHunter account but has not updated its schedule in the Venue
+Dashboard to reflect current advertising or website listings.</li>
+</ol>
+<p>We make no guarantee that event listings are complete, current, or
+representative of all shows at a given venue. Always confirm event
+details — including showtimes and ticket availability — directly with
+the venue or through the venue’s official website or ticketing
+provider.</p>
+<hr />
+<h2 id="accounts-and-identity">3. Accounts and Identity</h2>
+<h3 id="anonymous-use">3.1 Anonymous Use</h3>
+<p>Core features of ShowHunter are available without creating an
+account. When you first launch the App, we assign a randomly generated
+device identifier (UUID) to your installation. This identifier is used
+to associate your activity — including favorites, “I’m Going”
+confirmations, and stage time reports — with your device. See our
+Privacy Policy for more detail on how this identifier is handled.</p>
+<h3 id="sign-in-with-apple-optional">3.2 Sign In with Apple
+(Optional)</h3>
+<p>ShowHunter offers optional account creation through <strong>Sign In
+with Apple</strong>. If you choose to sign in, Apple will share a
+stable, anonymized account identifier (“Apple sub claim”) with us, which
+becomes your permanent account identity in ShowHunter. You may also
+optionally share your email address and display name with us through the
+Sign In with Apple flow; those fields are never required.</p>
+<p>By signing in with Apple, you agree that we may: - Create a
+persistent ShowHunter account linked to your Apple sub claim -
+Optionally store your email address and display name if you choose to
+share them - Associate your prior anonymous activity (favorites, going,
+stage time reports) with your account, as described in Section 3.3 below
+- Retain your account data in accordance with Section 3.5 (Data
+Retention) and our Privacy Policy</p>
+<p>We will never use your Apple ID credentials for any purpose other
+than account authentication within ShowHunter. We do not share your
+Apple ID or Apple sub claim with third parties.</p>
+<h3 id="device-uuid-history-and-activity-backfill">3.3 Device UUID
+History and Activity Backfill</h3>
+<p>ShowHunter maintains a history of device UUIDs associated with your
+account. When you sign in with Apple, any prior anonymous activity
+associated with known device UUIDs — favorites, going confirmations,
+stage time reports — may be linked to your authenticated account. This
+backfill is intentional: it allows your history to persist across device
+reinstalls and new devices.</p>
+<p>Specifically, we may retain: - All device UUIDs ever associated with
+your account, including first-seen and last-seen timestamps - Community
+contributions (stage time reports, going confirmations) linked to those
+device UUIDs - Favorites and saved venue/event data linked to those
+device UUIDs</p>
+<p>If you do not sign in with Apple, your activity is associated only
+with the current installation’s UUID and is not persisted across
+reinstalls.</p>
+<h3 id="tier-and-entitlement-data">3.4 Tier and Entitlement Data</h3>
+<p>If you subscribe to ShowHunter or redeem a promo code, we maintain
+records of your subscription tier, tier source, entitlement grant
+history, and expiry dates. This information is linked to your account
+and is used solely to provision your subscription benefits. See Section
+7 (Subscriptions and Billing) for details.</p>
+<h3 id="account-deletion-and-data-retention">3.5 Account Deletion and
+Data Retention</h3>
+<p>You may request deletion of your ShowHunter account at any time by
+contacting us at privacy@eastheightslabs.com. In-app account deletion
+will be available in a future update. Upon account deletion:</p>
+<ul>
+<li>Your Apple sub claim and any associated email/display name will be
+permanently deleted from our systems within 30 days</li>
+<li>Your device UUID history and all associated activity (favorites,
+going, stage time reports) will be permanently deleted within 30
+days</li>
+<li>Your tier/entitlement records and promo code redemption history will
+be permanently deleted within 30 days</li>
+<li><strong>Exception:</strong> Community-contributed stage time reports
+may be retained in anonymized, de-identified form as part of our
+aggregate event accuracy data set, provided all linkage to your account
+or device UUIDs is severed</li>
+</ul>
+<p>If you use ShowHunter anonymously (no Sign In with Apple), you may
+request deletion of your anonymous device UUID’s associated data by
+contacting us with your approximate activity window and city. Because
+anonymous UUIDs are not linked to any personal account, we cannot
+guarantee precise attribution, but will make reasonable efforts to
+fulfill your request.</p>
+<hr />
+<h2 id="intellectual-property">4. Intellectual Property</h2>
+<h3 id="our-intellectual-property">4.1 Our Intellectual Property</h3>
+<p>The App, including its source code, user interface design, graphics,
+logos, trademarks, service marks, and all content created by East
+Heights Labs LLC, is owned by East Heights Labs LLC and protected by
+United States and international copyright, trademark, and other
+intellectual property laws. “ShowHunter” is a trademark of East Heights
+Labs LLC. You may not use our trademarks without our prior written
+permission.</p>
+<p>You may not: - Copy, modify, distribute, sell, or lease any part of
+the App or its content - Reverse engineer or attempt to extract the
+source code of the App - Use our trademarks, logos, or branding in any
+manner that implies endorsement or affiliation without express written
+consent</p>
+<h3 id="your-content-license-grant">4.2 Your Content — License
+Grant</h3>
+<p>When you submit a stage time report, venue correction, or any other
+content through the App (“User Content”), you retain ownership of that
+content. However, by submitting User Content, you grant East Heights
+Labs LLC a <strong>worldwide, royalty-free, perpetual, irrevocable,
+non-exclusive, sublicensable license</strong> to use, reproduce, modify,
+adapt, publish, display, distribute, and create derivative works from
+your User Content in connection with operating, improving, and promoting
+the App and its services.</p>
+<p>This license allows us to: - Display your submissions to other users
+of the App - Aggregate and analyze submission data to improve accuracy
+and reliability - Use anonymized submission data in marketing, press,
+and investor materials - Sublicense this content to partners and
+successors in connection with the App</p>
+<p>You represent and warrant that you own or have the right to submit
+any User Content you provide, and that your submissions do not violate
+any third-party rights.</p>
+<p>This license survives account deletion to the extent that
+de-identified, aggregated Community Reports are retained as described in
+Section 3.5.</p>
+<h3 id="no-scraping-or-unauthorized-data-collection">4.3 No Scraping or
+Unauthorized Data Collection</h3>
+<p>You may not use automated means (bots, scrapers, crawlers, or similar
+tools) to access, collect, copy, or store any data from the App without
+our prior written consent. The community-reported stage time data
+displayed in the App is proprietary to East Heights Labs LLC and
+protected by copyright as a compilation.</p>
+<hr />
+<h2 id="community-contributions-stage-time-reports">5. Community
+Contributions — Stage Time Reports</h2>
+<h3 id="accuracy">5.1 Accuracy</h3>
+<p>Stage time reports are submitted by community members and are not
+verified by East Heights Labs LLC. We make no representations about
+their accuracy, completeness, or timeliness. Always confirm show times
+with the venue or event organizer before attending.</p>
+<h3 id="acceptable-submissions">5.2 Acceptable Submissions</h3>
+<p>You agree to submit only stage times and venue information you
+believe to be accurate and that you obtained through lawful means. You
+may not submit: - False, misleading, or malicious information - Content
+that violates any third-party rights - Spam or promotional content
+unrelated to live music events</p>
+<h3 id="moderation">5.3 Moderation</h3>
+<p>We reserve the right to remove, correct, or refuse any User Content
+at our sole discretion, without notice or liability.</p>
+<hr />
+<h2 id="third-party-data-and-services">6. Third-Party Data and
+Services</h2>
+<p>The App displays event data from third-party providers including
+Ticketmaster and JamBase. This data is subject to those providers’ terms
+of service and may change, be delayed, or be unavailable at times. We
+are not responsible for the accuracy or availability of third-party
+data.</p>
+<h3 id="third-party-links-and-external-sites">6.0 Third-Party Links and
+External Sites</h3>
+<p>The App may contain links to third-party websites, ticketing
+platforms, venue websites, and other external services (“External Sites”
+or “Third-Party Providers”). You acknowledge that we are not responsible
+for the availability of, or the materials located on or through, any
+External Sites. If you use any External Sites, you will leave the App.
+If you decide to visit any External Sites, you do so at your own
+risk.</p>
+<p>External Sites are not maintained, controlled, or otherwise governed
+by us. The content, accuracy, opinions expressed, and other links
+provided by External Sites are not investigated, verified, monitored, or
+endorsed by us. We do not endorse or make any representation regarding
+any information, goods, or services appearing on any External Sites. We
+are neither responsible for nor liable under any theory for any External
+Sites, any information or content found on any External Sites, or any
+site linked to or from any External Sites.</p>
+<p>East Heights Labs is not responsible for the accuracy of third-party
+event listings, ticket availability, pricing, or venue information
+provided by these sources. Ticket links are provided as a convenience;
+East Heights Labs has no control over ticketing transactions conducted
+through third-party platforms.</p>
+<h3 id="apple-maps-mapkit">6.1 Apple Maps / MapKit</h3>
+<p>When you view a Venue Card in the App, we may query Apple’s MapKit
+and CoreLocation APIs using a venue’s name and geographic coordinates to
+retrieve publicly available business contact information (such as phone
+number, website, and neighborhood name). No user-identifiable
+information is transmitted in these queries. Apple’s MapKit API
+communicates with Apple’s servers as part of this process. Results are
+displayed in the App UI only and are not stored on East Heights Labs
+servers. Apple’s handling of these API calls is governed by Apple’s own
+privacy policy and terms of service.</p>
+<p>If we have verified contact information for a venue in our own
+database, that data takes priority and no MapKit query is made for those
+fields.</p>
+<p>Links or references to third-party websites, venues, or services do
+not constitute endorsement by East Heights Labs LLC.</p>
+<hr />
+<h2 id="subscriptions-and-billing">7. Subscriptions and Billing</h2>
+<h3 id="free-tier">7.1 Free Tier</h3>
+<p>Core features of the App are available at no charge. No account is
+required to use the App’s basic discovery features.</p>
+<h3 id="showhunter-subscription">7.2 ShowHunter Subscription</h3>
+<p>ShowHunter offers an optional paid subscription (“ShowHunter
+Subscription”) that provides access to additional features as described
+on our website and in the App, which may include enhanced stage time
+intelligence, push notifications for followed venues, setlist history,
+and multi-city support.</p>
+<ul>
+<li><strong>Price:</strong> $9.99 per year</li>
+<li><strong>Free Trial:</strong> 14 days. During the free trial, you
+will have full access to ShowHunter Subscription features. Your
+subscription begins at the end of the free trial period unless you
+cancel before the trial ends. No charge is made until the trial period
+concludes.</li>
+<li><strong>Billing:</strong> Subscriptions are billed annually through
+the Apple App Store. Payment is charged to your Apple ID at confirmation
+of purchase.</li>
+<li><strong>Auto-Renewal:</strong> Subscriptions automatically renew at
+the end of each billing period unless cancelled at least 24 hours before
+the renewal date.</li>
+<li><strong>Cancellation:</strong> You may cancel at any time through
+your Apple ID Account Settings. Cancellation takes effect at the end of
+the current billing period. We do not offer refunds for partial
+subscription periods.</li>
+<li><strong>Price Changes:</strong> We may change subscription pricing
+with advance notice. Continued use after a price change constitutes
+acceptance of the new price.</li>
+</ul>
+<h3 id="grandfathered-pricing">7.3 Grandfathered Pricing</h3>
+<p>Users who subscribed to ShowHunter Subscription during the App’s
+alpha or beta testing period (“Founding Members”) are entitled to retain
+their subscription price in effect at the time of their initial
+subscription for as long as they maintain an active, continuously
+renewed subscription. For purposes of this section, “alpha or beta
+testing period” means any period prior to the App’s general availability
+release on the Apple App Store. This benefit does not transfer and is
+forfeited upon cancellation.</p>
+<h3 id="apple-as-payment-processor">7.4 Apple as Payment Processor</h3>
+<p>All in-app purchases are processed by Apple Inc. through the App
+Store. East Heights Labs LLC does not collect or store payment
+information. Subscription management, refunds (where applicable under
+Apple’s policies), and billing disputes are handled through Apple’s
+standard processes.</p>
+<h3 id="promo-codes-and-venue-qr-codes">7.5 Promo Codes and Venue QR
+Codes</h3>
+<p>East Heights Labs may issue promotional codes that grant
+complimentary access to ShowHunter Subscription or other features. Promo
+codes are non-transferable, may have expiration dates, and may only be
+redeemed once per account. We reserve the right to revoke promo code
+benefits if obtained fraudulently or in violation of these Terms.</p>
+<p>Venues with a verified ShowHunter account may generate QR codes
+through the ShowHunter Venue Dashboard for display at their location.
+When a user scans a venue QR code, the App may prompt them to follow
+that venue, enabling notifications and updates about future events at
+that location. QR codes are unique to each venue and may not be used for
+promotional, commercial, or deceptive purposes outside of the venue’s
+own marketing at its physical location.</p>
+<hr />
+<h2 id="prohibited-conduct">8. Prohibited Conduct</h2>
+<p>You agree not to:</p>
+<ul>
+<li>Use the App for any unlawful purpose or in violation of these
+Terms</li>
+<li>Interfere with or disrupt the App or its servers or networks</li>
+<li>Attempt to gain unauthorized access to any part of the App or its
+related systems</li>
+<li>Impersonate any person or entity or misrepresent your
+affiliation</li>
+<li>Use the App to transmit spam, viruses, or any harmful code</li>
+<li>Collect or harvest any information from the App using automated
+means</li>
+<li>Resell, sublicense, or commercially exploit the App or its data
+without our written consent</li>
+<li>Attempt to manipulate, falsify, or game community reporting
+features</li>
+</ul>
+<hr />
+<h2 id="disclaimers">9. Disclaimers</h2>
+<p>THE APP IS PROVIDED “AS IS” AND “AS AVAILABLE” WITHOUT WARRANTIES OF
+ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND
+NON-INFRINGEMENT.</p>
+<p>WE DO NOT WARRANT THAT: - THE APP WILL BE UNINTERRUPTED OR ERROR-FREE
+- EVENT INFORMATION WILL BE ACCURATE, COMPLETE, OR CURRENT -
+COMMUNITY-REPORTED STAGE TIMES WILL BE CORRECT - YOUR ACCOUNT DATA WILL
+BE PRESERVED IN THE EVENT OF A SYSTEM FAILURE</p>
+<p>USE OF THE APP AND RELIANCE ON ANY INFORMATION DISPLAYED IS AT YOUR
+OWN RISK.</p>
+<hr />
+<h2 id="limitation-of-liability">10. Limitation of Liability</h2>
+<p>TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, EAST HEIGHTS LABS
+LLC AND ITS OFFICERS, DIRECTORS, EMPLOYEES, THIRD-PARTY PROVIDERS, AND
+AGENTS SHALL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL,
+CONSEQUENTIAL, OR PUNITIVE DAMAGES ARISING OUT OF OR RELATED TO YOUR USE
+OF THE APP, INCLUDING BUT NOT LIMITED TO:</p>
+<ul>
+<li>MISSED CONCERTS OR EVENTS DUE TO INACCURATE STAGE TIMES, TICKET
+AVAILABILITY, TICKET PRICING, OR EVENT INFORMATION</li>
+<li>LOSS OF DATA, INCLUDING ACCOUNT DATA, FAVORITES, OR COMMUNITY
+CONTRIBUTIONS</li>
+<li>ANY UNAUTHORIZED ACCESS TO OR USE OF OUR SERVERS OR YOUR
+ACCOUNT</li>
+</ul>
+<p>OUR TOTAL LIABILITY TO YOU FOR ANY CLAIM ARISING OUT OF THESE TERMS
+OR YOUR USE OF THE APP SHALL NOT EXCEED THE AMOUNT YOU PAID TO US IN THE
+TWELVE (12) MONTHS PRECEDING THE CLAIM, OR $10.00, WHICHEVER IS
+GREATER.</p>
+<p>SOME JURISDICTIONS DO NOT ALLOW THE EXCLUSION OF CERTAIN WARRANTIES
+OR LIMITATION OF LIABILITY, SO SOME OF THE ABOVE MAY NOT APPLY TO
+YOU.</p>
+<hr />
+<h2 id="indemnification">11. Indemnification</h2>
+<p>You agree to indemnify, defend, and hold harmless East Heights Labs
+LLC and its officers, directors, members, managers, employees,
+representatives, and agents from and against any claims, liabilities,
+damages, losses, and expenses (including reasonable attorneys’ fees)
+arising out of or in connection with:</p>
+<ul>
+<li>Your use of the App</li>
+<li>Your User Content</li>
+<li>Your violation of these Terms</li>
+<li>Your violation of any third-party rights</li>
+<li>Any inaccurate information you submit to the Service</li>
+</ul>
+<hr />
+<h2 id="dmca-copyright-infringement">12. DMCA — Copyright
+Infringement</h2>
+<p>We respect intellectual property rights. If you believe content in
+the App infringes your copyright, please send a written notice to our
+designated agent at:</p>
+<p><strong>East Heights Labs LLC — DMCA Agent</strong><br />
+1900 W Gray St, P.O. Box #130180<br />
+Houston, Texas 77219<br />
+support@showhunter.app</p>
+<p>Your notice must include: (1) identification of the copyrighted work;
+(2) identification of the infringing material and its location in the
+App; (3) your contact information; (4) a statement of good faith belief
+that the use is unauthorized; (5) a statement under penalty of perjury
+that your notice is accurate; and (6) your physical or electronic
+signature.</p>
+<hr />
+<h2 id="dispute-resolution">13. Dispute Resolution</h2>
+<h3 id="informal-resolution">13.1 Informal Resolution</h3>
+<p>Before filing any formal legal action, you agree to contact us at
+info@eastheightslabs.com and attempt to resolve the dispute informally
+through negotiation. We will attempt to resolve any dispute within 30
+days of receiving notice.</p>
+<h3 id="governing-law">13.2 Governing Law</h3>
+<p>These Terms are governed by the laws of the State of Texas, without
+regard to its conflict of law principles.</p>
+<h3 id="venue">13.3 Venue</h3>
+<p>Any legal action arising out of these Terms or your use of the App
+shall be brought exclusively in the state or federal courts located in
+Harris County, Texas. You consent to personal jurisdiction in those
+courts.</p>
+<h3 id="class-action-waiver">13.4 Class Action Waiver</h3>
+<p>YOU AGREE THAT ANY DISPUTE RESOLUTION PROCEEDINGS WILL BE CONDUCTED
+ONLY ON AN INDIVIDUAL BASIS AND NOT AS A CLASS, CONSOLIDATED, OR
+REPRESENTATIVE ACTION.</p>
+<hr />
+<h2 id="termination">14. Termination</h2>
+<p>We reserve the right to suspend or terminate your access to the App
+at any time, for any reason, including violation of these Terms, without
+notice or liability. We may suspend (rather than terminate) your access
+to the App if you engage in Prohibited Conduct (as described in Section
+8) pending investigation or resolution. Upon termination:</p>
+<ul>
+<li>Your right to use the App ceases immediately</li>
+<li>Any active ShowHunter Subscription is cancelled; no refund is issued
+for any remaining subscription period</li>
+<li>Account deletion and data retention procedures described in Section
+3.5 apply</li>
+</ul>
+<p>Sections 4, 9, 10, 11, and 13 survive termination.</p>
+<hr />
+<h2 id="changes-to-the-app">15. Changes to the App</h2>
+<p>We may modify, suspend, or discontinue the App or any feature at any
+time without notice or liability. We are not obligated to maintain or
+update the App or any feature.</p>
+<hr />
+<h2 id="apple-app-store-additional-terms">16. Apple App Store Additional
+Terms</h2>
+<p>If you download ShowHunter from the Apple App Store, the following
+additional terms apply:</p>
+<p><strong>16.1 Acknowledgment.</strong> These Terms are between you and
+East Heights Labs only, not Apple. Apple has no responsibility for the
+Service or its content.</p>
+<p><strong>16.2 Maintenance.</strong> East Heights Labs, not Apple, is
+solely responsible for the Service and any maintenance or support.</p>
+<p><strong>16.3 Warranty.</strong> In the event of any failure of the
+Service to conform to any applicable warranty, you may notify Apple, and
+Apple will refund your purchase price (if any). Apple has no other
+warranty obligations regarding the Service.</p>
+<p><strong>16.4 Sign In with Apple.</strong> Your use of Sign In with
+Apple is additionally subject to Apple’s terms and conditions for that
+service. Apple’s authentication infrastructure is independent of East
+Heights Labs. East Heights Labs does not have access to your Apple ID
+password or any Apple credential.</p>
+<p><strong>16.5 Claims.</strong> East Heights Labs, not Apple, is
+responsible for addressing any claims relating to the Service, including
+product liability, consumer protection, or intellectual property
+infringement.</p>
+<p><strong>16.6 Third-Party Beneficiary.</strong> Apple is a third-party
+beneficiary of these Terms and may enforce them against you.</p>
+<hr />
+<h2 id="miscellaneous">17. Miscellaneous</h2>
+<ul>
+<li><strong>Entire Agreement:</strong> These Terms, together with our
+Privacy Policy, constitute the entire agreement between you and East
+Heights Labs LLC regarding the App.</li>
+<li><strong>Severability:</strong> If any provision of these Terms is
+found invalid or unenforceable, the remaining provisions remain in full
+force.</li>
+<li><strong>No Waiver:</strong> Our failure to enforce any right or
+provision does not constitute a waiver of that right or provision.</li>
+<li><strong>Assignment:</strong> You may not assign your rights under
+these Terms without our written consent. We may assign our rights
+without restriction.</li>
+</ul>
+<hr />
+<h2 id="contact">18. Contact</h2>
+<p>East Heights Labs, LLC<br />
+1900 W Gray St, P.O. Box #130180<br />
+Houston, Texas 77219<br />
+support@showhunter.app<br />
+www.showhunter.app</p>
+<hr />
+<h2 id="appendix-a-open-items-before-legal-review">Appendix A — Open
+Items Before Legal Review</h2>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>Item</th>
+<th>Status</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Attorney review</td>
+<td>❌ Required</td>
+<td>TX-licensed counsel to review entire document, especially §3
+(account/identity) and §3.5 (data retention)</td>
+</tr>
+<tr>
+<td>Privacy Policy update</td>
+<td>❌ Required</td>
+<td>Must be updated before this ToS ships — see Appendix B</td>
+</tr>
+<tr>
+<td>In-app account deletion UI</td>
+<td>❌ Not built</td>
+<td>§3.5 updated to email-only path; in-app deletion required before App
+Store submission (App Store Review Guidelines §5.1.1)</td>
+</tr>
+<tr>
+<td>StoreKit 2 / in-app purchase</td>
+<td>❌ Not built</td>
+<td>§7.2 subscription infrastructure not yet implemented; §7.2 describes
+intended behavior</td>
+</tr>
+<tr>
+<td>Venue QR scan → follow flow</td>
+<td>❌ Not built</td>
+<td>iOS QR scanner and follow UI not implemented; backend endpoint
+exists; §7.5 describes intended behavior</td>
+</tr>
+<tr>
+<td>Arbitration clause</td>
+<td>⚠️ Optional</td>
+<td>Not included — Matt’s call; standalone class action waiver may have
+enforceability issues in TX — flag for attorney</td>
+</tr>
+<tr>
+<td>DMCA agent registration</td>
+<td>❌ Needed</td>
+<td>Register with U.S. Copyright Office (§6 filing) for DMCA safe harbor
+protection; required before GA</td>
+</tr>
+<tr>
+<td>Privacy Policy update</td>
+<td>❌ Required</td>
+<td>Must be updated before this ToS ships — see Appendix B</td>
+</tr>
+<tr>
+<td>Attorney review</td>
+<td>❌ Required</td>
+<td>TX-licensed counsel to review entire document, especially §3, §4.2
+(license scope), §10 ($10 liability floor), §13 (class action
+waiver)</td>
+</tr>
+<tr>
+<td>App version reference</td>
+<td>❌ Needed</td>
+<td>Link in-app to current ToS version with version number</td>
+</tr>
+<tr>
+<td>Legal/support email</td>
+<td>✅ In use</td>
+<td>support@showhunter.app, privacy@eastheightslabs.com</td>
+</tr>
+<tr>
+<td>Subscription pricing</td>
+<td>✅ Updated</td>
+<td>$9.99/year; product name: ShowHunter Subscription</td>
+</tr>
+<tr>
+<td>Free trial duration</td>
+<td>✅ Updated</td>
+<td>14 days; trial description added to §7.2</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="appendix-b-privacy-policy-update-required">Appendix B — Privacy
+Policy Update Required</h2>
+<p>The current Privacy Policy at eastheightslabs.com/privacy.html was
+written for the anonymous-UUID-only architecture. It <strong>must be
+updated</strong> before this ToS ships, or the two documents will be
+inconsistent. At minimum, the Privacy Policy needs:</p>
+<h3 id="sections-to-add-or-rewrite">Sections to add or rewrite:</h3>
+<p><strong>“Information We Collect” → Add:</strong> - <em>Authenticated
+Account Data (optional):</em> When you choose to sign in with Apple, we
+collect your Apple sub claim (a stable, anonymized account identifier
+assigned by Apple). You may also optionally share your email address and
+display name. These are used to create and manage your ShowHunter
+account. - <em>Device UUID History:</em> If you sign in with Apple, we
+maintain a history of device UUIDs associated with your account,
+including first-seen and last-seen timestamps. This allows activity to
+persist across reinstalls and devices. - <em>Activity Backfill:</em>
+Prior anonymous activity (favorites, going confirmations, stage time
+reports) linked to device UUIDs may be associated with your
+authenticated account upon sign-in. - <em>Tier and Entitlement
+Data:</em> If you subscribe or redeem a promo code, we retain your
+subscription tier, source, grant history, and expiry. Payment is
+processed by Apple; we do not receive or store payment card data.</p>
+<p><strong>“Information We Do Not Collect” → Remove:</strong> - “Apple
+ID or sign-in credentials” ← This is no longer accurate once Sign In
+with Apple is implemented. Replace with: <em>“We do not collect your
+Apple ID password or any Apple authentication credential. Sign In with
+Apple authentication is handled entirely by Apple.”</em></p>
+<p><strong>“Data Retention” → Rewrite:</strong> - Anonymous users:
+device UUIDs and stage time reports retained to power community
+features; deletion by request - Authenticated accounts: Apple sub claim,
+email (if provided), display name (if provided), device UUID history,
+and activity data retained until account deletion; 30-day deletion
+window upon request</p>
+<p><strong>“Your Rights” → Expand:</strong> - Add: <em>“Delete your
+ShowHunter account”</em> — describe in-app deletion flow - Add:
+<em>“Request deletion of authenticated account data”</em> — reference
+30-day window - The “Reset your anonymous ID by deleting and
+reinstalling” language should note that if the user is signed in with
+Apple, reinstallation does not sever the account linkage; account
+deletion is required</p>
+<p><strong>“How We Use Information” → Add rows to the table:</strong> |
+Apple sub claim | Create and manage your authenticated account | | Email
+address (optional) | Account communications, if opted in | | Device UUID
+history | Persist activity across devices; account backfill | |
+Tier/entitlement data | Provision subscription features |</p>
+<hr />
+<h2 id="appendix-c-change-log">Appendix C — Change Log</h2>
+<h3 id="changes-from-sept-4-draft-this-version-2026-09-06">Changes from
+Sept 4 Draft (this version, 2026-09-06)</h3>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>Section</th>
+<th>Change</th>
+<th>Reason</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Header</td>
+<td>Draft date updated to 2026-09-06</td>
+<td>New baseline</td>
+</tr>
+<tr>
+<td>Header</td>
+<td>Address added — 1900 W Gray St, P.O. Box #130180, Houston TX
+77219</td>
+<td>PO Box established for East Heights Labs</td>
+</tr>
+<tr>
+<td>§2.1 (Event Listing Completeness)</td>
+<td>New subsection</td>
+<td>Best-effort disclaimer; explains why venues may show no events
+(ticketing gap, unverified venue, or unupdated dashboard)</td>
+</tr>
+<tr>
+<td>§3.4</td>
+<td>“OnStage Premium” → “OnStage Live”</td>
+<td>Product rename</td>
+</tr>
+<tr>
+<td>§4.1</td>
+<td>Added “OnStage Live” to trademark language</td>
+<td>Product rename</td>
+</tr>
+<tr>
+<td>§6 (Third-Party Data)</td>
+<td>Added §6.1 (Apple Maps / MapKit)</td>
+<td>Build 31 introduced MapKit venue contact lookup; disclosure
+required</td>
+</tr>
+<tr>
+<td>§7.2</td>
+<td>“OnStage Premium” → “OnStage Live”; $24.99 → $9.99/year; trial 30 →
+14 days</td>
+<td>Product rename and pricing update</td>
+</tr>
+<tr>
+<td>§7.5</td>
+<td>Renamed to “Promo Codes and Venue QR Codes”; added venue QR code /
+fan follow feature</td>
+<td>New venue feature</td>
+</tr>
+<tr>
+<td>§14</td>
+<td>“OnStage Premium” → “OnStage Live”</td>
+<td>Product rename</td>
+</tr>
+<tr>
+<td>§12 (DMCA)</td>
+<td>Address updated to PO Box</td>
+<td>Same address update</td>
+</tr>
+<tr>
+<td>§17 (Contact)</td>
+<td>Address updated to PO Box</td>
+<td>Same address update</td>
+</tr>
+</tbody>
+</table>
+<h3 id="builder-reviewer-review-pass-2026-09-06">Builder + Reviewer
+Review Pass (2026-09-06)</h3>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>Section</th>
+<th>Change</th>
+<th>Reason</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>§3.5</td>
+<td>“in-app account settings” → email-only deletion path; in-app noted
+as forthcoming</td>
+<td>In-app deletion UI not yet built; Appendix A updated to reflect</td>
+</tr>
+<tr>
+<td>§6.1</td>
+<td>Removed “on-device”; clarified MapKit communicates with Apple’s
+servers</td>
+<td>“On-device” overstated — MKLocalSearch makes network requests</td>
+</tr>
+<tr>
+<td>§7.2</td>
+<td>Replaced <code>[feature list TBD]</code> with defensible language
+referencing website/App</td>
+<td>Placeholder not suitable for legal doc or App Store submission</td>
+</tr>
+<tr>
+<td>§7.2</td>
+<td>Added trial description: full OnStage Live access, no charge until
+trial ends</td>
+<td>Apple guidelines require trial terms to be disclosed</td>
+</tr>
+<tr>
+<td>§7.3</td>
+<td>Added qualifying definition for “Founding Members” (pre-GA
+period)</td>
+<td>Prior language was unenforceable without a definition</td>
+</tr>
+<tr>
+<td>Appendix A</td>
+<td>Expanded open items: in-app deletion, StoreKit, QR follow flow,
+liability cap note, class action waiver enforceability</td>
+<td>Reflects Builder and Reviewer review findings</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="changes-from-sept-3-draft-sept-4-version">Changes from Sept 3
+Draft (Sept 4 version)</h3>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>Section</th>
+<th>Change</th>
+<th>Reason</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>§3 (Accounts and Identity)</td>
+<td>New section — entirely rewritten</td>
+<td>Migration 007: Sign in with Apple, UUID history, backfill</td>
+</tr>
+<tr>
+<td>§3.1 (Anonymous Use)</td>
+<td>New subsection</td>
+<td>Preserves prior anonymous behavior; makes it explicit</td>
+</tr>
+<tr>
+<td>§3.2 (Sign In with Apple)</td>
+<td>New subsection</td>
+<td>Required disclosure; Apple Review Guidelines compliance</td>
+</tr>
+<tr>
+<td>§3.3 (Device UUID History and Backfill)</td>
+<td>New subsection</td>
+<td>Material change — device history retained, backfill is
+intentional</td>
+</tr>
+<tr>
+<td>§3.4 (Tier and Entitlement Data)</td>
+<td>New subsection</td>
+<td>Subscription data tied to account now</td>
+</tr>
+<tr>
+<td>§3.5 (Account Deletion and Data Retention)</td>
+<td>New subsection</td>
+<td>Required for App Store submission (App Store Review Guidelines
+§5.1.1)</td>
+</tr>
+<tr>
+<td>§4.2 (License Grant)</td>
+<td>Added survival clause for de-identified reports</td>
+<td>Reconciles with §3.5 anonymized data retention carve-out</td>
+</tr>
+<tr>
+<td>§7.2 (Pricing)</td>
+<td>Introduced §7.2 with $24.99/year, 30-day trial</td>
+<td>Initial pricing from 2026-08-29 decision</td>
+</tr>
+<tr>
+<td>§7.5 (Promo Codes)</td>
+<td>New subsection</td>
+<td>Promo code system introduced in Migration 007</td>
+</tr>
+<tr>
+<td>§9 (Disclaimers)</td>
+<td>Added account data loss disclaimer</td>
+<td>More accurate now that accounts exist</td>
+</tr>
+<tr>
+<td>§10 (Limitation of Liability)</td>
+<td>Added account data and unauthorized account access</td>
+<td>Accounts exist now</td>
+</tr>
+<tr>
+<td>§14 (Termination)</td>
+<td>Added subscription cancellation on termination; reference to
+§3.5</td>
+<td>Account deletion must be addressed</td>
+</tr>
+<tr>
+<td>§16 (Apple App Store)</td>
+<td>Added §16.4 (Sign In with Apple)</td>
+<td>Required disclosure per Apple guidelines</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p><em>East Heights Labs LLC. ShowHunter is a trademark of East Heights
+Labs LLC.</em></p>
+
+  </main>
+  <footer>
+    <p>East Heights Labs LLC &nbsp;·&nbsp; Houston, Texas &nbsp;·&nbsp; <a href="mailto:privacy@eastheightslabs.com">privacy@eastheightslabs.com</a></p>
+    <p style="margin-top:0.5rem;"><a href="/">Studio home</a> &nbsp;·&nbsp; <a href="/privacy">Privacy Policy</a></p>
+  </footer>
+</body>
+</html>
