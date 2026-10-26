@@ -7,365 +7,1012 @@
   <title>Privacy Policy — ShowHunter · East Heights Labs</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
-
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --accent: #6c63ff;
-      --accent2: #ff6584;
-      --text: #f0f0f8;
-      --muted: rgba(240,240,248,0.6);
-      --card: rgba(10,10,20,0.55);
-      --border: rgba(255,255,255,0.12);
-    }
-
+    :root { --accent: #6c63ff; --accent2: #ff6584; --text: #f0f0f8; --muted: rgba(240,240,248,0.6); --card: rgba(10,10,20,0.55); --border: rgba(255,255,255,0.12); }
     html, body { height: 100%; }
-
-    body {
-      font-family: 'Inter', system-ui, sans-serif;
-      color: var(--text);
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 0;
-      overflow-x: hidden;
-      position: relative;
-      background: #05050f;
-    }
-
-    .bg-photo {
-      position: fixed;
-      inset: 0;
-      background-image: url('hero.jpg');
-      background-size: cover;
-      background-position: center 40%;
-      z-index: 0;
-    }
-
-    .bg-overlay {
-      position: fixed;
-      inset: 0;
-      background: linear-gradient(
-        to bottom,
-        rgba(5, 5, 15, 0.75) 0%,
-        rgba(5, 5, 15, 0.88) 50%,
-        rgba(5, 5, 15, 0.95) 100%
-      );
-      z-index: 1;
-    }
-
-    header {
-      position: relative;
-      z-index: 2;
-      width: 100%;
-      max-width: 760px;
-      padding: 2rem 2rem 0;
-    }
-
-    .logo-mark {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      text-decoration: none;
-    }
-
-    .logo-icon {
-      width: 36px; height: 36px;
-      background: linear-gradient(135deg, var(--accent), var(--accent2));
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 4px 20px rgba(108,99,255,0.4);
-      flex-shrink: 0;
-    }
-
+    body { font-family: 'Inter', system-ui, sans-serif; color: var(--text); min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 0; overflow-x: hidden; position: relative; background: #05050f; }
+    .bg-photo { position: fixed; inset: 0; background-image: url('../hero.jpg'); background-size: cover; background-position: center 40%; z-index: 0; }
+    .bg-overlay { position: fixed; inset: 0; background: linear-gradient(to bottom, rgba(5,5,15,0.75) 0%, rgba(5,5,15,0.88) 50%, rgba(5,5,15,0.95) 100%); z-index: 1; }
+    header { position: relative; z-index: 2; width: 100%; max-width: 760px; padding: 2rem 2rem 0; }
+    .logo-mark { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; }
+    .logo-icon { width: 36px; height: 36px; background: linear-gradient(135deg, var(--accent), var(--accent2)); border-radius: 8px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(108,99,255,0.4); flex-shrink: 0; }
     .logo-icon svg { width: 20px; height: 20px; }
-
-    .logo-wordmark {
-      font-size: 1.1rem;
-      font-weight: 600;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      color: var(--text);
-    }
-
-    main {
-      position: relative;
-      z-index: 2;
-      width: 100%;
-      max-width: 760px;
-      padding: 3rem 2rem 5rem;
-    }
-
-    .page-title {
-      font-size: clamp(1.8rem, 5vw, 2.6rem);
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      margin-bottom: 0.4rem;
-      text-shadow: 0 2px 12px rgba(0,0,0,0.5);
-    }
-
-    .page-title span {
-      background: linear-gradient(135deg, #c4c0ff 0%, #ff8fab 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .meta {
-      font-size: 0.8rem;
-      color: var(--muted);
-      margin-bottom: 3rem;
-    }
-
-    section {
-      margin-bottom: 2.5rem;
-    }
-
-    h2 {
-      font-size: 1rem;
-      font-weight: 600;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      color: #c4c0ff;
-      margin-bottom: 0.9rem;
-      padding-bottom: 0.5rem;
-      border-bottom: 1px solid var(--border);
-    }
-
-    h3 {
-      font-size: 0.95rem;
-      font-weight: 600;
-      color: var(--text);
-      margin: 1.2rem 0 0.5rem;
-    }
-
-    p {
-      font-size: 0.93rem;
-      color: var(--muted);
-      line-height: 1.75;
-      margin-bottom: 0.8rem;
-    }
-
-    ul {
-      margin: 0.4rem 0 0.8rem 1.2rem;
-    }
-
-    ul li {
-      font-size: 0.93rem;
-      color: var(--muted);
-      line-height: 1.75;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin: 0.8rem 0;
-      font-size: 0.88rem;
-    }
-
-    th {
-      text-align: left;
-      color: rgba(240,240,248,0.5);
-      font-weight: 600;
-      font-size: 0.75rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      padding: 0.5rem 0.75rem;
-      border-bottom: 1px solid var(--border);
-    }
-
-    td {
-      padding: 0.6rem 0.75rem;
-      color: var(--muted);
-      border-bottom: 1px solid rgba(255,255,255,0.05);
-      vertical-align: top;
-    }
-
-    td:first-child {
-      color: var(--text);
-      font-weight: 500;
-      white-space: nowrap;
-    }
-
-    a {
-      color: #c4c0ff;
-      text-decoration: none;
-    }
+    .logo-wordmark { font-size: 1.1rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text); }
+    main { position: relative; z-index: 2; width: 100%; max-width: 760px; padding: 3rem 2rem 5rem; }
+    .page-title { font-size: clamp(1.8rem, 5vw, 2.6rem); font-weight: 700; letter-spacing: -0.02em; margin-bottom: 0.4rem; text-shadow: 0 2px 12px rgba(0,0,0,0.5); }
+    .page-title span { background: linear-gradient(135deg, #c4c0ff 0%, #ff8fab 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .meta { font-size: 0.8rem; color: var(--muted); margin-bottom: 3rem; }
+    section { margin-bottom: 2.5rem; }
+    h2 { font-size: 1rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #c4c0ff; margin-bottom: 0.9rem; margin-top: 2rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border); }
+    h3 { font-size: 0.95rem; font-weight: 600; color: var(--text); margin: 1.2rem 0 0.5rem; }
+    p { font-size: 0.93rem; color: var(--muted); line-height: 1.75; margin-bottom: 0.8rem; }
+    ul, ol { margin: 0.4rem 0 0.8rem 1.2rem; }
+    ul li, ol li { font-size: 0.93rem; color: var(--muted); line-height: 1.75; margin-bottom: 0.3rem; }
+    table { width: 100%; border-collapse: collapse; margin: 0.8rem 0; font-size: 0.88rem; }
+    th { text-align: left; color: rgba(240,240,248,0.5); font-weight: 600; font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.5rem 0.75rem; border-bottom: 1px solid var(--border); }
+    td { padding: 0.6rem 0.75rem; color: var(--muted); border-bottom: 1px solid rgba(255,255,255,0.05); vertical-align: top; }
+    td:first-child { color: var(--text); font-weight: 500; }
+    a { color: #c4c0ff; text-decoration: none; }
     a:hover { text-decoration: underline; }
-
-    .contact-block {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 1.25rem 1.5rem;
-      backdrop-filter: blur(10px);
-    }
-
-    .contact-block p {
-      margin: 0;
-    }
-
-    footer {
-      position: relative;
-      z-index: 2;
-      padding: 0 2rem 2rem;
-      font-size: 0.75rem;
-      color: rgba(240,240,248,0.3);
-      width: 100%;
-      max-width: 760px;
-    }
-
+    .contact-block { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 1.25rem 1.5rem; backdrop-filter: blur(10px); }
+    .contact-block p { margin: 0; }
+    blockquote { border-left: 3px solid var(--accent); padding-left: 1rem; margin: 1rem 0; font-style: italic; color: var(--muted); }
+    strong { color: var(--text); font-weight: 600; }
+    nav { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 1.25rem 1.5rem; margin-bottom: 2rem; }
+    nav ul { list-style: none; margin: 0; }
+    nav ul li { margin-bottom: 0.4rem; }
+    footer { position: relative; z-index: 2; padding: 0 2rem 2rem; font-size: 0.75rem; color: rgba(240,240,248,0.3); width: 100%; max-width: 760px; }
     footer a { color: inherit; }
     footer a:hover { color: rgba(240,240,248,0.6); }
   </style>
 </head>
 <body>
-
   <div class="bg-photo"></div>
   <div class="bg-overlay"></div>
-
   <header>
-    <a href="/" class="logo-mark">
+    <a class="logo-mark" href="/">
       <div class="logo-icon">
         <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M9 3h6M9 3v7L4 20h16L15 10V3"/>
-          <line x1="6" y1="14" x2="18" y2="14"/>
+          <path d="M9 3h6M9 3v7L4 20h16L15 10V3"></path>
         </svg>
       </div>
-      <span class="logo-wordmark">East Heights Labs</span>
+      <span class="logo-wordmark">ShowHunter</span>
     </a>
   </header>
-
   <main>
     <h1 class="page-title">Privacy Policy — <span>ShowHunter</span></h1>
-    <p class="meta">Effective Date: August 19, 2026 &nbsp;·&nbsp; Last Updated: August 30, 2026 &nbsp;·&nbsp; Developer: East Heights Labs LLC, Houston, TX</p>
+    <p class="meta">East Heights Labs, LLC &nbsp;·&nbsp; Houston, TX &nbsp;·&nbsp; ShowHunter</p>
+    <p><strong>App:</strong> ShowHunter<br />
+<strong>Developer:</strong> East Heights Labs, LLC<br />
+<strong>Effective Date:</strong> [TO BE SET ON LAUNCH]<br />
+<strong>Last Updated:</strong> October 26, 2026<br />
+<strong>Version:</strong> 0.2 (Aaron Woo MHW_v2 markups incorporated;
+ShowHunter rebrand)</p>
+<hr />
+<hr />
+<h2 id="table-of-contents">Table of Contents</h2>
+<ul>
+<li><a href="#1">§1 — Introduction / Who We Are</a></li>
+<li><a href="#2">§2 — Information We Collect</a></li>
+<li><a href="#3">§3 — How We Use Your Information</a></li>
+<li><a href="#4">§4 — How We Share Your Information</a></li>
+<li><a href="#5">§5 — Third-Party Services</a></li>
+<li><a href="#6">§6 — Data Retention</a></li>
+<li><a href="#7">§7 — Your Privacy Rights</a></li>
+<li><a href="#8">§8 — Children’s Privacy</a></li>
+<li><a href="#9">§9 — Security</a></li>
+<li><a href="#10">§10 — Changes to This Policy</a></li>
+<li><a href="#11">§11 — Contact Us</a></li>
+<li><a href="#appendix-a">Appendix A — Open Items for Attorney
+Review</a></li>
+<li><a href="#change-log">Change Log</a></li>
+</ul>
+<hr />
+<h2 id="1">§1 — Introduction / Who We Are</h2>
+<h3 id="about-east-heights-labs-llc">§1.1 About East Heights Labs,
+LLC</h3>
+<p>ShowHunter is a live music discovery application developed and
+operated by <strong>East Heights Labs, LLC</strong> (“East Heights
+Labs,” “we,” “us,” or “our”), a Texas limited liability company with a
+principal mailing address at:</p>
+<blockquote>
+<p>East Heights Labs, LLC<br />
+1900 W Gray St, P.O. Box #130180<br />
+Houston, TX 77219</p>
+</blockquote>
+<p>This Privacy Policy (“Policy”) describes how East Heights Labs
+collects, uses, stores, and shares information about users (“you” or
+“your”) of the ShowHunter iOS application (“App”) and any related
+services, websites, or platforms operated by East Heights Labs
+(collectively, the “Services”).</p>
+<h3 id="scope-of-this-policy">§1.2 Scope of This Policy</h3>
+<p>This Policy applies to all users of the App, including:</p>
+<ul>
+<li><strong>Anonymous users</strong> who use the App without signing
+in;</li>
+<li><strong>Registered users</strong> who sign in with Apple; and</li>
+<li><strong>Visitors</strong> to our website at <a
+href="https://eastheightslabs.com">eastheightslabs.com</a>.</li>
+</ul>
+<p>By downloading, installing, or using the App, you acknowledge that
+you have read and understood this Policy. If you do not agree with this
+Policy, please do not use the App.</p>
+<h3 id="alpha-pre-launch-status">§1.3 Alpha / Pre-Launch Status</h3>
+<p>At the time of this writing, the App is in <strong>alpha
+testing</strong> via Apple TestFlight and has not yet launched publicly
+on the Apple App Store. Some features and data practices described
+herein may not yet be fully implemented. This Policy is published in
+advance to comply with Apple’s App Store Review Guidelines and
+applicable law. We will update this Policy as features are added or
+changed.</p>
+<h3 id="no-advertising-business-model">§1.4 No Advertising Business
+Model</h3>
+<p>East Heights Labs does not serve advertisements and does not sell
+user data. The App is supported by subscription revenue. We have no
+financial relationship with advertisers and do not profile users for
+advertising purposes.</p>
+<hr />
+<h2 id="2">§2 — Information We Collect</h2>
+<p>We collect the minimum information necessary to operate the App. The
+categories below describe what we collect, when, and why.</p>
+<h3 id="device-uuid-anonymous-identifier">§2.1 Device UUID (Anonymous
+Identifier)</h3>
+<p>When you first launch the App, we generate and assign a
+<strong>random, device-specific UUID</strong> (“Device UUID”) to your
+installation. This UUID:</p>
+<ul>
+<li>Is randomly generated on first launch and stored on your
+device;</li>
+<li>Is <strong>not</strong> your device’s hardware identifier (IDFA,
+IDFV, or serial number);</li>
+<li>Is used to associate your in-app activity (favorites, “I’m Going”
+confirmations, stage time reports) with your device without requiring an
+account;</li>
+<li>Is transmitted to our servers to record your activity and retrieve
+your preferences;</li>
+<li>Is <strong>not</strong> shared with third parties for advertising or
+profiling purposes.</li>
+</ul>
+<p>We may retain multiple UUIDs associated with a single account if you
+use the App on multiple devices or reinstall the App (see §2.4 and
+§6).</p>
+<h3 id="sign-in-with-apple-optional">§2.2 Sign In with Apple
+(Optional)</h3>
+<p>We offer <strong>Sign In with Apple</strong> as an optional
+authentication method. You are not required to sign in to use the core
+features of the App. If you choose to sign in:</p>
+<p><strong>2.2.1 What Apple Provides to Us</strong></p>
+<p>Apple’s Sign In with Apple service provides us with:</p>
+<ul>
+<li><strong>Stable Account Identifier (sub claim):</strong> A stable,
+anonymized identifier unique to your Apple ID for our App. This is
+<em>not</em> your Apple ID itself and cannot be used to identify you
+outside of our App.</li>
+<li><strong>Email address (optional):</strong> Apple may provide a real
+or Apple-generated relay email address, only if you choose to share it.
+You may opt to hide your real email using Apple’s Private Relay
+feature.</li>
+<li><strong>Display name (optional):</strong> A name you choose to share
+with us. You are not required to share your real name.</li>
+</ul>
+<p><strong>2.2.2 What We Do Not Receive</strong></p>
+<p>We do <strong>not</strong> receive:</p>
+<ul>
+<li>Your Apple ID or iCloud account credentials;</li>
+<li>Your Apple ID password or any authentication credentials;</li>
+<li>Payment method information from Apple;</li>
+<li>Any other Apple account data beyond what is explicitly listed in
+§2.2.1.</li>
+</ul>
+<p><strong>2.2.3 How We Use Sign In with Apple Data</strong></p>
+<p>We use your Apple sub claim, email (if provided), and display name
+(if provided) solely to:</p>
+<ul>
+<li>Authenticate you within the App;</li>
+<li>Provide account-linked features (synchronized favorites,
+subscription entitlements, activity history);</li>
+<li>Contact you if you have provided an email and have opted in to
+communications; and</li>
+<li>Comply with our legal obligations.</li>
+</ul>
+<p>We do <strong>not</strong> share your Apple sub claim, email, or
+display name with third parties except as described in §4.</p>
+<h3 id="location-data">§2.3 Location Data</h3>
+<p>The App requests access to your device’s location to show live music
+events near you.</p>
+<p><strong>2.3.1 How Location Is Used</strong></p>
+<ul>
+<li>We use Apple’s <strong>CoreLocation</strong> framework to access
+your device’s current location, subject to the iOS permission you
+grant.</li>
+<li>We use <strong>Apple Maps (MapKit)</strong> and
+<strong>MKLocalSearch</strong> for map display and location-based
+searches. These features may transmit your location or search queries to
+Apple’s servers, governed by Apple’s Privacy Policy (see §5.1).</li>
+<li>Location is used to calculate event proximity and display a map of
+nearby events.</li>
+</ul>
+<p><strong>2.3.2 What We Do Not Do With Location</strong></p>
+<ul>
+<li>We do <strong>not</strong> store your precise location on our
+servers.</li>
+<li>We do <strong>not</strong> log a history of your location.</li>
+<li>We do <strong>not</strong> sell, share, or transmit your location to
+advertisers or data brokers.</li>
+<li>Location data is used transiently for proximity queries and is not
+retained after the query is resolved.</li>
+</ul>
+<p><strong>2.3.3 Permission Control</strong></p>
+<p>You may grant “While Using” or “Always” location access, or deny
+location access entirely through iOS Settings. The App functions with
+reduced capability (no proximity sorting, no “near me” features) if
+location is denied.</p>
+<h3 id="account-activity-and-uuid-history">§2.4 Account Activity and
+UUID History</h3>
+<p>When you sign in with Apple, we link your anonymous activity history
+to your account. Specifically:</p>
+<ul>
+<li>All Device UUIDs previously used on your device(s) are associated
+with your account, along with first-seen and last-seen timestamps for
+each UUID;</li>
+<li>All in-app activity previously attributed to those UUIDs (favorites,
+“I’m Going” confirmations, stage time reports) is backfilled to your
+account; and</li>
+<li>If you use the App on additional devices after signing in, new
+Device UUIDs generated on those devices are also associated with your
+account.</li>
+</ul>
+<p>This linkage exists to provide a seamless cross-device experience. We
+retain your UUID history for the duration of your account and delete it
+upon account deletion (see §6.2).</p>
+<h3 id="community-contributions">§2.5 Community Contributions</h3>
+<p>If you submit any of the following, we collect and store that
+content:</p>
+<ul>
+<li><strong>Stage time reports:</strong> Reported or corrected set times
+for artists at an event;</li>
+<li><strong>Venue corrections:</strong> Suggested corrections to venue
+information; and</li>
+<li><strong>“I’m Going” confirmations:</strong> An indication that you
+plan to attend an event.</li>
+</ul>
+<p>Community contributions are associated with your Device UUID
+(anonymous users) or your account (signed-in users). You retain
+ownership of your contributions, but grant East Heights Labs a
+worldwide, royalty-free, perpetual, irrevocable license to use, display,
+and distribute your contributions as described in our Terms of Service
+(§4.2 of the ToS).</p>
+<p>We may retain anonymized, de-identified community contributions
+(stage time reports, venue corrections) even after account deletion, as
+provided in §6.4.</p>
+<h3 id="subscription-and-entitlement-data">§2.6 Subscription and
+Entitlement Data</h3>
+<p>If you subscribe to ShowHunter, we collect and store:</p>
+<ul>
+<li>Your current subscription tier and its source (e.g., App Store,
+promo code);</li>
+<li>Entitlement grant history (when each tier was granted, modified, or
+revoked);</li>
+<li>Subscription expiry dates; and</li>
+<li>Promo code redemption history (code used, redemption date).</li>
+</ul>
+<p>Subscription and billing processing is handled by <strong>Apple’s
+StoreKit / App Store</strong> (see §5.5). We do <strong>not</strong>
+receive your payment card information. We receive only transaction
+identifiers and entitlement status from Apple.</p>
+<p>Entitlement data is linked to your account and used solely to
+provision subscription benefits. It is deleted upon account deletion
+(see §6.2).</p>
+<h3 id="usage-data-and-diagnostics">§2.7 Usage Data and Diagnostics</h3>
+<p><strong>Currently:</strong> We do not collect analytics or behavioral
+telemetry in the alpha version of the App.</p>
+<p><strong>In the future:</strong> If we add analytics, we will update
+this Policy before doing so and, where required by law, obtain your
+consent. Any analytics we implement will be described in this section
+with specificity (vendor, data collected, retention period, opt-out
+mechanism).</p>
+<p>Apple may collect app crash reports and usage data through its own
+frameworks (e.g., MetricKit, TestFlight diagnostics). This data is
+governed by Apple’s Privacy Policy and your iOS privacy settings.</p>
+<h3 id="communications-data">§2.8 Communications Data</h3>
+<p>If you contact us by email (e.g., to request account deletion or
+report an issue), we collect and retain the content of that
+communication, including your email address, for the purpose of
+responding and maintaining a record of the interaction. We do not use
+this information for marketing without your consent.</p>
+<hr />
+<h2 id="3">§3 — How We Use Your Information</h2>
+<p>We use the information we collect for the following purposes:</p>
+<h3 id="providing-and-operating-the-app">§3.1 Providing and Operating
+the App</h3>
+<ul>
+<li>Assigning and recognizing your Device UUID to persist your
+preferences and activity across sessions;</li>
+<li>Authenticating you when you sign in with Apple;</li>
+<li>Displaying live music events near your location;</li>
+<li>Synchronizing your favorites, “I’m Going” confirmations, and stage
+time reports across devices (signed-in users);</li>
+<li>Provisioning subscription entitlements.</li>
+</ul>
+<h3 id="improving-the-app-and-services">§3.2 Improving the App and
+Services</h3>
+<ul>
+<li>Aggregating community contributions (stage time reports, venue
+corrections) to improve the accuracy of event data shown to all
+users;</li>
+<li>Identifying bugs, crashes, or service outages through aggregate
+error signals.</li>
+</ul>
+<p>We do not use individual behavioral data to train machine learning
+models or improve third-party products without your explicit
+consent.</p>
+<h3 id="legal-and-safety-obligations">§3.3 Legal and Safety
+Obligations</h3>
+<ul>
+<li>Complying with applicable law, regulation, or court order;</li>
+<li>Detecting, investigating, and preventing fraud, abuse, or violations
+of our Terms of Service;</li>
+<li>Protecting the rights, property, or safety of East Heights Labs, our
+users, or the public.</li>
+</ul>
+<h3 id="communications">§3.4 Communications</h3>
+<ul>
+<li>Responding to your inquiries, support requests, or deletion
+requests;</li>
+<li>Sending you service-related notices (e.g., material changes to this
+Policy or our Terms of Service), which are not marketing communications
+and cannot be opted out of while you remain a user.</li>
+</ul>
+<p>We do <strong>not</strong> use your data for:</p>
+<ul>
+<li>Advertising or marketing to third parties;</li>
+<li>Sale or sharing of personal information for commercial gain;</li>
+<li>Interest-based advertising profiling;</li>
+<li>Automated decision-making that produces legal or similarly
+significant effects.</li>
+</ul>
+<hr />
+<h2 id="4">§4 — How We Share Your Information</h2>
+<p><strong>We do not sell your personal information.</strong> We do not
+share your personal information with third parties for advertising or
+marketing purposes. We share information only in the limited
+circumstances described below.</p>
+<h3 id="service-providers-processors">§4.1 Service Providers
+(Processors)</h3>
+<p>We use the following infrastructure service providers to operate the
+App. These providers process data on our behalf and are contractually
+prohibited from using your data for their own purposes:</p>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>Provider</th>
+<th>Role</th>
+<th>Data Processed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Railway</strong></td>
+<td>Backend hosting (Python FastAPI)</td>
+<td>All server-side data in transit and at rest</td>
+</tr>
+<tr>
+<td><strong>PostgreSQL (via Railway)</strong></td>
+<td>Database</td>
+<td>All stored user and event data</td>
+</tr>
+</tbody>
+</table>
+<p>We do not currently use email marketing platforms, advertising
+networks, or analytics vendors. If we add such providers, we will update
+this Policy. We may also disclose your information to contractors,
+service providers, and other third parties we use to support our
+business who are bound by contractual obligations to keep personal
+information confidential and use it only for the purposes for which we
+disclose it to them.</p>
+<h3 id="legal-disclosures">§4.2 Legal Disclosures</h3>
+<p>We may disclose your information if we believe in good faith that
+disclosure is necessary to:</p>
+<ul>
+<li>Comply with applicable law, regulation, legal process, or
+enforceable government request;</li>
+<li>Enforce our Terms of Service or other agreements;</li>
+<li>Detect, prevent, or address fraud, security, or technical issues;
+or</li>
+<li>Protect the rights, property, or safety of East Heights Labs, our
+users, or the public.</li>
+</ul>
+<h3 id="business-transfers">§4.3 Business Transfers</h3>
+<p>If East Heights Labs is involved in a merger, acquisition, asset
+sale, or other business combination, your information may be disclosed
+to a buyer, prospective buyer, or successor and may be transferred as
+part of that transaction. We will notify you via the App or by email (if
+available) before your information is transferred and becomes subject to
+a different privacy policy.</p>
+<h3 id="aggregate-and-de-identified-data">§4.4 Aggregate and
+De-Identified Data</h3>
+<p>We may share aggregate, de-identified, or anonymized data that cannot
+reasonably be used to identify you (e.g., “X% of users in Houston attend
+outdoor music events”) for research, analytics, or promotional purposes.
+This data is not personal information.</p>
+<h3 id="no-sale-or-sharing-for-advertising">§4.5 No Sale or Sharing for
+Advertising</h3>
+<p>We do <strong>not</strong> sell, rent, or otherwise make available
+your personal information to third parties for advertising, profiling,
+or cross-context behavioral advertising purposes. This applies to all
+users, including California residents (see §7.2) and Texas residents
+(see §7.1).</p>
+<hr />
+<h2 id="5">§5 — Third-Party Services</h2>
+<p>The App integrates with third-party services as described below. When
+you use these features, your data may be processed by those third
+parties under their own privacy policies. East Heights Labs does not
+control third-party data practices.</p>
+<h3 id="apple-maps-and-mapkit">§5.1 Apple Maps and MapKit</h3>
+<p>The App uses <strong>Apple Maps</strong> via the MapKit framework,
+including MKLocalSearch, to display maps and perform location-based
+event searches. When you use map features:</p>
+<ul>
+<li>MapKit may transmit your location or search queries to Apple’s
+servers;</li>
+<li>This data is processed by Apple under <strong>Apple’s Privacy
+Policy</strong> (https://www.apple.com/legal/privacy/);</li>
+<li>East Heights Labs does not receive or retain the data transmitted to
+Apple’s servers by MapKit.</li>
+</ul>
+<h3 id="apple-corelocation">§5.2 Apple CoreLocation</h3>
+<p>The App uses <strong>CoreLocation</strong> to access your device’s
+GPS location, subject to the permissions you grant in iOS. Location data
+is used locally and for proximity queries to our backend. We do not
+store your precise location on our servers (see §2.3).</p>
+<h3 id="ticketmaster-api">§5.3 Ticketmaster API</h3>
+<p>We retrieve event data from the <strong>Ticketmaster Discovery
+API</strong> to populate event listings in the App. This
+integration:</p>
+<ul>
+<li>Involves only event and venue data (event name, date, time, venue,
+ticket links);</li>
+<li>Does <strong>not</strong> involve transmitting any user data to
+Ticketmaster;</li>
+<li>Does not allow Ticketmaster to track or identify ShowHunter
+users.</li>
+</ul>
+<p>Ticketmaster’s privacy practices are governed by the
+<strong>Ticketmaster Privacy Policy</strong>
+(https://www.livenation.com/privacy-policy).</p>
+<h3 id="jambase-api-and-potentially-bandsintown-api">§5.4 JamBase API
+(and Potentially Bandsintown API)</h3>
+<p>We may retrieve event and artist data from <strong>JamBase</strong>
+and/or <strong>Bandsintown</strong> to supplement event listings. These
+integrations:</p>
+<ul>
+<li>Involve only event, venue, and artist data;</li>
+<li>Do <strong>not</strong> involve transmitting user data to these
+providers;</li>
+<li>Do not allow these providers to track or identify ShowHunter
+users.</li>
+</ul>
+<p>If these integrations are expanded in a manner that involves user
+data, we will update this Policy.</p>
+<h3 id="apple-app-store-and-storekit">§5.5 Apple App Store and
+StoreKit</h3>
+<p>Subscription purchases are processed by <strong>Apple’s App
+Store</strong> via <strong>StoreKit</strong>. Apple processes your
+payment information directly. We receive only transaction identifiers
+and entitlement status to provision your subscription tier. We do
+<strong>not</strong> receive your payment card information, billing
+address, or Apple ID.</p>
+<p>Apple’s data practices in connection with App Store purchases are
+governed by <strong>Apple’s Privacy Policy</strong> and the
+<strong>Apple Media Services Terms and Conditions</strong>.</p>
+<h3 id="apple-sign-in-with-apple">§5.6 Apple Sign In with Apple</h3>
+<p>As described in §2.2, Sign In with Apple is processed by Apple. We
+receive only the limited account identifier and optional fields
+described in §2.2.1. Apple’s privacy practices for this service are
+governed by <strong>Apple’s Privacy Policy</strong>.</p>
+<h3 id="apple-testflight-alpha-only">§5.7 Apple TestFlight (Alpha
+Only)</h3>
+<p>During the alpha phase, the App is distributed via <strong>Apple
+TestFlight</strong>. TestFlight may collect diagnostic, performance, and
+usage data governed by <strong>Apple’s Privacy Policy</strong> and
+separate TestFlight terms. This data collection is managed by Apple and
+is outside East Heights Labs’ control.</p>
+<h3 id="seatgeek">§5.8 SeatGeek</h3>
+<p>We retrieve event data from the <strong>SeatGeek API</strong> to
+populate event listings and ticket links in the App. This
+integration:</p>
+<ul>
+<li>Involves only event and venue data (event name, date, time, venue,
+ticket links);</li>
+<li>Does <strong>not</strong> involve transmitting any user data to
+SeatGeek;</li>
+<li>Does not allow SeatGeek to track or identify ShowHunter users.</li>
+</ul>
+<p>SeatGeek’s privacy practices are governed by the <strong>SeatGeek
+Privacy Policy</strong> (https://seatgeek.com/privacy-policy).</p>
+<h3 id="setlist.fm">§5.9 Setlist.fm</h3>
+<p>We may use data from <strong>Setlist.fm</strong> as input to our
+stage time estimation model. This integration:</p>
+<ul>
+<li>Involves only artist set data and venue data for enrichment
+purposes;</li>
+<li>Does <strong>not</strong> involve transmitting any user data to
+Setlist.fm;</li>
+<li>Does not allow Setlist.fm to track or identify ShowHunter
+users.</li>
+</ul>
+<p>Setlist.fm’s privacy practices are governed by the <strong>Setlist.fm
+Privacy Policy</strong> (https://www.setlist.fm/privacy-policy).</p>
+<h3 id="railway">§5.10 Railway</h3>
+<p>Our backend infrastructure is hosted on <strong>Railway</strong>.
+Railway processes data on our behalf as a service provider:</p>
+<ul>
+<li>All server-side data in transit and at rest passes through
+Railway-managed infrastructure;</li>
+<li>Railway is contractually prohibited from using your data for its own
+purposes;</li>
+<li>We are working to execute a Data Processing Agreement (DPA) with
+Railway prior to storing personal data at scale (see Appendix A, Item
+9).</li>
+</ul>
+<p>Railway’s privacy practices are governed by the <strong>Railway
+Privacy Policy</strong> (https://railway.app/legal/privacy).</p>
+<h3 id="vercel">§5.11 Vercel</h3>
+<p>Our venue dashboard is hosted on <strong>Vercel</strong>. Vercel
+processes data on our behalf as a service provider:</p>
+<ul>
+<li>Venue dashboard traffic and related data passes through
+Vercel-managed infrastructure;</li>
+<li>Vercel is contractually prohibited from using your data for its own
+purposes.</li>
+</ul>
+<p>Vercel’s privacy practices are governed by the <strong>Vercel Privacy
+Policy</strong> (https://vercel.com/legal/privacy-policy).</p>
+<hr />
+<h2 id="6">§6 — Data Retention</h2>
+<p>We retain personal information only as long as necessary to fulfill
+the purposes described in this Policy, comply with legal obligations,
+and resolve disputes.</p>
+<h3 id="anonymous-users-no-account">§6.1 Anonymous Users (No
+Account)</h3>
+<p>For users who have not signed in with Apple:</p>
+<ul>
+<li><strong>Device UUID and associated activity</strong> (favorites,
+“I’m Going” confirmations, stage time reports) are retained for the
+duration of your use of the App.</li>
+<li>If you request deletion as an anonymous user (see §6.5), we will
+make reasonable efforts to identify and delete your data, though precise
+attribution cannot be guaranteed without an account identifier.</li>
+</ul>
+<h3 id="registered-users-sign-in-with-apple">§6.2 Registered Users (Sign
+In with Apple)</h3>
+<p>Upon account deletion:</p>
+<ul>
+<li><strong>Apple sub claim, email address, and display name:</strong>
+Deleted within <strong>30 days</strong> of confirmed deletion
+request.</li>
+<li><strong>Device UUID history</strong> (all UUIDs associated with your
+account, including first-seen/last-seen timestamps): Deleted within
+<strong>30 days</strong>.</li>
+<li><strong>All in-app activity</strong> linked to those UUIDs
+(favorites, “I’m Going” confirmations, attributed stage time reports):
+Deleted within <strong>30 days</strong>.</li>
+<li><strong>Subscription tier and entitlement records</strong> (tier,
+tier source, grant history, expiry dates, promo code redemptions):
+Deleted within <strong>30 days</strong>.</li>
+</ul>
+<p><strong>Exception:</strong> Community-contributed stage time reports
+and venue corrections may be retained in <strong>anonymized,
+de-identified form</strong> after account deletion, with all linkage to
+your account, name, email, and Device UUIDs severed. This exception
+exists to preserve the accuracy of the event data index, which benefits
+all users. Once de-identified, this data cannot reasonably be attributed
+to you.</p>
+<h3 id="inactive-accounts">§6.3 Inactive Accounts</h3>
+<p>We do not currently have an automatic inactive-account deletion
+policy. [<strong>OPEN ITEM — see Appendix A, Item 3</strong>]</p>
+<h3 id="community-contributions-anonymized">§6.4 Community Contributions
+(Anonymized)</h3>
+<p>As noted in §6.2, certain community contributions may be retained in
+de-identified form indefinitely after account deletion. This data does
+not constitute personal information once all identifiers are
+severed.</p>
+<h3 id="anonymous-user-deletion-requests">§6.5 Anonymous User Deletion
+Requests</h3>
+<p>Anonymous users do not have an account identifier we can use to
+locate their data with certainty. If you wish to request deletion of
+data associated with your anonymous use:</p>
+<ol type="1">
+<li>Contact us at <strong>privacy@eastheightslabs.com</strong>;</li>
+<li>Provide your approximate activity window (date range) and the city
+or cities where you used the App;</li>
+<li>We will make reasonable, good-faith efforts to identify and delete
+data plausibly associated with your device.</li>
+</ol>
+<p>We cannot guarantee precise attribution for anonymous users and will
+so advise you upon receipt of your request.</p>
+<h3 id="legal-hold">§6.6 Legal Hold</h3>
+<p>Notwithstanding the above retention periods, we may retain
+information longer if required by law, regulation, legal process, or to
+resolve active disputes, claims, or investigations.</p>
+<hr />
+<h2 id="7">§7 — Your Privacy Rights</h2>
+<p>Depending on where you reside, you may have certain rights regarding
+your personal information. East Heights Labs will honor these rights to
+the extent required by applicable law. To exercise any right described
+below, contact us at <strong>privacy@eastheightslabs.com</strong>.</p>
+<p>We will respond to verifiable requests within the timeframes required
+by applicable law. We will not discriminate against you for exercising
+your privacy rights.</p>
+<h3 id="texas-residents-texas-data-privacy-and-security-act-tdpsa">§7.1
+Texas Residents — Texas Data Privacy and Security Act (TDPSA)</h3>
+<p>The Texas Data Privacy and Security Act (Tex. Bus. &amp; Com. Code
+§541 et seq.) grants Texas residents the following rights with respect
+to their personal data:</p>
+<p><strong>7.1.1 Right to Access</strong><br />
+You have the right to confirm whether we are processing your personal
+data and to access that data.</p>
+<p><strong>7.1.2 Right to Correction</strong><br />
+You have the right to correct inaccuracies in your personal data, taking
+into account the nature of the data and the purposes of processing.</p>
+<p><strong>7.1.3 Right to Deletion</strong><br />
+You have the right to request deletion of personal data you have
+provided to us or that we have collected about you.</p>
+<p><strong>7.1.4 Right to Data Portability</strong><br />
+You have the right to obtain a copy of your personal data that you
+previously provided to us in a portable and, to the extent technically
+feasible, readily usable format.</p>
+<p><strong>7.1.5 Right to Opt Out of Sale</strong><br />
+You have the right to opt out of the sale of your personal data.
+<strong>East Heights Labs does not sell personal data.</strong> No
+opt-out is required, but you may contact us to confirm this.</p>
+<p><strong>7.1.6 Right to Opt Out of Targeted Advertising</strong><br />
+You have the right to opt out of the processing of your personal data
+for purposes of targeted advertising. <strong>East Heights Labs does not
+conduct targeted advertising.</strong> No opt-out is required, but you
+may contact us to confirm this.</p>
+<p><strong>7.1.7 Right to Appeal</strong><br />
+If we decline to take action on your request, you have the right to
+appeal that decision. To appeal:</p>
+<ol type="1">
+<li>Submit a written appeal to
+<strong>privacy@eastheightslabs.com</strong> within a reasonable time
+after receiving our decision;</li>
+<li>Describe the basis for your appeal;</li>
+<li>We will respond within <strong>60 days</strong> of receiving your
+appeal, as required by the TDPSA.</li>
+</ol>
+<p>If your appeal is denied, you may submit a complaint to the
+<strong>Texas Attorney General’s Office</strong> at <a
+href="https://www.texasattorneygeneral.gov">texasattorneygeneral.gov</a>.</p>
+<h3
+id="california-residents-california-consumer-privacy-act-ccpa-cpra">§7.2
+California Residents — California Consumer Privacy Act (CCPA /
+CPRA)</h3>
+<p>Although the App is currently available primarily in Texas, we
+provide the following disclosures to California residents in
+anticipation of national expansion.</p>
+<p>The <strong>California Consumer Privacy Act</strong> (Cal. Civ. Code
+§1798.100 et seq.), as amended by the <strong>California Privacy Rights
+Act (CPRA)</strong>, grants California residents the following
+rights:</p>
+<p><strong>7.2.1 Right to Know</strong><br />
+You have the right to request disclosure of: (a) the categories and
+specific pieces of personal information we have collected about you; (b)
+the categories of sources from which we collected that information; (c)
+our business or commercial purposes for collecting or selling that
+information; and (d) the categories of third parties with whom we share
+that information.</p>
+<p><strong>7.2.2 Right to Delete</strong><br />
+You have the right to request deletion of personal information we have
+collected about you, subject to certain exceptions.</p>
+<p><strong>7.2.3 Right to Correct</strong><br />
+You have the right to request correction of inaccurate personal
+information we maintain about you.</p>
+<p><strong>7.2.4 Right to Opt Out of Sale or Sharing</strong><br />
+You have the right to opt out of the sale or sharing of your personal
+information. <strong>East Heights Labs does not sell or share personal
+information</strong> within the meaning of the CCPA/CPRA. No opt-out is
+required.</p>
+<p><strong>7.2.5 Right to Non-Discrimination</strong><br />
+We will not discriminate against you for exercising any of your CCPA
+rights.</p>
+<p><strong>7.2.6 Right to Limit Use of Sensitive Personal
+Information</strong><br />
+To the extent we process sensitive personal information (as defined by
+the CPRA), you have the right to limit our use of such data to purposes
+authorized by law. We do not believe we process sensitive personal
+information as defined by the CPRA, but if you have questions, contact
+us at <strong>privacy@eastheightslabs.com</strong>. [<strong>OPEN ITEM —
+see Appendix A, Item 6</strong>]</p>
+<p><strong>7.2.7 How to Submit a CCPA Request</strong><br />
+Submit requests by email to <strong>privacy@eastheightslabs.com</strong>
+with the subject line “CCPA Privacy Request.” We will respond within
+<strong>45 days</strong> (extendable by an additional 45 days with
+notice).</p>
+<p><strong>7.2.8 Authorized Agents</strong><br />
+California residents may authorize an agent to submit requests on their
+behalf. We will require the agent to provide written authorization from
+you and may require you to verify your identity directly.</p>
+<h3 id="all-users-general-rights">§7.3 All Users — General Rights</h3>
+<p>Regardless of your location, you may:</p>
+<ul>
+<li><strong>Access your data:</strong> Request a summary of the personal
+data associated with your account or Device UUID.</li>
+<li><strong>Delete your account and data:</strong> Email
+<strong>privacy@eastheightslabs.com</strong> to request account
+deletion. We will complete deletion within <strong>30 days</strong> as
+described in §6.2.</li>
+<li><strong>Correct your data:</strong> If your display name or email
+address associated with your account is incorrect, you may request
+correction.</li>
+<li><strong>Withdraw location consent:</strong> Revoke location access
+at any time through iOS Settings &gt; Privacy &amp; Security &gt;
+Location Services &gt; ShowHunter.</li>
+<li><strong>Sign out:</strong> Sign out of Sign In with Apple at any
+time within the App, which will revert you to anonymous (Device UUID)
+mode.</li>
+</ul>
+<h3 id="how-to-submit-a-request">§7.4 How to Submit a Request</h3>
+<p>To exercise any of the rights described in this §7:</p>
+<ul>
+<li><strong>Email:</strong> privacy@eastheightslabs.com</li>
+<li><strong>Subject line:</strong> “Privacy Rights Request — [Type of
+Request]”</li>
+<li><strong>Include:</strong> Your name (if known to us), email address
+(if you provided one), and a description of your request.</li>
+</ul>
+<p>We may need to verify your identity before processing certain
+requests. We will not require you to create an account to exercise your
+rights.</p>
+<hr />
+<h2 id="8">§8 — Children’s Privacy</h2>
+<h3 id="age-restriction">§8.1 Age Restriction</h3>
+<p>ShowHunter is <strong>not directed at children under the age of
+13</strong>. We do not knowingly collect personal information from
+children under 13. The App is intended for users who are at least 13
+years of age (or the minimum age required by applicable law in their
+jurisdiction).</p>
+<h3 id="coppa-compliance">§8.2 COPPA Compliance</h3>
+<p>In accordance with the <strong>Children’s Online Privacy Protection
+Act (COPPA)</strong> (15 U.S.C. §6501 et seq.):</p>
+<ul>
+<li>We do not knowingly collect, use, or disclose personal information
+from children under 13 without verifiable parental consent;</li>
+<li>We do not direct the App’s content, features, or marketing at
+children under 13; and</li>
+<li>The App’s content (live music events, venue information, artist set
+times) is not designed to appeal specifically to children.</li>
+</ul>
+<h3 id="if-we-learn-a-child-has-registered">§8.3 If We Learn a Child Has
+Registered</h3>
+<p>If we discover that a user under the age of 13 has provided personal
+information without verifiable parental consent, we will:</p>
+<ol type="1">
+<li>Promptly delete that information from our records;</li>
+<li>Terminate the associated account if applicable; and</li>
+<li>Notify the parent or guardian if contact information is
+available.</li>
+</ol>
+<h3 id="parental-contact">§8.4 Parental Contact</h3>
+<p>Parents or legal guardians who believe their child has provided
+personal information to ShowHunter should contact us immediately at
+<strong>privacy@eastheightslabs.com</strong>. We will take prompt action
+to delete the information and terminate the account.</p>
+<hr />
+<h2 id="9">§9 — Security</h2>
+<h3 id="security-measures">§9.1 Security Measures</h3>
+<p>East Heights Labs implements reasonable administrative, technical,
+and physical security measures designed to protect your personal
+information from unauthorized access, disclosure, alteration, and
+destruction. These measures include:</p>
+<ul>
+<li>Encrypted data transmission (TLS/HTTPS) between the App and our
+backend;</li>
+<li>Access controls limiting employee and contractor access to personal
+data on a need-to-know basis;</li>
+<li>Database hosting on Railway’s managed infrastructure with security
+configurations aligned to industry standards;</li>
+<li>Regular review of our security practices as the App scales.</li>
+</ul>
+<h3 id="limitations">§9.2 Limitations</h3>
+<p>No security system is impenetrable. We cannot guarantee the absolute
+security of your information. In the event of a data breach that affects
+your personal information, we will:</p>
+<ul>
+<li>Notify affected users as required by applicable law (including Texas
+law under Tex. Bus. &amp; Com. Code §521.053 and applicable data breach
+notification statutes); and</li>
+<li>Take reasonable steps to mitigate the breach and prevent
+recurrence.</li>
+</ul>
+<h3 id="your-responsibilities">§9.3 Your Responsibilities</h3>
+<p>You are responsible for maintaining the security of your Apple ID and
+device. Sign In with Apple uses Apple’s authentication infrastructure;
+we never receive your Apple ID password. If you believe your account has
+been compromised, contact us at
+<strong>privacy@eastheightslabs.com</strong> and change your Apple ID
+credentials through Apple’s account settings.</p>
+<hr />
+<h2 id="10">§10 — Changes to This Policy</h2>
+<h3 id="notice-of-changes">§10.1 Notice of Changes</h3>
+<p>We may update this Privacy Policy from time to time to reflect
+changes in our data practices, legal requirements, or App features. When
+we make material changes, we will:</p>
+<ul>
+<li>Update the “Last Updated” date at the top of this Policy;</li>
+<li>Provide notice within the App (e.g., an in-app banner or prompt)
+before the changes take effect; and</li>
+<li>For registered users, send notice to the email address associated
+with your account, if applicable.</li>
+</ul>
+<h3 id="continued-use">§10.2 Continued Use</h3>
+<p>Your continued use of the App after the effective date of a revised
+Policy constitutes your acceptance of the changes. If you do not agree
+with the revised Policy, you should discontinue use of the App and may
+request deletion of your account and data as described in §6 and §7.</p>
+<h3 id="archived-versions">§10.3 Archived Versions</h3>
+<p>Previous versions of this Policy will be archived and available upon
+request by contacting <strong>privacy@eastheightslabs.com</strong>.
+[<strong>OPEN ITEM — see Appendix A, Item 7</strong>]</p>
+<hr />
+<h2 id="11">§11 — Contact Us</h2>
+<p>If you have questions, concerns, or requests regarding this Privacy
+Policy or our data practices, please contact us:</p>
+<p><strong>East Heights Labs, LLC</strong><br />
+Attn: Privacy<br />
+1900 W Gray St, P.O. Box #130180<br />
+Houston, TX 77219</p>
+<p><strong>Email:</strong> privacy@eastheightslabs.com<br />
+<strong>Support:</strong> support@showhunter.app<br />
+<strong>Website:</strong> https://showhunter.app/privacy</p>
+<p>We will respond to privacy inquiries within a reasonable time and no
+later than required by applicable law.</p>
+<hr />
+<h2 id="appendix-a">Appendix A — Open Items for Attorney Review</h2>
+<p>The following items require attorney judgment and should be resolved
+before this Policy is published. Items are numbered for reference in
+counsel’s review.</p>
+<hr />
+<p><strong>Item 1 — TDPSA Controller/Processor Threshold
+Analysis</strong></p>
+<p>The Texas Data Privacy and Security Act applies to controllers that
+conduct business in Texas and either: (a) process personal data of
+100,000+ consumers per year; or (b) process personal data of 25,000+
+consumers per year and derive over 25% of gross revenue from the sale of
+personal data. Because we do not sell personal data, prong (b) likely
+does not apply. Prong (a) depends on user volume. Counsel should
+confirm: (i) whether the app is currently subject to the TDPSA at alpha
+stage; (ii) whether proactive compliance (included in this draft) is the
+appropriate posture; and (iii) whether any exemptions apply.</p>
+<hr />
+<p><strong>Item 2 — CCPA Applicability Threshold</strong></p>
+<p>The CCPA/CPRA applies to businesses that: (a) have annual gross
+revenues over $25 million; (b) buy, sell, receive, or share personal
+information of 100,000+ consumers or households annually; or (c) derive
+50%+ of annual revenues from selling consumers’ personal information.
+East Heights Labs is pre-revenue. Counsel should confirm: (i) whether
+CCPA disclosures are appropriate at this stage as a forward-looking
+measure; (ii) whether any safe harbor or exemption applies to small
+businesses during the pre-revenue period; and (iii) whether proactive
+inclusion creates unintended legal obligations.</p>
+<hr />
+<p><strong>Item 3 — Inactive Account Retention Policy</strong></p>
+<p>We have not yet defined a retention period for accounts with no
+activity. Counsel should advise on: (i) best practices for inactive
+account retention (e.g., 2-year inactivity trigger); (ii) whether TDPSA
+or other applicable law requires a defined retention limit; and (iii)
+whether a user notice and grace period should precede deletion.</p>
+<hr />
+<p><strong>Item 4 — Apple Sign In with Apple Compliance
+Review</strong></p>
+<p>Apple’s App Store Review Guidelines (Guideline 4.8) and Sign In with
+Apple requirements impose specific obligations on apps that use Sign In
+with Apple, including requirements around account deletion and data
+handling. Counsel should confirm that this Policy’s account deletion and
+data handling provisions fully satisfy Apple’s requirements, including
+the requirement to offer in-app account deletion before App Store
+launch.</p>
+<hr />
+<p><strong>Item 5 — In-App Account Deletion Requirement
+(Apple)</strong></p>
+<p>Apple requires apps that support account creation to offer in-app
+account deletion before App Store approval (App Store Review Guideline
+5.1.1(v)). The current deletion path is email-only
+(privacy@eastheightslabs.com). This is acceptable for TestFlight alpha,
+but must be remediated before App Store submission. This item is flagged
+here for completeness; no change to the Policy text is required, but the
+technical implementation is a prerequisite to launch.</p>
+<hr />
+<p><strong>Item 6 — Sensitive Personal Information Under
+CPRA</strong></p>
+<p>The CPRA defines “sensitive personal information” broadly, including
+precise geolocation data. The App collects precise device location.
+Counsel should advise: (i) whether the App’s location processing
+constitutes “sensitive personal information” under CPRA; (ii) if so,
+whether a “Limit Use of My Sensitive Personal Information” link or
+mechanism is required; and (iii) whether the current §7.2.6 treatment is
+sufficient.</p>
+<hr />
+<p><strong>Item 7 — Policy Archive and Versioning</strong></p>
+<p>§10.3 commits to providing previous versions upon request. Counsel
+should advise on: (i) how long prior versions should be retained; (ii)
+whether they should be publicly posted or available only on request; and
+(iii) whether a versioned archive at the public privacy URL
+(eastheightslabs.com/privacy.html) is advisable.</p>
+<hr />
+<p><strong>Item 8 — Bandsintown API — Confirm Data Sharing
+Terms</strong></p>
+<p>The Bandsintown API is listed as a potential integration. Before
+activating this integration, counsel and the development team should
+review Bandsintown’s API terms of service to confirm: (i) no user data
+is transmitted in API requests; (ii) no cross-referencing of user
+identifiers with Bandsintown’s data is occurring; and (iii) the Policy’s
+§5.4 description is accurate upon activation.</p>
+<hr />
+<p><strong>Item 9 — Railway / PostgreSQL DPA</strong></p>
+<p>East Heights Labs should execute a Data Processing Agreement (DPA)
+with Railway (or its underlying cloud provider) before storing personal
+data at scale. Counsel should confirm: (i) whether Railway offers a DPA;
+(ii) whether a DPA is required under TDPSA or other applicable law; and
+(iii) whether the current hosting arrangement satisfies applicable data
+residency requirements (note: Railway may use infrastructure outside
+Texas or the U.S.).</p>
+<hr />
+<p><strong>Item 10 — Future Analytics Vendors</strong></p>
+<p>§2.7 acknowledges that analytics may be added in the future. Counsel
+should advise on: (i) preferred analytics vendors that minimize data
+exposure (e.g., privacy-preserving, self-hosted, or server-side only);
+(ii) consent requirements under TDPSA, CCPA, and App Store guidelines
+for analytics; and (iii) whether a “Do Not Track” or opt-out mechanism
+will be required.</p>
+<hr />
+<p><strong>Item 11 — Effective Date and Version Numbering</strong></p>
+<p>This Policy has a placeholder effective date (“[TO BE SET ON
+LAUNCH]”). Counsel should advise on: (i) when this Policy should become
+effective (TestFlight distribution vs. App Store launch vs. earlier);
+and (ii) the versioning convention to use in the change log.</p>
+<hr />
+<p><strong>Item 12 — Texas Breach Notification</strong></p>
+<p>Texas Business &amp; Commerce Code §521.053 requires notification to
+affected individuals and the Texas Attorney General within 60 days of a
+data breach. Counsel should confirm: (i) current compliance posture;
+(ii) whether an incident response plan should be referenced in the
+Policy; and (iii) whether notification obligations extend to
+Ticketmaster/JamBase API event data (we believe not, as no user data is
+shared, but confirm).</p>
+<hr />
+<h2 id="change-log">Change Log</h2>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr>
+<th>Version</th>
+<th>Date</th>
+<th>Author</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0.1</td>
+<td>2026-09-08</td>
+<td>East Heights Labs (AI-assisted draft)</td>
+<td>Initial draft for attorney review. Pre-launch, alpha stage.</td>
+</tr>
+<tr>
+<td>0.2</td>
+<td>2026-10-26</td>
+<td>Tom Hagen (incorporating A. Woo MHW_v2 markups)</td>
+<td>Aaron Woo markups applied: §2.5 license expanded (sublicense +
+transferable); §4.1 contractor/DPA language added; §4.2 merger
+disclosure expanded; §5.8–5.11 added (SeatGeek, Setlist.fm, Railway,
+Vercel); §7.3 location path updated; app rebranded to ShowHunter
+throughout.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p><em>ShowHunter is a product of East Heights Labs, LLC. All rights
+reserved.</em><br />
+<em>Privacy questions: privacy@eastheightslabs.com</em><br />
+<em>Support: support@showhunter.app</em><br />
+<em>Policy URL: https://showhunter.app/privacy</em></p>
 
-    <section>
-      <h2>Overview</h2>
-      <p>ShowHunter is a live music discovery app that shows you concerts and events happening near your current location. We built it to be simple and privacy-respecting. We don't require an account. We don't sell your data. We don't track you across other apps or websites.</p>
-    </section>
-
-    <section>
-      <h2>Information We Collect</h2>
-
-      <h3>Location Data</h3>
-      <p>ShowHunter requests access to your device's location to show you events near you. Location is used only to query our event database — it is sent to our servers to fetch nearby shows and is not stored, logged, or shared with third parties.</p>
-      <p>You can use the app without granting location access by searching for a city manually.</p>
-
-      <h3>Anonymous Device Identifier</h3>
-      <p>ShowHunter generates a random identifier (UUID) the first time you launch the app. This identifier is:</p>
-      <ul>
-        <li>Randomly generated — not linked to your name, email, Apple ID, or any other personal information</li>
-        <li>Stored only on your device</li>
-        <li>Used to associate your stage time reports with your submissions so we can display community-reported data accurately</li>
-        <li>Never shared with advertisers or data brokers</li>
-      </ul>
-      <p>You can reset this identifier by deleting and reinstalling the app.</p>
-
-      <h3>Stage Time Reports (Optional)</h3>
-      <p>If you submit a stage time report ("Report Stage Time"), we collect the artist name, venue, date, and time you submit, along with your anonymous device identifier. We do not collect your name, email, or any contact information when you submit a report.</p>
-
-      <h3>Event Data</h3>
-      <p>ShowHunter displays event data from third-party sources including Ticketmaster and JamBase. We do not collect or store information about which events you view.</p>
-    </section>
-
-    <section>
-      <h2>Information We Do Not Collect</h2>
-      <ul>
-        <li>Name, email address, or contact information</li>
-        <li>Apple ID or sign-in credentials</li>
-        <li>Precise location history or movement patterns</li>
-        <li>Payment information</li>
-        <li>Advertising identifiers (IDFA)</li>
-        <li>Browsing history or cross-app tracking data</li>
-      </ul>
-    </section>
-
-    <section>
-      <h2>How We Use Information</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>Data</th>
-            <th>Purpose</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Location (approximate)</td>
-            <td>Fetch nearby events from our API</td>
-          </tr>
-          <tr>
-            <td>Anonymous device ID</td>
-            <td>Associate stage time reports; prevent spam</td>
-          </tr>
-          <tr>
-            <td>Stage time reports</td>
-            <td>Display community-reported show times to all users</td>
-          </tr>
-        </tbody>
-      </table>
-    </section>
-
-    <section>
-      <h2>Third-Party Services</h2>
-      <p>ShowHunter uses the following third-party services to provide event data:</p>
-      <ul>
-        <li><strong>Ticketmaster Discovery API</strong> — event and venue data. <a href="https://www.ticketmaster.com/h/privacy.html" target="_blank" rel="noopener">Ticketmaster Privacy Policy</a></li>
-        <li><strong>JamBase</strong> — live music event data, particularly for independent and jam band events. Powered by JamBase. <a href="https://www.jambase.com/article/privacy-policy" target="_blank" rel="noopener">JamBase Privacy Policy</a></li>
-      </ul>
-      <p>Our servers are hosted on <strong>Vercel</strong> (Vercel Inc., San Francisco, CA). API requests including approximate location coordinates are processed by Vercel's infrastructure. <a href="https://vercel.com/legal/privacy-policy" target="_blank" rel="noopener">Vercel Privacy Policy</a></p>
-    </section>
-
-    <section>
-      <h2>Data Retention</h2>
-      <ul>
-        <li>Location data is not retained after your API request is fulfilled</li>
-        <li>Anonymous device IDs and stage time reports are retained to power community features. You may request deletion by contacting us.</li>
-        <li>We do not maintain user accounts or session logs</li>
-      </ul>
-    </section>
-
-    <section>
-      <h2>Children's Privacy</h2>
-      <p>ShowHunter is not directed at children under 13. We do not knowingly collect personal information from children under 13. If you believe a child has submitted information through the app, contact us and we will delete it.</p>
-    </section>
-
-    <section>
-      <h2>Your Rights</h2>
-      <p>You may:</p>
-      <ul>
-        <li><strong>Revoke location access</strong> at any time in iOS Settings → Privacy &amp; Security → Location Services → ShowHunter</li>
-        <li><strong>Reset your anonymous ID</strong> by deleting and reinstalling the app</li>
-        <li><strong>Request deletion</strong> of any stage time reports you submitted by contacting us with the approximate date and venue</li>
-      </ul>
-    </section>
-
-    <section>
-      <h2>Changes to This Policy</h2>
-      <p>We will update this page when our data practices change. The "Last Updated" date at the top reflects the most recent revision. Continued use of the app after changes constitutes acceptance of the updated policy.</p>
-    </section>
-
-    <section>
-      <h2>Contact</h2>
-      <div class="contact-block">
-        <p>East Heights Labs LLC &nbsp;·&nbsp; Houston, Texas &nbsp;·&nbsp; <a href="mailto:privacy@eastheightslabs.com">privacy@eastheightslabs.com</a></p>
-      </div>
-    </section>
   </main>
-
   <footer>
-    <span>© 2026 East Heights Labs, LLC · Houston, TX</span>
-    &nbsp;·&nbsp;
-    <a href="/">Home</a>
-    &nbsp;·&nbsp;
-    <a href="mailto:hello@eastheightslabs.com">hello@eastheightslabs.com</a>
-    &nbsp;·&nbsp;
-    <em>ShowHunter is independently developed by East Heights Labs LLC and is not affiliated with Ticketmaster, Live Nation, or JamBase.</em>
+    <p>East Heights Labs LLC &nbsp;·&nbsp; Houston, Texas &nbsp;·&nbsp; <a href="mailto:privacy@eastheightslabs.com">privacy@eastheightslabs.com</a></p>
+    <p style="margin-top:0.5rem;"><a href="/">Studio home</a> &nbsp;·&nbsp; <a href="/terms">Terms of Service</a></p>
   </footer>
-
 </body>
 </html>
