@@ -1,594 +1,193 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="ShowHunter — Find live music happening tonight. Every venue near you. Who's playing. When they hit the stage.">
-  <title>ShowHunter — East Heights Labs</title>
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-  <link rel="icon" href="/favicon.ico">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --accent: #6c63ff;
-      --accent-2: #8b5cf6;
-      --accent-pink: #ff6584;
-      --text: #f0f0f8;
-      --muted: rgba(240,240,248,0.62);
-      --quiet: rgba(240,240,248,0.38);
-      --card: rgba(8, 8, 18, 0.62);
-      --border: rgba(255,255,255,0.12);
-      --nav-h: 64px;
-      --space-3: 24px;
-      --space-4: 32px;
-      --space-5: 48px;
-      --space-6: 64px;
-      --content: 1080px;
-      --narrow: 720px;
-    }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      font-family: Inter, system-ui, sans-serif;
-      color: var(--text);
-      min-height: 100vh;
-      background: #05050f;
-      overflow-x: hidden;
-    }
-
-    .bg-photo,
-    .bg-overlay {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-    }
-
-    .bg-photo {
-      background-image: url('../hero.jpg');
-      background-size: cover;
-      background-position: center 40%;
-      z-index: 0;
-    }
-
-    .bg-overlay {
-      z-index: 1;
-      background:
-        linear-gradient(to bottom,
-          rgba(5,5,15,0.58) 0%,
-          rgba(5,5,15,0.78) 38%,
-          rgba(5,5,15,0.94) 72%,
-          rgba(5,5,15,0.98) 100%);
-    }
-
-    .wrap { position: relative; z-index: 2; }
-
-    .site-nav {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      height: var(--nav-h);
-      background: rgba(5,5,15,0.72);
-      backdrop-filter: blur(16px);
-      border-bottom: 1px solid var(--border);
-    }
-
-    .nav-inner,
-    .section-inner {
-      width: min(var(--content), calc(100% - 48px));
-      margin: 0 auto;
-    }
-
-    .nav-inner {
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: var(--space-3);
-    }
-
-    .nav-logo {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      text-decoration: none;
-      color: inherit;
-      min-width: 0;
-    }
-
-    .logo-icon {
-      width: 32px;
-      height: 32px;
-      flex-shrink: 0;
-      background: linear-gradient(135deg, var(--accent), var(--accent-pink));
-      border-radius: 8px;
-      display: grid;
-      place-items: center;
-      box-shadow: 0 2px 12px rgba(108,99,255,0.35);
-    }
-
-    .logo-icon svg { width: 18px; height: 18px; }
-
-    .logo-wordmark {
-      font-size: 0.82rem;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      white-space: nowrap;
-    }
-
-    .nav-current {
-      color: var(--muted);
-      font-size: 0.9rem;
-      font-weight: 500;
-    }
-
-    .hero {
-      padding: var(--space-6) 0 var(--space-5);
-    }
-
-    .hero-grid {
-      width: min(var(--content), calc(100% - 48px));
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) 240px;
-      gap: var(--space-5);
-      align-items: center;
-    }
-
-    .kicker {
-      font-size: 0.72rem;
-      font-weight: 600;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: #c4c0ff;
-      margin-bottom: 14px;
-    }
-
-    h1 {
-      font-size: clamp(2.2rem, 5vw, 3.25rem);
-      font-weight: 700;
-      letter-spacing: -0.03em;
-      line-height: 1.05;
-      margin-bottom: 12px;
-    }
-
-    .tagline {
-      font-size: 1.2rem;
-      font-weight: 600;
-      color: #c4c0ff;
-      margin-bottom: 12px;
-    }
-
-    .desc {
-      font-size: 1.05rem;
-      color: var(--muted);
-      line-height: 1.6;
-      max-width: 34rem;
-      margin-bottom: var(--space-4);
-    }
-
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      align-items: center;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      border: none;
-      cursor: pointer;
-      text-decoration: none;
-      font-family: inherit;
-      font-size: 0.95rem;
-      font-weight: 600;
-      border-radius: 10px;
-      padding: 0.8rem 1.35rem;
-      transition: transform 0.12s ease, opacity 0.2s ease, border-color 0.2s ease;
-    }
-
-    .btn:active { transform: scale(0.98); }
-
-    .btn-primary {
-      color: #fff;
-      background: linear-gradient(135deg, var(--accent), var(--accent-2));
-      box-shadow: 0 8px 24px rgba(108,99,255,0.35);
-    }
-
-    .btn-store {
-      color: #fff;
-      background: rgba(0,0,0,0.55);
-      border: 1px solid var(--border);
-    }
-
-    .btn-store:hover { border-color: rgba(255,255,255,0.32); }
-
-    .btn-ghost {
-      color: var(--text);
-      background: rgba(255,255,255,0.06);
-      border: 1px solid var(--border);
-    }
-
-    .hero-phone { width: 100%; }
-
-    .hero-phone img {
-      width: 100%;
-      display: block;
-      border-radius: 28px;
-      box-shadow: 0 24px 50px rgba(0,0,0,0.5);
-      cursor: zoom-in;
-    }
-
-    .screens { padding: 0 0 var(--space-6); }
-
-    .screens-row {
-      display: flex;
-      gap: 16px;
-      justify-content: center;
-      overflow-x: auto;
-      padding-bottom: 4px;
-      scrollbar-width: none;
-    }
-
-    .screens-row::-webkit-scrollbar { display: none; }
-
-    .screens-row img {
-      width: 168px;
-      flex-shrink: 0;
-      border-radius: 22px;
-      box-shadow: 0 16px 40px rgba(0,0,0,0.45);
-      cursor: zoom-in;
-    }
-
-    .features { padding: 0 0 var(--space-6); }
-
-    .panel {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 24px;
-      backdrop-filter: blur(16px);
-      padding: var(--space-5);
-    }
-
-    .panel h2 {
-      font-size: 1.35rem;
-      font-weight: 650;
-      letter-spacing: -0.02em;
-      margin-bottom: var(--space-4);
-    }
-
-    .features-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 22px 28px;
-    }
-
-    .feature {
-      display: flex;
-      gap: 12px;
-      align-items: flex-start;
-    }
-
-    .dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      margin-top: 7px;
-      flex-shrink: 0;
-    }
-
-    .dot-purple { background: #a78bfa; }
-    .dot-orange { background: #fb923c; }
-    .dot-blue   { background: #818cf8; }
-    .dot-pink   { background: #f472b6; }
-    .dot-mint   { background: #34d399; }
-
-    .feature h3 { font-size: 0.98rem; font-weight: 600; margin-bottom: 4px; }
-    .feature p  { font-size: 0.9rem; color: var(--muted); line-height: 1.5; }
-
-    .signup-section { padding: 0 0 var(--space-6); }
-
-    .signup-inner {
-      width: min(var(--narrow), calc(100% - 48px));
-      margin: 0 auto;
-      text-align: center;
-      padding: var(--space-5) var(--space-4);
-    }
-
-    .signup-heading {
-      font-size: 1.35rem;
-      font-weight: 650;
-      margin-bottom: 8px;
-    }
-
-    .signup-label {
-      color: var(--muted);
-      font-size: 0.95rem;
-      margin-bottom: var(--space-3);
-    }
-
-    .email-form {
-      display: flex;
-      gap: 10px;
-      max-width: 440px;
-      margin: 0 auto 12px;
-    }
-
-    .email-form input {
-      flex: 1;
-      min-width: 0;
-      background: rgba(10,10,20,0.65);
-      border: 1px solid var(--border);
-      color: var(--text);
-      font-family: inherit;
-      font-size: 0.95rem;
-      padding: 0.8rem 1rem;
-      border-radius: 10px;
-      outline: none;
-    }
-
-    .email-form input::placeholder { color: rgba(240,240,248,0.38); }
-    .email-form input:focus { border-color: var(--accent); }
-
-    .form-status { font-size: 0.82rem; color: var(--quiet); min-height: 1.2em; }
-    .form-status.success { color: #4ade80; }
-    .form-status.error   { color: #f87171; }
-
-    footer { padding: 0 24px var(--space-6); color: var(--quiet); font-size: 0.8rem; }
-
-    .footer-inner {
-      width: min(var(--content), 100%);
-      margin: 0 auto;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      gap: 12px 24px;
-      padding-top: var(--space-4);
-      border-top: 1px solid var(--border);
-    }
-
-    footer a { color: inherit; text-decoration: none; }
-    footer a:hover { color: var(--muted); }
-    .footer-links { display: flex; flex-wrap: wrap; gap: 8px 18px; }
-
-    .lightbox {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.92);
-      z-index: 9999;
-      align-items: center;
-      justify-content: center;
-      cursor: zoom-out;
-    }
-
-    .lightbox.active { display: flex; }
-
-    .lightbox img {
-      max-width: min(90vw, 400px);
-      max-height: 90vh;
-      border-radius: 16px;
-    }
-
-    .lightbox-close {
-      position: absolute;
-      top: 1.25rem;
-      right: 1.5rem;
-      color: rgba(255,255,255,0.6);
-      font-size: 1.75rem;
-      cursor: pointer;
-    }
-
-    @media (max-width: 860px) {
-      .hero-grid { grid-template-columns: 1fr; text-align: center; }
-      .desc { margin-left: auto; margin-right: auto; }
-      .hero-actions { justify-content: center; }
-      .hero-phone { width: 180px; margin: 0 auto; order: -1; }
-      .features-grid { grid-template-columns: 1fr; }
-      .feature { text-align: left; }
-    }
-
-    @media (max-width: 560px) {
-      .nav-inner, .hero-grid, .section-inner { width: calc(100% - 32px); }
-      .email-form { flex-direction: column; }
-      .email-form .btn { width: 100%; }
-      .footer-inner { flex-direction: column; }
-      .screens-row img { width: 140px; }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="ShowHunter — Find live music happening tonight. Every venue near you. Who's playing. When they hit the stage.">
+<title>ShowHunter — East Heights Labs</title>
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" href="/favicon.ico">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+.form-status{font-size:13px;color:#9a91a8;min-height:1.2em;margin:0}
+.form-status.success{color:#4ade80}
+.form-status.error{color:#f87171}
+button:disabled{opacity:.7;cursor:default}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+body{margin:0;background:#08070d}
+a{color:#d65cf5}a:hover{color:#e79bfa}
+.hero-bg{background-image:linear-gradient(180deg,rgba(8,7,13,0.55) 0%,rgba(8,7,13,0.78) 60%,#08070d 100%),url(/houston-night.jpg);background-size:cover;background-position:center 35%}
+</style>
 </head>
 <body>
-  <div class="bg-photo" aria-hidden="true"></div>
-  <div class="bg-overlay" aria-hidden="true"></div>
+<div style="background: #08070d; color: #f4f1f8; font-family: Inter, system-ui, sans-serif; min-height: 100vh">
 
-  <div class="wrap">
-    <nav class="site-nav">
-      <div class="nav-inner">
-        <a class="nav-logo" href="/">
-          <span class="logo-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M9 3h6M9 3v7L4 20h16L15 10V3"></path>
-              <line x1="6" y1="14" x2="18" y2="14"></line>
-            </svg>
-          </span>
-          <span class="logo-wordmark">East Heights Labs</span>
-        </a>
+<div class="hero-bg">
+<header style="max-width: 1240px; margin: 0 auto; padding: 24px 32px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px">
+<a href="#top" style="display: flex; align-items: center; gap: 12px; text-decoration: none; color: #f4f1f8">
+<img src="/apple-touch-icon.png" alt="" style="width: 40px; height: 40px; border-radius: 10px">
+<span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 20px; letter-spacing: -0.01em">ShowHunter</span>
+</a>
+<nav aria-label="Main" style="display: flex; flex-wrap: wrap; align-items: center; gap: 28px; font-size: 15px">
+<a href="#features" style="color: #c9c2d4; text-decoration: none">Features</a>
+<a href="#stage-times" style="color: #c9c2d4; text-decoration: none">Stage times</a>
+<a href="#notify" style="color: #c9c2d4; text-decoration: none">Get notified</a>
+<a href="#download" style="color: #08070d; background: #f4f1f8; text-decoration: none; font-weight: 600; padding: 12px 18px; border-radius: 999px; min-height: 20px">Get the app</a>
+</nav>
+</header>
 
-      </div>
-    </nav>
+<section id="top" style="max-width: 1240px; margin: 0 auto; padding: 72px 32px 96px; display: flex; flex-wrap: wrap; align-items: center; gap: 64px">
+<div style="flex: 999 1 520px; min-width: 0; display: flex; flex-direction: column; gap: 28px">
+<div style="display: flex; align-items: center; gap: 10px; font-size: 14px; color: #ffb27a; font-weight: 500">
+<span aria-hidden="true" style="width: 8px; height: 8px; border-radius: 50%; background: #ff8a3d"></span>
+<span>Playing tonight, near you</span>
+</div>
+<h1 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(3rem, 6.4vw, 5.75rem); line-height: 0.95; letter-spacing: -0.035em">Find live music happening <span style="color: #d65cf5">tonight.</span></h1>
+<p style="margin: 0; font-size: 20px; line-height: 1.55; color: #c9c2d4; max-width: 34rem">Every venue near you. Who's playing. When they actually hit the stage, and not just when doors open.</p>
+<div id="download" style="display: flex; flex-wrap: wrap; align-items: center; gap: 16px; padding-top: 8px">
+<a href="#notify" style="display: flex; align-items: center; gap: 12px; background: #f4f1f8; color: #08070d; text-decoration: none; padding: 14px 24px; border-radius: 14px; min-height: 28px">
+<svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="3"></rect><line x1="11" y1="18" x2="13" y2="18"></line></svg>
+<span style="display: flex; flex-direction: column; line-height: 1.1"><span style="font-size: 12px">Coming soon on the</span><span style="font-size: 18px; font-weight: 600">App Store</span></span>
+</a>
+<a href="#notify" style="color: #f4f1f8; font-weight: 500; font-size: 16px; padding: 14px 4px">Tell me when it's out</a>
+</div>
+<p style="margin: 0; font-size: 14px; color: #9a91a8">Free on iPhone. Nashville, Houston, Austin, Chicago, New York and more.</p>
+</div>
 
-    <header class="hero">
-      <div class="hero-grid">
-        <div>
-          <p class="kicker">East Heights Labs · First app</p>
-          <h1>ShowHunter</h1>
-          <p class="tagline">Find live music happening tonight.</p>
-          <p class="desc">Every venue near you. Who's playing. When they actually hit the stage and not just when doors open.</p>
-          <div class="hero-actions">
-            <a class="btn btn-store" href="#">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"></path>
-              </svg>
-              Available Soon on the App Store
-            </a>
-            <a class="btn btn-ghost" href="#signup">Get updates</a>
-          </div>
-        </div>
-        <div class="hero-phone">
-          <img class="lightbox-trigger" src="../screenshot-event-detail.png" alt="ShowHunter event detail" data-full="../screenshot-event-detail.png">
-        </div>
-      </div>
-    </header>
+<div style="flex: 1 1 340px; min-width: 0; display: flex; justify-content: center; position: relative">
+<div aria-hidden="true" style="position: absolute; width: 520px; height: 520px; max-width: 100%; top: 50%; left: 50%; transform: translate(-50%, -50%); border-radius: 50%; background: radial-gradient(circle, rgba(214,92,245,0.38) 0%, rgba(214,92,245,0.10) 45%, rgba(8,7,13,0) 70%)"></div>
+<img src="/screenshot-houston-map.jpg" alt="ShowHunter map of downtown Houston with music venues in magenta and other events in orange, and 14 shows tonight" style="position: relative; width: 320px; max-width: 100%; height: auto; border-radius: 40px; border: 10px solid #24202d; box-shadow: 0 40px 80px rgba(0,0,0,0.6); display: block">
+</div>
+</section>
+</div>
 
-    <section class="screens" aria-label="App screenshots">
-      <div class="section-inner">
-        <div class="screens-row">
-          <img class="lightbox-trigger" src="../screenshot-nyc-shows.png" alt="Live music map with 30 shows tonight" data-full="../screenshot-nyc-shows.png">
-          <img class="lightbox-trigger" src="../screenshot-ryman-new.png" alt="Ryman Auditorium venue card" data-full="../screenshot-ryman-new.png">
-          <img class="lightbox-trigger" src="../screenshot-browse-night.png" alt="Browse shows by night" data-full="../screenshot-browse-night.png">
-          <img class="lightbox-trigger" src="../screenshot-event-detail.png" alt="Event detail with stage time" data-full="../screenshot-event-detail.png">
-        </div>
-      </div>
-    </section>
+<section id="features" style="border-top: 1px solid #1e1a27; background: #0c0a12">
+<div style="max-width: 1240px; margin: 0 auto; padding: 112px 32px; display: flex; flex-direction: column; gap: 56px">
+<div style="display: flex; flex-direction: column; gap: 16px; max-width: 44rem">
+<h2 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: clamp(2.25rem, 4vw, 3.5rem); line-height: 1.02; letter-spacing: -0.03em">Open the map. See what's on.</h2>
+<p style="margin: 0; font-size: 18px; line-height: 1.6; color: #c9c2d4">One map for every stage in town, from the big rooms to the bar down the street.</p>
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px">
 
-    <section class="features">
-      <div class="section-inner">
-        <div class="panel">
-          <h2>What's in the app</h2>
-          <div class="features-grid">
-            <div class="feature">
-              <span class="dot dot-purple" aria-hidden="true"></span>
-              <div>
-                <h3>Music venues</h3>
-                <p>Purple markers. Tap to see who's playing tonight.</p>
-              </div>
-            </div>
-            <div class="feature">
-              <span class="dot dot-orange" aria-hidden="true"></span>
-              <div>
-                <h3>Other live events</h3>
-                <p>Music in magenta. Comedy, sports and theater in orange.</p>
-              </div>
-            </div>
-            <div class="feature">
-              <span class="dot dot-blue" aria-hidden="true"></span>
-              <div>
-                <h3>Search venues &amp; artists</h3>
-                <p>Find any venue or artist across all cities.</p>
-              </div>
-            </div>
-            <div class="feature">
-              <span class="dot dot-pink" aria-hidden="true"></span>
-              <div>
-                <h3>Plan ahead</h3>
-                <p>Browse any night of the week, not just tonight.</p>
-              </div>
-            </div>
-            <div class="feature">
-              <span class="dot dot-mint" aria-hidden="true"></span>
-              <div>
-                <h3>Real stage times</h3>
-                <p>Community-reported, not just when doors open.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+<div style="background: #13101b; border: 1px solid #241f2f; border-radius: 20px; padding: 32px; display: flex; flex-direction: column; gap: 14px">
+<svg aria-hidden="true" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#d65cf5" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s7-6.2 7-12a7 7 0 0 0-14 0c0 5.8 7 12 7 12z"></path><circle cx="12" cy="10" r="2.5"></circle></svg>
+<h3 style="margin: 0; font-size: 20px; font-weight: 600">Music venues</h3>
+<p style="margin: 0; font-size: 16px; line-height: 1.6; color: #b9b0c6">Every music venue near you, marked in magenta. Tap a pin to see who's playing.</p>
+</div>
 
-    <section class="signup-section" id="signup">
-      <div class="signup-inner panel">
-        <h2 class="signup-heading">Stay in the loop</h2>
-        <p class="signup-label">Launch notes, new cities, and the next East Heights app. No spam.</p>
-        <form class="email-form" id="signup-form">
-          <input type="email" id="email-input" name="email" placeholder="your@email.com" required autocomplete="email">
-          <button class="btn btn-primary" type="submit" id="submit-btn">Notify me</button>
-        </form>
-        <p class="form-status" id="form-status">Just a ping when something new ships.</p>
-      </div>
-    </section>
+<div style="background: #13101b; border: 1px solid #241f2f; border-radius: 20px; padding: 32px; display: flex; flex-direction: column; gap: 14px">
+<svg aria-hidden="true" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#ff8a3d" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M8 14s1.5 2 4 2 4-2 4-2"></path><line x1="9" y1="9" x2="9.01" y2="9"></line><line x1="15" y1="9" x2="15.01" y2="9"></line></svg>
+<h3 style="margin: 0; font-size: 20px; font-weight: 600">Other live events</h3>
+<p style="margin: 0; font-size: 16px; line-height: 1.6; color: #b9b0c6">Comedy, sports and theatre show up in orange, so you can tell them apart at a glance.</p>
+</div>
 
-    <footer>
-      <div class="footer-inner">
-        <span>© 2026 East Heights Labs, LLC · Houston, TX</span>
-        <div class="footer-links">
-          <a href="mailto:hello@eastheightslabs.com">hello@eastheightslabs.com</a>
-          <a href="mailto:support@showhunter.app">support@showhunter.app</a>
-          <a href="/">Studio home</a>
-          <a href="/privacy.html">Privacy Policy</a>
-        </div>
-      </div>
-    </footer>
-  </div>
+<div style="background: #13101b; border: 1px solid #241f2f; border-radius: 20px; padding: 32px; display: flex; flex-direction: column; gap: 14px">
+<svg aria-hidden="true" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#f4f1f8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.5" y2="16.5"></line></svg>
+<h3 style="margin: 0; font-size: 20px; font-weight: 600">Search venues and artists</h3>
+<p style="margin: 0; font-size: 16px; line-height: 1.6; color: #b9b0c6">Look up a venue anywhere and the map takes you there, with its upcoming shows.</p>
+</div>
 
-  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Screenshot viewer">
-    <span class="lightbox-close" id="lightbox-close" aria-label="Close">×</span>
-    <img id="lightbox-img" src="" alt="">
-  </div>
+<div style="background: #13101b; border: 1px solid #241f2f; border-radius: 20px; padding: 32px; display: flex; flex-direction: column; gap: 14px">
+<svg aria-hidden="true" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#f4f1f8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"></rect><line x1="3" y1="10" x2="21" y2="10"></line><line x1="8" y1="3" x2="8" y2="7"></line><line x1="16" y1="3" x2="16" y2="7"></line></svg>
+<h3 style="margin: 0; font-size: 20px; font-weight: 600">Plan ahead</h3>
+<p style="margin: 0; font-size: 16px; line-height: 1.6; color: #b9b0c6">Tonight, tomorrow or the weekend. Save the venues you love and mark the shows you're going to.</p>
+</div>
 
-  <script>
-    const lightbox = document.getElementById('lightbox');
-    const lightboxImg = document.getElementById('lightbox-img');
-    const lightboxClose = document.getElementById('lightbox-close');
+</div>
 
-    function openLightbox(src, alt) {
-      lightboxImg.src = src;
-      lightboxImg.alt = alt;
-      lightbox.classList.add('active');
-      document.body.style.overflow = 'hidden';
+<div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 48px; padding-top: 24px">
+<figure style="margin: 0; flex: 0 1 300px; min-width: 0; display: flex; flex-direction: column; gap: 18px">
+<img src="/screenshot-artist-card.jpg" alt="Artist card for Karina Rykman, followed, with three upcoming shows" style="width: 100%; height: auto; border-radius: 28px; border: 8px solid #24202d; display: block">
+<figcaption style="font-size: 16px; line-height: 1.5; color: #c9c2d4"><strong style="color: #f4f1f8">Follow artists.</strong> See every upcoming show, wherever they're playing.</figcaption>
+</figure>
+<figure style="margin: 0; flex: 0 1 300px; min-width: 0; display: flex; flex-direction: column; gap: 18px">
+<img src="/screenshot-pick-a-night.jpg" alt="Pick a Night calendar with Tonight, Tomorrow, This Weekend and This Week" style="width: 100%; height: auto; border-radius: 28px; border: 8px solid #24202d; display: block">
+<figcaption style="font-size: 16px; line-height: 1.5; color: #c9c2d4"><strong style="color: #f4f1f8">Pick a night.</strong> Tonight, this weekend, or any date on the calendar.</figcaption>
+</figure>
+</div>
+</div>
+</section>
+
+<section id="stage-times" style="max-width: 1240px; margin: 0 auto; padding: 112px 32px; display: flex; flex-wrap: wrap; align-items: center; gap: 64px">
+<div style="flex: 1 1 340px; min-width: 0; display: flex; justify-content: center">
+<img src="/screenshot-ryman-card.jpg" alt="Ryman Auditorium venue card showing tonight's shows with doors and stage times" style="width: 320px; max-width: 100%; height: auto; border-radius: 40px; border: 10px solid #24202d; display: block">
+</div>
+<div style="flex: 999 1 480px; min-width: 0; display: flex; flex-direction: column; gap: 24px">
+<h2 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: clamp(2.25rem, 4vw, 3.5rem); line-height: 1.02; letter-spacing: -0.03em">Doors at 8. <span style="color: #ff8a3d">On stage when?</span></h2>
+<p style="margin: 0; font-size: 18px; line-height: 1.6; color: #c9c2d4; max-width: 36rem">Ticket sites tell you when doors open. ShowHunter tells you when the band actually plays, so you can skip the wait and still catch the opener.</p>
+<div style="display: flex; flex-wrap: wrap; gap: 16px">
+<div style="background: #13101b; border: 1px solid #241f2f; border-radius: 16px; padding: 20px 24px; display: flex; flex-direction: column; gap: 6px; min-width: 160px">
+<span style="font-size: 13px; color: #9a91a8; text-transform: uppercase; letter-spacing: 0.08em">Doors</span>
+<span style="font-family: 'Bricolage Grotesque', sans-serif; font-size: 32px; font-weight: 700">8:00 PM</span>
+</div>
+<div style="background: #1a1222; border: 1px solid #4f2a5e; border-radius: 16px; padding: 20px 24px; display: flex; flex-direction: column; gap: 6px; min-width: 160px">
+<span style="font-size: 13px; color: #e7a6fb; text-transform: uppercase; letter-spacing: 0.08em">On stage</span>
+<span style="font-family: 'Bricolage Grotesque', sans-serif; font-size: 32px; font-weight: 700">~9:30 PM</span>
+</div>
+</div>
+<p style="margin: 0; font-size: 14px; color: #9a91a8">Real stage times, reported by the community.</p>
+</div>
+</section>
+
+<section id="notify" style="border-top: 1px solid #1e1a27; background: #0c0a12">
+<div style="max-width: 760px; margin: 0 auto; padding: 112px 32px; display: flex; flex-direction: column; align-items: center; gap: 24px; text-align: center">
+<h2 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: clamp(2.25rem, 4vw, 3.5rem); line-height: 1.02; letter-spacing: -0.03em">Be first in line.</h2>
+<p style="margin: 0; font-size: 18px; line-height: 1.6; color: #c9c2d4">Leave your email and we'll tell you the day ShowHunter lands on the App Store.</p>
+<form id="signup-form" style="width: 100%; max-width: 520px; display: flex; flex-wrap: wrap; gap: 12px; padding-top: 8px">
+<label for="email-input" class="sr-only">Email address</label>
+<input id="email-input" name="email" type="email" required autocomplete="email" placeholder="you@example.com" style="flex: 1 1 240px; min-width: 0; height: 52px; box-sizing: border-box; padding: 0 18px; border-radius: 14px; border: 1px solid #3a3247; background: #08070d; color: #f4f1f8; font-size: 16px; font-family: Inter, sans-serif">
+<button type="submit" id="submit-btn" style="flex: 0 0 auto; height: 52px; padding: 0 24px; border-radius: 14px; border: 0; background: #d65cf5; color: #08070d; font-weight: 600; font-size: 16px; font-family: Inter, sans-serif; cursor: pointer">Notify me</button>
+</form>
+<p class="form-status" id="form-status" role="status">One email at launch. No spam.</p>
+</div>
+</section>
+
+<footer style="border-top: 1px solid #1e1a27">
+<div style="max-width: 1240px; margin: 0 auto; padding: 40px 32px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 24px; font-size: 14px; color: #9a91a8">
+<span>© 2026 <a href="/" style="color: #c9c2d4">East Heights Labs, LLC</a> · Houston, TX · Skyline photo by <a href="https://www.pexels.com/photo/17995530/" style="color: #c9c2d4">Jeswin Thomas</a> on Pexels</span>
+<nav aria-label="Footer" style="display: flex; flex-wrap: wrap; gap: 24px">
+<a href="mailto:support@showhunter.app" style="color: #c9c2d4">support@showhunter.app</a>
+<a href="mailto:hello@eastheightslabs.com" style="color: #c9c2d4">hello@eastheightslabs.com</a>
+<a href="/privacy" style="color: #c9c2d4">Privacy</a>
+<a href="/terms" style="color: #c9c2d4">Terms</a>
+</nav>
+</div>
+</footer>
+
+</div>
+<script>
+  document.getElementById('signup-form').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const btn = document.getElementById('submit-btn');
+    const status = document.getElementById('form-status');
+    btn.disabled = true;
+    btn.textContent = 'Sending…';
+    status.className = 'form-status';
+    status.textContent = '';
+    try {
+      const res = await fetch('/api/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: document.getElementById('email-input').value })
+      });
+      if (!res.ok) throw new Error('server error');
+      btn.textContent = "You're on the list";
+      document.getElementById('email-input').disabled = true;
+      status.className = 'form-status success';
+      status.textContent = "We'll reach out when something new ships.";
+    } catch {
+      btn.disabled = false;
+      btn.textContent = 'Notify me';
+      status.className = 'form-status error';
+      status.textContent = 'Something went wrong. Try again.';
     }
-
-    function closeLightbox() {
-      lightbox.classList.remove('active');
-      document.body.style.overflow = '';
-    }
-
-    document.querySelectorAll('.lightbox-trigger').forEach(img => {
-      img.addEventListener('click', () => openLightbox(img.dataset.full || img.src, img.alt));
-    });
-
-    lightbox.addEventListener('click', (e) => {
-      if (e.target === lightbox || e.target === lightboxClose) closeLightbox();
-    });
-    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
-
-    document.getElementById('signup-form').addEventListener('submit', async function(e) {
-      e.preventDefault();
-      const btn = document.getElementById('submit-btn');
-      const status = document.getElementById('form-status');
-      btn.disabled = true;
-      btn.textContent = 'Sending…';
-      status.className = 'form-status';
-      status.textContent = '';
-      try {
-        const res = await fetch('/api/subscribe', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email: document.getElementById('email-input').value })
-        });
-        if (!res.ok) throw new Error('server error');
-        btn.textContent = "You're on the list";
-        btn.style.background = 'linear-gradient(135deg, #22c55e, #16a34a)';
-        document.getElementById('email-input').disabled = true;
-        status.className = 'form-status success';
-        status.textContent = "We'll reach out when something new ships.";
-      } catch {
-        btn.disabled = false;
-        btn.textContent = 'Notify me';
-        status.className = 'form-status error';
-        status.textContent = 'Something went wrong — try again.';
-      }
-    });
-  </script>
+  });
+</script>
 </body>
 </html>
