@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="ShowHunter Support — East Heights Labs"/>
+  <title>Support — ShowHunter · East Heights Labs</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --accent: #6c63ff; --accent2: #ff6584; --text: #f0f0f8; --muted: rgba(240,240,248,0.6); --card: rgba(10,10,20,0.55); --border: rgba(255,255,255,0.12); }
+    html, body { height: 100%; }
+    body { font-family: 'Inter', system-ui, sans-serif; color: var(--text); min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 0; overflow-x: hidden; position: relative; background: #05050f; }
+    .bg-photo { position: fixed; inset: 0; background-image: url('../hero.jpg'); background-size: cover; background-position: center 40%; z-index: 0; }
+    .bg-overlay { position: fixed; inset: 0; background: linear-gradient(to bottom, rgba(5,5,15,0.75) 0%, rgba(5,5,15,0.88) 50%, rgba(5,5,15,0.95) 100%); z-index: 1; }
+    header { position: relative; z-index: 2; width: 100%; max-width: 760px; padding: 2rem 2rem 0; }
+    .logo-mark { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; }
+    .logo-icon { width: 36px; height: 36px; background: linear-gradient(135deg, var(--accent), var(--accent2)); border-radius: 8px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(108,99,255,0.4); flex-shrink: 0; }
+    .logo-icon svg { width: 20px; height: 20px; }
+    .logo-wordmark { font-size: 1.1rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text); }
+    main { position: relative; z-index: 2; width: 100%; max-width: 760px; padding: 3rem 2rem 5rem; }
+    .page-title { font-size: clamp(1.8rem, 5vw, 2.6rem); font-weight: 700; letter-spacing: -0.02em; margin-bottom: 0.4rem; text-shadow: 0 2px 12px rgba(0,0,0,0.5); }
+    .page-title span { background: linear-gradient(135deg, #c4c0ff 0%, #ff8fab 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .meta { font-size: 0.8rem; color: var(--muted); margin-bottom: 3rem; }
+    section { margin-bottom: 2.5rem; }
+    h2 { font-size: 1rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #c4c0ff; margin-bottom: 0.9rem; margin-top: 2rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border); }
+    p { font-size: 0.93rem; color: var(--muted); line-height: 1.75; margin-bottom: 0.8rem; }
+    a { color: #c4c0ff; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .contact-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem 2rem; margin-top: 1rem; }
+    .contact-card p { margin: 0; }
+    footer { position: relative; z-index: 2; width: 100%; max-width: 760px; padding: 1.5rem 2rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; }
+    footer p { font-size: 0.75rem; color: var(--muted); }
+    footer nav { display: flex; gap: 1.2rem; }
+    footer nav a { font-size: 0.75rem; color: var(--muted); text-decoration: none; }
+    footer nav a:hover { color: var(--text); }
+  </style>
+</head>
+<body>
+  <div class="bg-photo" aria-hidden="true"></div>
+  <div class="bg-overlay" aria-hidden="true"></div>
+  <header>
+    <a href="/" class="logo-mark" aria-label="ShowHunter Home">
+      <span class="logo-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+        </svg>
+      </span>
+      <span class="logo-wordmark">ShowHunter</span>
+    </a>
+  </header>
+  <main>
+    <h1 class="page-title">Support — <span>ShowHunter</span></h1>
+    <p class="meta">East Heights Labs, LLC &nbsp;·&nbsp; Houston, TX</p>
+
+    <section>
+      <h2>Get Help</h2>
+      <p>Have a question, found a bug, or need help with your account? We're here for you.</p>
+      <div class="contact-card">
+        <p>Email us at <a href="mailto:support@eastheightslabs.com">support@eastheightslabs.com</a></p>
+      </div>
+      <p style="margin-top: 1rem;">We typically respond within one business day.</p>
+    </section>
+
+    <section>
+      <h2>Account Deletion</h2>
+      <p>To delete your ShowHunter account and all associated data, go to <strong>Settings → Delete Account</strong> inside the app. Deletion is permanent and cannot be undone.</p>
+      <p>If you're unable to access the app, email <a href="mailto:support@eastheightslabs.com">support@eastheightslabs.com</a> with the subject line "Account Deletion Request" and we will process it within 30 days.</p>
+    </section>
+
+    <section>
+      <h2>Subscription &amp; Billing</h2>
+      <p>ShowHunter subscriptions are managed by Apple through the App Store. To cancel or manage your subscription, go to <strong>Settings → Apple ID → Subscriptions</strong> on your iPhone.</p>
+      <p>Apple handles all billing inquiries. For refund requests, visit <a href="https://reportaproblem.apple.com" target="_blank" rel="noopener">reportaproblem.apple.com</a>.</p>
+    </section>
+
+    <section>
+      <h2>Legal</h2>
+      <p><a href="/terms">Terms of Service</a> &nbsp;·&nbsp; <a href="/privacy">Privacy Policy</a></p>
+    </section>
+  </main>
+  <footer>
+    <p>&copy; 2026 East Heights Labs, LLC</p>
+    <nav>
+      <a href="/terms">Terms</a>
+      <a href="/privacy">Privacy</a>
+    </nav>
+  </footer>
+</body>
+</html>
