@@ -14,14 +14,16 @@ function escapeHtml(value) {
     .replace(/'/g, '&#39;');
 }
 
+const SAFE_SEGMENT = /^[A-Za-z0-9_:\-]+$/;
+
 function splitEventId(id) {
   if (!id || typeof id !== 'string') return null;
   const dash = id.indexOf('-');
   if (dash <= 0 || dash === id.length - 1) return null;
-  return {
-    source: id.slice(0, dash),
-    sourceId: id.slice(dash + 1),
-  };
+  const source = id.slice(0, dash);
+  const sourceId = id.slice(dash + 1);
+  if (!SAFE_SEGMENT.test(source) || !SAFE_SEGMENT.test(sourceId)) return null;
+  return { source, sourceId };
 }
 
 function formatDate(dateStr) {
